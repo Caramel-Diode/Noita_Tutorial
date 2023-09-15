@@ -104,7 +104,29 @@
 <body is="gd-doc">
     <template visible>
         <article title="Test" default>
+            <h1>暂时处于测试阶段 更多数据请转至<a style="color:#23A9F2" href="https://noita.wiki.gg/zh/wiki/Noita_Wiki" target="_blank">Wiki</a></h1>
+            <h2><a style="color:gold" href="./html/印象深刻计算器 ver 2.4.html" title="点我也行" target="_blank">永久化计算器</a>在侧栏 如果没显示侧栏点一下左上角按钮</h2>
+            <h3>
+                <a style="color:pink" href="https://github.com/Caramel-Diode">
+                    <svg height="32" width="32" aria-hidden="true" viewBox="0 0 16 16" version="1.1"  fill="#FFFFFF">
+                        <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path>
+                    </svg>
+                    Github主页
+                </a>
+            </h3>
+            <h3>
+                <a style="color:pink" href="https://github.com/Caramel-Diode/Noita_Lib">
+                    <img src="./img/favicon.ico" alt="图标" height="32" width="32"> NoitaLib仓库
+                </a>
+            </h3>
+            <p><a href="https://github.com/jenspalmqvist/noita-data">Noita data.wak 解包数据</a></p>
+            <p>
+                <strong>noitaLib</strong>为页面内所有的noita元素提供了UI渲染
+            </p>
+
+
             <button onclick="gdDoc.showArticle(gdDoc.articles.get('字体测试'))"> 字体测试页面 </button>
+            <button onclick="gdDoc.showArticle(gdDoc.articles.get('实体面板'))"> 实体面板测试页面 </button>
             <p> <var>noitaLib</var> 为库的调用入口 </p>
             <p>
                 <code>
@@ -147,7 +169,29 @@
             </p>
 
         </article>
-
+        <article title="wiki">
+            <iframe src="https://noita.wiki.gg/zh/wiki/Noita_Wiki" frameborder="0" style="height: calc(100vh - 70px); width: 100%;"></iframe>
+        </article>
+        <article title="salakieli编辑器">
+            <iframe src="https://lightbourn.net/games/Noita/editor.html" frameborder="0" style="height: calc(100vh - 70px); width: 100%;"></iframe>
+        </article>
+        <article title="法杖运行调试工具">
+            <iframe src="https://noita-wand-simulator.salinecitrine.com" frameborder="0" style="height: calc(100vh - 70px); width: 100%;"></iframe>
+        </article>
+        <article title="印象深刻计算器">
+            <!-- 暂时采用嵌入的方式 -->
+            <iframe src="./html/印象深刻计算器 ver 2.4.html" frameborder="0"
+                style="height: calc(100vh - 70px); width: 100%;"></iframe>
+        </article>
+        <article title="☆在线工具导航☆">
+            <ul style="font-size: 1.5em;">
+                <li><a href="https://www.noitool.com" target="_blank">noitool 种子工具</a>  <a style="font-size: 0.5em;" href="https://github.com/TwoAbove/noita-tools">Github</a></li>
+                <li><a href="https://lightbourn.net/games/Noita/editor.html" target="_blank" title="解密存档中的加密文件">salakieli编辑器</a></li>
+                <li><a href="https://noita-wand-simulator.salinecitrine.com">法杖运行调试工具</a> <a style="font-size: 0.5em;" href="https://github.com/salinecitrine/noita-wand-simulator">Github</a></li>
+            </ul>
+            <!-- <iframe src="https://www.noitool.com" frameborder="0" style="height: calc(100vh - 70px); width: 100%;"></iframe> -->
+        </article>
+        
         <article title="法术图鉴-类型">
             <h1>法术类型分类</h1>
             <h2>
@@ -276,8 +320,8 @@
                 })();
             </script>
         </article>
-        <article title="法术面板">
-            <input type="button" value="install" id="install">
+        <article title="法术图鉴-面板">
+            <!-- <input type="button" value="install" id="install">
             <img src="img/favicon.ico" alt="Noita" width="64" height="64">
             <script>
                 let deferredPrompt = null;
@@ -299,7 +343,7 @@
                         });
                     }
                 });
-            </script>
+            </script> -->
             <br>
             <h1>开始</h1>
             <script>
@@ -315,14 +359,6 @@
                 })();
             </script>
             <h1>结束</h1>
-        </article>
-        <article title="实体">
-            <noita-entity entity.id="BOMB" display="panel"></noita-entity>
-            <noita-entity entity.id="LIGHT_BULLET" display="panel"></noita-entity>
-            <noita-entity entity.id="SPIRAL_SHOT" display="panel"></noita-entity>
-            <noita-entity entity.id="MEGALASER" display="panel"></noita-entity>
-            <!-- <noita-projectile projectile.id="LIGHT_BULLET" display="panel"></noita-projectile>
-            <noita-projectile projectile.id="SPIRAL_SHOT" display="panel"></noita-projectile> -->
         </article>
         <article title="法杖">
             <noita-wand display="panel" wand.name="幽魂闪光" wand.capacity="26" wand.draw="26" wand.fire-rate-wait="10"
@@ -357,6 +393,14 @@
                 ABCDEFGHIJKLMNOPQRSTUVWXYZ
             </div>
 
+        </article>
+        <article title="实体面板">
+            <noita-entity entity.id="BOMB" display="panel"></noita-entity>
+            <noita-entity entity.id="LIGHT_BULLET" display="panel"></noita-entity>
+            <noita-entity entity.id="SPIRAL_SHOT" display="panel"></noita-entity>
+            <noita-entity entity.id="MEGALASER" display="panel"></noita-entity>
+            <!-- <noita-projectile projectile.id="LIGHT_BULLET" display="panel"></noita-projectile>
+            <noita-projectile projectile.id="SPIRAL_SHOT" display="panel"></noita-projectile> -->
         </article>
     </template>
 </body>

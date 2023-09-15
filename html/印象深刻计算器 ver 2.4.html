@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon"
+        href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGOfPtRkwAAACBjSFJNAAB6JQAAgIMAAPn/AACA6AAAdTAAAOpgAAA6lwAAF2+XqZnUAAABI0lEQVR4nGL8//8/AyUAIICYKNINBAABxILMYWRkZDCUlf3PxsWOU8Ovbz8Zzj9+zAhzOUAAobiAkGYQAMmD1MH4AAGE4YVyHmEUmhAACCBG5EBcb2KBEaKdX95i1Xjixm1GEA0QQEz4FIP4BQ3NDMdv3AJjEBsdAAQQA8gFMGyurvIfhNcZm4Pp5cuX/0cG/4AQJAaSg+kBCCAUL1hoqKJ44cWP3wz3H9xnUFRQBPNBbBCw1FCDewEggPCmA5hmmEYQWLliJYoagABCcYGRnBxKNIL8jQ5AtoMAzAUAAYTXBSDbUvTN4bSRoRFDiYEdODHBAEAAobgAlhJBbJhLQBq2X78MZrtWFjF0lZWhpESAAGKkNDMBBBDFmQkggCg2ACDAACeNk0X3s8cKAAAAAElFTkSuQmCC">
+    <title>印♡象♡深♡刻 计算器</title>
+    <script>
+        const zfh = `
+██████╗ ██████╗ ████████╗ ██████╗ ██████╗ 
+██╔══██╗██╔══██╗╚══██╔══╝██╔════╝ ██╔══██╗
+██████╔╝██║  ██║   ██║   ██║  ███╗██║  ██║
+██╔══██╗██║  ██║   ██║   ██║   ██║██║  ██║
+██████╔╝██████╔╝   ██║   ╚██████╔╝██████╔╝
+╚═════╝ ╚═════╝    ╚═╝    ╚═════╝ ╚═════╝ 
+`;
+        const lifetimeDataList = [
+            ["炸弹", 180, 0],
+            ["火花弹[light_bullet,light_bullet_blue]", 40, 7],
+            ["魔法箭", 40, 7],
+            ["魔法弹", 30, 7],
+            ["强气流", 40, 7],
+            ["能量球", 50, 7],
+            ["黑洞", 120, 7],
+            ["巨型黑洞", 500, 7],
+            ["终极黑洞", 1000, 7],
+            ["怪异传送门", 800, 0],
+            ["分裂弹", 25, 7],
+            ["大型分裂弹", 30, 12],
+            ["巨型分裂弹", 35, 12],
+            ["泡泡火花", 100, 7],
+            ["小锯片", 750, 7],
+            ["大型锯片", 300, 7],
+            ["终极锯片", 500, 7],
+            ["能量球体", 750, 7],
+            ["橡皮绿豆", 750, 7],
+            ["箭矢", 750, 7],
+            ["孢子球", 750, 100],
+            ["闪耀长枪,神圣长枪", 300, 0],
+            ["魔法飞弹(大型,巨型)", 360, 7],
+            ["火焰弹(大型,巨型,怪异,坠落)", 500, 7],
+            ["鸭群", 300, 100],
+            ["蠕虫发射器", 100, 7],
+            ["炸药引爆器", 3, 0],
+            ["汇聚之光", 30, 7],
+            ["高能汇聚之光[megalaser]", 32, 0],
+            ["高能汇聚之光[megalaser_beam]", 180, 0],
+            ["雷击", 2, 0],
+            ["球状闪电", 30, 20],
+            ["电浆束(十字)", 100, 0],
+            ["电浆切割器", 60, 0],
+            ["挖掘魔弹,挖掘爆破", 2, 0],
+            ["链锯", 1, 0],
+            ["光明穿凿", 2, 0],
+            ["触手", 60, 0],
+            ["治疗魔弹", 60, 7],
+            ["螺旋魔弹", 100, 0],
+            ["魔法护卫(大型)", 5, 0],
+            ["连锁魔弹", 44, 0],
+            ["火球,冰球", 60, 0],
+            ["陨石", 200, 0],
+            ["火焰喷射器", 80, 0],
+            ["粘液球", 330, 0],
+            ["黑焰", 100, 0],
+            ["导弹", 100, 7],
+            ["？？？", 50, 0],
+            ["岩石精灵", 60, 0],
+            ["炸药", 60, 0],
+            ["闪烁炸弹", 50, 0],
+            ["三联魔弹", 120, 7],
+            ["冰冷凝视", 25, 0],
+            ["聚爆光束", 90, 7],
+            ["多刺孢子荚", 100, 7],
+            ["胶球", 40, 7],
+            ["神圣炸弹", 170, 0],
+            ["巨型神圣炸弹", 260, 0],
+            ["炸弹矿车", 420, 0],
+            ["诅咒之球", 120, 0],
+            ["扩张之球", 180, 0],
+            ["召唤地震", 30, 0],
+            ["召唤苍蝇群", 750, 100],
+            ["召唤萤火虫群", 850, 100],
+            ["召唤黄蜂群", 1100, 100],
+            ["召唤苍蝇伙伴", 1800, 100],
+            ["酸液球", 330, 0],
+            ["雷霆放射", 100, 0],
+            ["微型火焰弹", 70, 7],
+            ["一把泥土", 1, 0],
+            ["死亡十字", 68, 0],
+            ["巨型死亡十字", 50, 0],
+            ["侵扰", 600, 7],
+            ["粒子屏障(水平,垂直,方形)", 3, 0],
+            ["召唤墙壁,召唤平台", 300, 0],
+            ["盛大场面", 600, 0],
+            ["延迟施放", 100, 0],
+            ["远距离施放", 4, 0],
+            ["传送施放", 2, 0],
+            ["跳跃施放", 5, 0],
+            ["毒雾,粘液雾,血雾", 500, 0],
+            ["酒雾", 100, 0],
+            ["%材料%之环", 260, 0],
+            ["传送魔弹", 40, 7],
+            ["小传送魔弹", 8, 0],
+            ["返回传送魔弹", 240, 7],
+            ["交换传送魔弹", 40, 7],
+            ["抓取传送魔弹", 40, 7],
+            ["核弹", 360, 7],
+            ["巨型核弹", 360, 7],
+            ["烟花[firework_pink,firework_green,firework_blue,firework_orang]", 30, 7],
+            ["爆炸(魔法,火焰,毒液,烈酒)", 0, 0],
+            ["雷霆爆炸", 3, 0],
+            ["真空场(粉末,液体)", 300, 0],
+            ["实体真空场", 20, 0],
+            ["全知之眼", 1000, 0],
+            ["音符", 2, 0],
+            ["置换术", 2, 0],
+            ["雨云 油云 血云 酸云 雷云", 999, 0]
+        ];
+        const $ = selector => document.querySelector(selector);
+        const $$ = selector => document.querySelectorAll(selector);
+        let solutions = [];//解决方案数组
+        let maxRenderRowAmount = 16;//default
+        const runWebWorker = (() => {
+            const webWorker = () => {
+                const getSolutions = (() => {
+                    /** @type {Array} */
+                    let solutions;
+                    let multiple_;
+                    /** @type {Number} 无伤 +280 */
+                    let ws = 0;
+                    /** @type {Number} 蓝表 +75 */
+                    let lb = 0;
+                    /** @type {Number} 红表 -42 */
+                    let hb = 0;
+                    /** @type {Number} 乒乓 +25 */
+                    let pp = 0;
+                    /** @type {Number} 螺旋 +50 */
+                    let lx = 0;
+                    /** @type {Number} 相位 +80 */
+                    let xw = 0;
+                    /** @type {Number} 连锁 +30 */
+                    let ls = 0;
+
+                    const getlifetime = () => (ws * 280 + lb * 75 - hb * 42 + pp * 25 + lx * 50 + xw * 80 - ls * 30) * multiple_;
+                    /**
+                     * 获取方案是否能够成功永久化投射物
+                     * @returns {Boolean} success?
+                     */
+                    let isPermanent;
+                    let permanentLifetimeRange_min;
+                    let permanentLifetimeRange_max;
+                    let permanentLifetime;
+                    const isPermanent_1 = () => {
+                        const r = getlifetime();
+                        return r <= permanentLifetimeRange_max && r >= permanentLifetimeRange_min;
+                    };
+                    const isPermanent_2 = () => getlifetime() === permanentLifetime;
+
+                    return (maxCount, multiple, lifetime_max, lifetime_min) => {
+                        console.time("祈祷耗时");
+                        //向闭包内变量传入数据
+                        ws = 0;
+                        lb = 0;
+                        hb = 0;
+                        pp = 0;
+                        lx = 0;
+                        xw = 0;
+                        ls = 0;
+                        multiple_ = multiple;
+                        solutions = [];
+
+                        if (lifetime_max === lifetime_min) {
+                            permanentLifetime = -1 - lifetime_min;
+                            isPermanent = isPermanent_2;
+                        }
+                        else {
+                            permanentLifetimeRange_max = -1 - lifetime_min;
+                            permanentLifetimeRange_min = -1 - lifetime_max;
+                            isPermanent = isPermanent_1;
+                        }
+
+
+                        // 循环开始
+                        /** 无伤已使用数量 */
+                        let c1 = 0;
+                        /** 无伤+蓝表已使用数量 */
+                        let c2 = 0;
+                        /** 无伤+蓝表+红表已使用数量 */
+                        let c3 = 0;
+                        /** 无伤+蓝表+红表+乒乓已使用数量 */
+                        let c4 = 0;
+                        /** 无伤+蓝表+红表+乒乓+螺旋已使用数量 */
+                        let c5 = 0;
+                        /** 无伤+蓝表+红表+乒乓+螺旋+相位已使用数量 */
+                        let c6 = 0;
+                        /** 无伤+蓝表+红表+乒乓+螺旋+相位+连锁已使用数量 */
+                        let c7 = 0;
+
+                        ws = maxCount;
+                        do/* 无伤 */ {
+                            c1 = ws;
+                            lb = maxCount - c1;
+                            if (lb > 0) {
+                                do/* 蓝表 */ {
+                                    c2 = lb;
+                                    hb = maxCount - c2;
+                                    if (hb > 0) {
+                                        do/* 红表 */ {
+                                            c3 = c2 + hb;
+                                            pp = maxCount - c3;
+                                            if (pp > 0) {
+                                                do/* 乒乓 */ {
+                                                    c4 = c3 + pp;
+                                                    lx = maxCount - c4;
+                                                    if (lx > 0) {
+                                                        do/* 螺旋 */ {
+                                                            c5 = c4 + lx;
+                                                            xw = maxCount - c5;
+                                                            if (xw > 0) {
+                                                                do/* 相位 */ {
+                                                                    c6 = c5 + xw;
+                                                                    ls = maxCount - c6;
+                                                                    if (ls > 0) {
+                                                                        do/* 连锁 */ {
+                                                                            c7 = c6 + ls;
+                                                                            if (isPermanent()) solutions.push([c7, ws, lb, hb, pp, lx, xw, ls]);
+                                                                            ls--;
+                                                                        } while (ls >= 0);
+                                                                        ls = 0;
+                                                                    } else if (isPermanent()) solutions.push([c6, ws, lb, hb, pp, lx, xw, ls]);
+                                                                    xw--;
+                                                                } while (xw >= 0);
+                                                                xw = 0;
+                                                            } else if (isPermanent()) solutions.push([c5, ws, lb, hb, pp, lx, xw, ls]);
+                                                            lx--;
+                                                        } while (lx >= 0);
+                                                        lx = 0;
+                                                    } else if (isPermanent()) solutions.push([c4, ws, lb, hb, pp, lx, xw, ls]);
+                                                    pp--;
+                                                } while (pp >= 0);
+                                                pp = 0;
+                                            } else if (isPermanent()) solutions.push([c3, ws, lb, hb, pp, lx, xw, ls]);
+                                            hb--;
+                                        } while (hb >= 0);
+                                        hb = 0;
+                                    } else if (isPermanent()) solutions.push([c2, ws, lb, hb, pp, lx, xw, ls]);
+                                    lb--;
+                                } while (lb >= 0);
+                            } else if (isPermanent()) solutions.push([c1, ws, lb, hb, pp, lx, xw, ls]);
+                            ws--;
+                        } while (ws >= 0);
+                        ws = 0;
+
+                        console.timeEnd("祈祷耗时");
+                        return solutions;
+                    };
+                })();
+                onmessage = e => postMessage(getSolutions(e.data.limit, e.data.multiple, e.data.maxlt, e.data.minlt));
+            };
+            return () => new Worker(URL.createObjectURL(new Blob([`(${webWorker.toString()})()`])));
+        })();
+        let worker = runWebWorker();
+    </script>
+    <style>
+        @media(prefers-color-scheme:dark) {
+            :root {
+                --auto-color: #DDDDDD;
+                --auto-background-color1: #1E1E1E;
+                --auto-background-color2: #252525;
+                --auto-background-color3: #333333;
+                --auto-background-color2-hover: #303030;
+                --auto-background-color3-hover: #555555;
+                --auto-border-color: #303030;
+                --auto-border-color-hover: #404040;
+                --auto-split-line-color: #AAAAAA;
+            }
+        }
+
+        @media(prefers-color-scheme:light) {
+            :root {
+                --auto-color: #111111;
+                --auto-background-color1: #DDDDDD;
+                --auto-background-color2: #BBBBBB;
+                --auto-background-color3: #333333;
+                --auto-background-color2-hover: #A5A5A5;
+                --auto-background-color3-hover: #555555;
+                --auto-border-color: #808080;
+                --auto-border-color-hover: #707070;
+                --auto-split-line-color: #666666;
+            }
+        }
+
+        :root {
+            --themeColor: #C69BC5;
+        }
+
+
+        * {
+            padding: 0;
+            margin: 0;
+            color: var(--auto-color);
+            font-family: sans-serif;
+            box-sizing: border-box;
+            image-rendering: pixelated;
+        }
+
+        body {
+            display: grid;
+            grid-template:
+                'h1_lifetime h1_lifetime' 80px
+                'h2_projectile_data h2_projectile_data' 50px
+                'b b' 40px
+                'c d' 40px
+                'h2_perkEffect h2_perkEffect' 50px
+                'f g' 40px
+                'h h' 40px
+                'h2_spellEffect h2_spellEffect' 50px
+                'label_spellEffect-ws label_spellEffect-lb' 38px
+                'label_spellEffect-hb label_spellEffect-pp' 38px
+                'label_spellEffect-lx label_spellEffect-xw' 38px
+                'label_spellEffect-ls .' 38px
+                'h2_other h2_other' 50px
+                'i j' 40px
+                'generateButton generateButton' auto
+                'result result' auto
+                'help help' auto
+                /260px 260px
+            ;
+            place-items: center stretch;
+            place-content: start center;
+            background: var(--auto-background-color1);
+            width: 100vw;
+            overflow-x: hidden;
+        }
+
+        :where([type="button"], summary, label, img, th):focus-visible,
+        :where(select, [type="number"]):focus {
+            outline: 2px solid var(--themeColor);
+        }
+
+        h2 {
+            color: var(--themeColor);
+            font-size: 1.1em;
+            text-align: left;
+            line-height: 36px;
+            border-bottom: 2px solid var(--auto-split-line-color);
+            padding: 0 15px;
+            user-select: none;
+        }
+
+        label {
+            display: inline-grid;
+            user-select: none;
+            grid-auto-flow: column;
+            place-items: center start;
+            justify-content: center;
+            border-radius: 3px;
+        }
+
+        input,
+        select {
+            background: var(--auto-background-color2);
+            border: 2px var(--auto-border-color) solid;
+            border-radius: 3px;
+            min-height: 30px;
+            font-size: 1em;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        :where(input, select):hover {
+            background: var(--auto-background-color2-hover);
+            border: 2px var(--auto-border-color-hover) solid;
+        }
+
+        option {
+            text-align: left;
+        }
+
+        option:first-of-type {
+            color: #555555;
+        }
+
+        option[data-flt="0"] {
+            color: #0CCF67;
+        }
+
+        [type="number"] {
+            width: 100px;
+            padding: 0 5px;
+            text-align: center;
+        }
+
+        [type="number"] {
+            -moz-appearance: textfield;
+        }
+
+        [type="number"]::-webkit-inner-spin-button,
+        [type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        [type="checkbox"] {
+            display: none;
+        }
+
+        table {
+            border-collapse: collapse;
+            transition: all 250ms linear 0ms;
+        }
+
+        th {
+            font-weight: bolder;
+            background: var(--auto-background-color3);
+            transition: background-color 250ms linear 0ms;
+            padding: 4px 0;
+        }
+
+        td {
+            background: #1D1D1D;
+            font-weight: lighter;
+        }
+
+        th,
+        td {
+            color: #DDDDDD !important;
+            height: 40px;
+            width: 50px;
+            border: 2px solid #555555;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        thead>tr>th:hover {
+            background: var(--auto-background-color3-hover);
+        }
+
+        th:focus-visible {
+            background: #100F0E;
+            border-radius: 5px;
+        }
+
+        img {
+            height: 36px;
+            width: 36px;
+            border: 2px solid transparent;
+            transition: all 250ms linear 0ms;
+        }
+
+        [type="checkbox"]:checked+img {
+            border: 2px dashed var(--themeColor);
+            border-radius: 6px;
+        }
+
+        #h1_lifetime {
+            grid-area: h1_lifetime;
+            color: var(--themeColor);
+            font-size: 1.5em;
+            text-align: center;
+            line-height: 50px;
+            border-bottom: 3px solid var(--auto-split-line-color);
+            padding: 0 15px;
+            user-select: none;
+        }
+
+        #h2_projectile_data {
+            grid-area: h2_projectile_data;
+        }
+
+        #label_lifetime-select {
+            grid-area: b;
+        }
+
+        #select_lifetime {
+            width: 320px;
+        }
+
+        #label_lifetime-base {
+            grid-area: c;
+        }
+
+        #label_lifetime-fluctuating {
+            grid-area: d;
+        }
+
+        #h2_perkEffect {
+            grid-area: h2_perkEffect;
+        }
+
+        #label_perkEffect-boomerangSpells {
+            grid-area: f;
+        }
+
+        #label_perkEffect-bouncingSpells {
+            grid-area: g;
+        }
+
+        #label_times_of_extra_modifier {
+            grid-area: h;
+        }
+
+        #inputNumber_times_of_extra_modifier {
+            width: 320px;
+        }
+
+        #h2_spellEffect {
+            grid-area: h2_spellEffect;
+        }
+
+        #label_spellEffect-ws {
+            grid-area: label_spellEffect-ws;
+        }
+
+        #label_spellEffect-lb {
+            grid-area: label_spellEffect-lb;
+        }
+
+        #label_spellEffect-hb {
+            grid-area: label_spellEffect-hb;
+        }
+
+        #label_spellEffect-pp {
+            grid-area: label_spellEffect-pp;
+        }
+
+        #label_spellEffect-lx {
+            grid-area: label_spellEffect-lx;
+        }
+
+        #label_spellEffect-xw {
+            grid-area: label_spellEffect-xw;
+        }
+
+        #label_spellEffect-ls {
+            grid-area: label_spellEffect-ls;
+        }
+
+
+        #h2_other {
+            grid-area: h2_other;
+        }
+
+        #label_limit {
+            grid-area: i;
+        }
+
+        #label_multiple {
+            grid-area: j;
+        }
+
+        #inputButton_generate {
+            grid-area: generateButton;
+            margin-top: 25px;
+        }
+
+        #main_solutions {
+            grid-area: result;
+            padding: 16px;
+            place-self: center;
+            border: 3px solid transparent;
+            margin: 10px 0;
+            --c1: #948064;
+            --c2: #B49F81;
+            --c3: #0E0D0CF2;
+            --bg1: linear-gradient(var(--c1), var(--c1));
+            --bg2: linear-gradient(var(--c2), var(--c2));
+            --bg3: linear-gradient(var(--c3), var(--c3));
+            --h1: 3px calc(100% - 9px) no-repeat;
+            --v1: calc(100% - 9px) 3px no-repeat;
+            --h2: 3px calc(100% - 3px) no-repeat;
+            --v2: calc(100% - 3px) 3px no-repeat;
+            background:
+                var(--bg1) left top 3px/var(--h1), var(--bg1) left 3px top/var(--v1),
+                var(--bg1) right bottom 3px/var(--h1), var(--bg1) right 3px bottom/var(--v1),
+                var(--bg2) left top/var(--h2), var(--bg2) left top/var(--v2),
+                var(--bg2) right bottom/var(--h2), var(--bg2) right bottom/var(--v2),
+                var(--bg3) center/calc(100% - 6px) calc(100% - 6px) no-repeat;
+        }
+
+        #main_solutions:where(:hover, :focus-within) {
+            --c1: #EDA949;
+            --c2: #C98930;
+            --c3: #000000DC;
+        }
+
+        details {
+            grid-area: help;
+            margin-top: 10px;
+            cursor: help;
+        }
+
+        summary {
+            border-radius: 3px;
+        }
+
+        li {
+            list-style-position: inside;
+            font-size: 0.8em;
+            padding: 3px 0;
+            margin: 0 12px;
+        }
+
+        :where(summary, li)::marker {
+            font-size: 20px;
+            color: var(--themeColor);
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="h1_lifetime">存在时间</h1>
+    <h2 id="h2_projectile_data">投射物数据</h2>
+    <label id="label_lifetime-select">
+        从法术获取数据：
+        <select id="select_lifetime">
+            <option value="-1" selected>NULL</option>
+        </select>
+    </label>
+    <label id="label_lifetime-base">基本：<input type="number" id="inputNumber_baseLifetime" min="0" value="0"
+            placeholder="0"></label>
+    <label id="label_lifetime-fluctuating">波动：<input type="number" id="inputNumber_fluctuatingLifetime" min="0"
+            value="0" placeholder="0"></label>
+
+    <h2 id="h2_perkEffect">天赋影响</h2>
+    <label id="label_perkEffect-boomerangSpells" title="+20">
+        <input type="checkbox" id="inputCheckbox_boomerangSpells">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABNElEQVQ4ja2TMUvDUBSFvxZpMSFdU+jUQCGLIHQwY2cH6dTVrPYXdHXzF3TOqlNBcO4i1CHipIVCAoWAb+0zgWSpg75QmgQL9Uz3cd8995zDe3AkaqoYD5xttIkPGuq0dKbzRS0nGA+c7extiWkYADS0ZmHo8uyW2csEACElw3Ob6XxRqwNEmxjTMGhozcrh59Ujw4s7GloT0zBQauuHSBZxyPvaR8RhoZcTlG1WMPUuV841pt4t3K1UsFiuAOhbbk6ye1Y4KRt07B6O3aNvufiBx2jUzvtPD5/0LZdI3JcTOHYvr/3AA+Dr4wbgNwMPP/Bo66dFC0r2PkQclgZYINjdrrDvuTKDLEl5Xa8LJMrGLrIkhTILZQr+Qh1+3raQkixJK3NQm7MkRUhJp6UD//CZjsY35bxx+7hbR1wAAAAASUVORK5CYII="
+            alt="回旋法术" tabindex="0" role="checkbox">
+        回旋法术 (+20)
+    </label>
+    <label id="label_perkEffect-bouncingSpells" title="+60">
+        <input type="checkbox" id="inputCheckbox_bouncingSpells">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA4klEQVQ4jaWTLQ+CUBSGH5jTTQaV4GZj3uLmSDdSLBb9Hfwgf4cWi8VIYM7NwkY2WGW6acEgF/EDRH3T3Tnnfc4bzoU/pamH78l0dzjWMnUsg+kq0HKA78l0tomwTROAZrv11ng5nQHYJwmTgWC6CrQGwO5wxDbNUqOS6tuZB6BRK3OmIIoBcLvdvKYX6Wrgk4pJ9WJDCqcSIoWDFM5DTX839Aypgr4AniFBFL9s/Qj4RqUAlaJq+wNAHUkdFWc1gLHbT8VwVBsAEC0XzNfb2yV2LIMwDL8C9CzjngB+/0x/6wryPklzSLJvSwAAAABJRU5ErkJggg=="
+            alt="弹跳法术" tabindex="0" role="checkbox">
+        弹跳法术 (+60)
+    </label>
+    <label id="label_times_of_extra_modifier" title="当前施法块内由由抽取或者始终施法预载的投射物、静态投射物、材料法术数量之和">
+        额外修正层数：
+        <input type="number" id="inputNumber_times_of_extra_modifier" value="1" min="1">
+    </label>
+
+    <h2 id="h2_spellEffect">法术影响</h2>
+    <label id="label_spellEffect-ws">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA5ElEQVQ4ja2TQQ6CMBBFP0Y23MDENCUeQgws5Abdcg43HIGNiUfxCGyMvUQDISTcoJsuxo01IEUxOKvp5M/r77QF/hEqy0hwRnP1gjNSWUajwhzIpHYO5KtGcEYyTemS7AkALsl+kMs0HTWv+otr3XjSaER+gL5QcEaRH0AajWvdeP2e9buLsu1QAsjDHYpKAc9cGu10PQBYuwAgjUYe7gAARaVw3G6cgJWz+kM4AWXbIfIDFJUaOJkNsGe2tu1gy7b7DLA7uwYmjcb5EGPyGgVndD7Er8m74nS/OSHLn/Liz7QkHg2/iEZFFgKeAAAAAElFTkSuQmCC"
+            alt="伤害禁用">
+        280 ×&nbsp;
+        <input type="number" id="inputNumber_spellEffect-ws" value="0" min="0">
+    </label>
+    <label id="label_spellEffect-lb">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABYklEQVQ4ja2TMWvCUBSFP8Wl4CBUirQdOmSw2MFB6aDdMnYoCP0LRXTo0KFD59JRiuLi4BYpCP4Ah0LiZAaHShwcHEKRaiGDkPF1sAl5hlBKe5b77uO8c8+93Ad/RGz3olQbC2dpksoU8OKoVfR5uuWKi9M9P4/vCizMTmSuW67Ipjfolit+tJartCXS9dOnAFitViKYh1rIVdoilSn4ubM0mfarkS1IKNXGQtM0oVuuODq/EbrlCk3TRKk29t14lT3Eg4/r5TkA2fRGiguzgyfycr8fCwnkKm3/saqqkqu7xisA9fI8NBeABEAqU+A4f+ZX9JC/fACg120AkDLeQm0nvIM9GWAHHBwcnvDxvqDXbWBPBt8sJVrgOH8lOXh+vAW2c8iqKrN1EqIcOEsTezKXHATFhsMhW54TEogDTPvVWNNQJPJubBqKtA+SAMCoVfRFZuukFJuGIv2HIH69if+OL0gno5IFYi8sAAAAAElFTkSuQmCC"
+            alt="延长存在时间">
+        75 ×&nbsp;
+        <input type="number" id="inputNumber_spellEffect-lb" value="0" min="0">
+    </label>
+    <label id="label_spellEffect-hb">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABU0lEQVQ4jbWTMUgCYRiGHyXB7YIchJwKnGoSJbhNEJpFh8aWJhGnhmjMNURKmtoPpVkQbvsXzUkXnW840OW2A4evwe7nzrMoom/5eP/73vd/v5f/4I+V2D2YmDVRGw8zZRD0ohroOafakNzbk8bJXYGeu/gWH99c/cxap1SRMHaqDQFYrVYSxrEVOqWKmClDY7XxaI1HCQAZKlkX8mSmSxKXZozLxKzJzLJEhkquT89FhkpmliUTs6bdyFBFnCXD5HSzDsC6kI/0nrsgENm9ORnYDsjZcjni6vHuAYB0sx7LBeAAwEwZnBk5fWNQtxdbsdfnFwD8UDaxFeaeg2vb+sPJ4ZEmzz2HuefEyNoBEHNw324D2xyybJN//0pAbTzSngO2ozMIi7m2jfs5t3eF1niU8Lt9Pbyv+92+fg97MyiqgRbJTJeR7nf7kf8hXL96if9SH3K6n4u6WRAxAAAAAElFTkSuQmCC"
+            alt="缩减存在时间">
+        -42 ×&nbsp;
+        <input type="number" id="inputNumber_spellEffect-hb" value="0" min="0">
+    </label>
+    <label id="label_spellEffect-pp">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAATUlEQVQ4jWNgoBAwwhj/////T7QmRkZGwqrwAGTLmCgyiQHJC+gm49WEzQukhAEyGEReIAWMxgKaa0hxBSMjIyNMDcwbLOgKKHURyQAAdbQoBgrBgMEAAAAASUVORK5CYII="
+            alt="乒乓路径">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAbUlEQVQ4jWNgGLTg6LP//zM2v/5vMeHyf5jYfyjAq/H/////jz7DVPQfDcDEWdAVMTIyMpLiUiZiFSIbjNUSgn6j1AXIADlgyTLAQFkCU5AUL2CLJaINwamZWAOISkjYFOESx5lo0BWTmsDoBwB4Nl8cgEEbcgAAAABJRU5ErkJggg=="
+            alt="盘旋路径">
+        25 ×&nbsp;
+        <input type="number" id="inputNumber_spellEffect-pp" value="0" min="0">
+    </label>
+    <label id="label_spellEffect-lx">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAcElEQVQ4jWNgGGjAiE/y/////1EUMzLiVY+iEV0zPnG8tpKkhhjN6GqZiFF89Nn//xmbX5Pn9KPPEOLIhmCox2YAsmaLCZf/41WPK9RJcS1WgK4YI22gS2BLLMia0OUZsZpKbIpjIDIaiQJEJVNaAABAYm9biJhm7wAAAABJRU5ErkJggg=="
+            alt="螺旋路径">
+        &nbsp;50 ×&nbsp;
+        <input type="number" id="inputNumber_spellEffect-lx" value="0" min="0">
+    </label>
+    <label id="label_spellEffect-xw">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAdUlEQVQ4jb1Q2xGAIAwjTKIjMYCjOA0DOIojxQ+BQ68g4cP89NprHhfn/gYT8g6VXO8A4AXyYt2HBRLW2l3k3ilaSVqESDL2fpox3kQAm/VndqDE7JW4f7l3MVNYIBlUI2Ty4wgcowJeimkJpHnOuBfIhVW4AKZnQGwCJgrQAAAAAElFTkSuQmCC"
+            alt="相位">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAnklEQVQ4jaWSsQ3CQAxF/0cMQU+NRMlIlIzCDozADCfRIEWiTnuKBDt8miQ6IvviE6/8tr/tOwN/QktMWbo9P+j6Acf9Dl0/AAAel4OZPyNJKUte/HR9uTHUCq1GIVEjlvajm46OwTJ/ExlzaUJyfsxtZJVSL4tNgymh1rXEXSFK1YAjqwYk6e0epsXAvUjv3ydSls7393ojGbScehNfHyqLo2/Lk6EAAAAASUVORK5CYII="
+            alt="自身环绕">
+        80 ×&nbsp;
+        <input type="number" id="inputNumber_spellEffect-xw" value="0" min="0">
+    </label>
+    <label id="label_spellEffect-ls">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAATklEQVQ4jWNgGLTgPxQQUsdED8eQBv7fKIQ7+3+yIkEvoGqeGoSiAZcBWMMHm2J0A3EagM+puAwhGiCHCTY+SQZQ7BqyAKEUOQhTIqkAALLnQp0xifObAAAAAElFTkSuQmCC"
+            alt="连锁">
+        -30 ×&nbsp;
+        <input type="number" id="inputNumber_spellEffect-ls" value="0" min="0">
+    </label>
+    <h2 id="h2_other">其他</h2>
+    <label id="label_limit">最大修正数量：<input type="number" id="inputNumber_limit" min="1" value="10"></label>
+    <label id="label_multiple" title="适用于递归永久化运算">修正倍数：<input type="number" id="inputNumber_multiple" min="0"
+            value="1"></label>
+    <input type="button" id="inputButton_generate" value="生成">
+    <main id="main_solutions" hidden>
+        <table>
+            <thead>
+                <tr>
+                    <th onclick="renderData(0)" title="点击表头以该法术使用量升序排列。" tabindex="0" role="button" id="th_sum">总数</th>
+                    <th onclick="renderData(1)" title="伤害禁用:&#10;+280" tabindex="0" role="button"><img
+                            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA5ElEQVQ4ja2TQQ6CMBBFP0Y23MDENCUeQgws5Abdcg43HIGNiUfxCGyMvUQDISTcoJsuxo01IEUxOKvp5M/r77QF/hEqy0hwRnP1gjNSWUajwhzIpHYO5KtGcEYyTemS7AkALsl+kMs0HTWv+otr3XjSaER+gL5QcEaRH0AajWvdeP2e9buLsu1QAsjDHYpKAc9cGu10PQBYuwAgjUYe7gAARaVw3G6cgJWz+kM4AWXbIfIDFJUaOJkNsGe2tu1gy7b7DLA7uwYmjcb5EGPyGgVndD7Er8m74nS/OSHLn/Liz7QkHg2/iEZFFgKeAAAAAElFTkSuQmCC"
+                            alt="伤害禁用"></th>
+                    <th onclick="renderData(2)" title="延长存在时间:&#10;+75" tabindex="0" role="button"><img
+                            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABYklEQVQ4ja2TMWvCUBSFP8Wl4CBUirQdOmSw2MFB6aDdMnYoCP0LRXTo0KFD59JRiuLi4BYpCP4Ah0LiZAaHShwcHEKRaiGDkPF1sAl5hlBKe5b77uO8c8+93Ad/RGz3olQbC2dpksoU8OKoVfR5uuWKi9M9P4/vCizMTmSuW67Ipjfolit+tJartCXS9dOnAFitViKYh1rIVdoilSn4ubM0mfarkS1IKNXGQtM0oVuuODq/EbrlCk3TRKk29t14lT3Eg4/r5TkA2fRGiguzgyfycr8fCwnkKm3/saqqkqu7xisA9fI8NBeABEAqU+A4f+ZX9JC/fACg120AkDLeQm0nvIM9GWAHHBwcnvDxvqDXbWBPBt8sJVrgOH8lOXh+vAW2c8iqKrN1EqIcOEsTezKXHATFhsMhW54TEogDTPvVWNNQJPJubBqKtA+SAMCoVfRFZuukFJuGIv2HIH69if+OL0gno5IFYi8sAAAAAElFTkSuQmCC"
+                            alt="延长存在时间"></th>
+                    <th onclick="renderData(3)" title="缩减存在时间:&#10;-42" tabindex="0" role="button"><img
+                            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABU0lEQVQ4jbWTMUgCYRiGHyXB7YIchJwKnGoSJbhNEJpFh8aWJhGnhmjMNURKmtoPpVkQbvsXzUkXnW840OW2A4evwe7nzrMoom/5eP/73vd/v5f/4I+V2D2YmDVRGw8zZRD0ohroOafakNzbk8bJXYGeu/gWH99c/cxap1SRMHaqDQFYrVYSxrEVOqWKmClDY7XxaI1HCQAZKlkX8mSmSxKXZozLxKzJzLJEhkquT89FhkpmliUTs6bdyFBFnCXD5HSzDsC6kI/0nrsgENm9ORnYDsjZcjni6vHuAYB0sx7LBeAAwEwZnBk5fWNQtxdbsdfnFwD8UDaxFeaeg2vb+sPJ4ZEmzz2HuefEyNoBEHNw324D2xyybJN//0pAbTzSngO2ozMIi7m2jfs5t3eF1niU8Lt9Pbyv+92+fg97MyiqgRbJTJeR7nf7kf8hXL96if9SH3K6n4u6WRAxAAAAAElFTkSuQmCC"
+                            alt="缩减存在时间"></th>
+                    <th onclick="renderData(4)" title="乒乓路径/盘旋路径:&#10;+25" tabindex="0" role="button">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAATUlEQVQ4jWNgoBAwwhj/////T7QmRkZGwqrwAGTLmCgyiQHJC+gm49WEzQukhAEyGEReIAWMxgKaa0hxBSMjIyNMDcwbLOgKKHURyQAAdbQoBgrBgMEAAAAASUVORK5CYII="
+                            alt="乒乓路径">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAbUlEQVQ4jWNgGLTg6LP//zM2v/5vMeHyf5jYfyjAq/H/////jz7DVPQfDcDEWdAVMTIyMpLiUiZiFSIbjNUSgn6j1AXIADlgyTLAQFkCU5AUL2CLJaINwamZWAOISkjYFOESx5lo0BWTmsDoBwB4Nl8cgEEbcgAAAABJRU5ErkJggg=="
+                            alt="盘旋路径">
+                    </th>
+                    <th onclick="renderData(5)" title="螺旋路径:&#10;+50" tabindex="0" role="button"><img
+                            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAcElEQVQ4jWNgGGjAiE/y/////1EUMzLiVY+iEV0zPnG8tpKkhhjN6GqZiFF89Nn//xmbX5Pn9KPPEOLIhmCox2YAsmaLCZf/41WPK9RJcS1WgK4YI22gS2BLLMia0OUZsZpKbIpjIDIaiQJEJVNaAABAYm9biJhm7wAAAABJRU5ErkJggg=="
+                            alt="螺旋路径"></th>
+                    <th onclick="renderData(6)" title="相位/自身环绕:&#10;+80" tabindex="0" role="button">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAdUlEQVQ4jb1Q2xGAIAwjTKIjMYCjOA0DOIojxQ+BQ68g4cP89NprHhfn/gYT8g6VXO8A4AXyYt2HBRLW2l3k3ilaSVqESDL2fpox3kQAm/VndqDE7JW4f7l3MVNYIBlUI2Ty4wgcowJeimkJpHnOuBfIhVW4AKZnQGwCJgrQAAAAAElFTkSuQmCC"
+                            alt="相位">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAnklEQVQ4jaWSsQ3CQAxF/0cMQU+NRMlIlIzCDozADCfRIEWiTnuKBDt8miQ6IvviE6/8tr/tOwN/QktMWbo9P+j6Acf9Dl0/AAAel4OZPyNJKUte/HR9uTHUCq1GIVEjlvajm46OwTJ/ExlzaUJyfsxtZJVSL4tNgymh1rXEXSFK1YAjqwYk6e0epsXAvUjv3ydSls7393ojGbScehNfHyqLo2/Lk6EAAAAASUVORK5CYII="
+                            alt="自身环绕">
+                    </th>
+                    <th onclick="renderData(7)" title="连锁:&#10;-30" tabindex="0" role="button"><img
+                            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAATklEQVQ4jWNgGLTgPxQQUsdED8eQBv7fKIQ7+3+yIkEvoGqeGoSiAZcBWMMHm2J0A3EagM+puAwhGiCHCTY+SQZQ7BqyAKEUOQhTIqkAALLnQp0xifObAAAAAElFTkSuQmCC"
+                            alt="连锁"></th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </main>
+    <details>
+        <summary>帮助</summary>
+        <ul>
+            <li>点击表头以该法术使用量升序排列，倒序点击表头进行优先级排序。</li>
+            <li>控制台输入 <code>maxRenderRowAmount = ?</code> 调整最大渲染行数。 默认16</li>
+            <li>控制台可见所有数据。</li>
+            <li>盘旋路径与乒乓路径存在时间修正一致(+25)。</li>
+            <li>自身环绕与相位存在时间修正一致(+80)。</li>
+        </ul>
+    </details>
+
+    <script>
+        const h2_lifetime = $("#h1_lifetime");
+        const input_generate = $("#inputButton_generate");
+        const input_boomerangSpells = $("#inputCheckbox_boomerangSpells");
+        const input_bouncingSpells = $("#inputCheckbox_bouncingSpells");
+        const input_baseLifetime = $("#inputNumber_baseLifetime");
+        const input_times_of_extra_modifier = $("#inputNumber_times_of_extra_modifier");
+        const input_fluctuatingLifetime = $("#inputNumber_fluctuatingLifetime");
+        const input_ws = $("#inputNumber_spellEffect-ws");
+        const input_lb = $("#inputNumber_spellEffect-lb");
+        const input_hb = $("#inputNumber_spellEffect-hb");
+        const input_pp = $("#inputNumber_spellEffect-pp");
+        const input_lx = $("#inputNumber_spellEffect-lx");
+        const input_xw = $("#inputNumber_spellEffect-xw");
+        const input_ls = $("#inputNumber_spellEffect-ls");
+        const input_limit = $("#inputNumber_limit");
+        const input_multiple = $("#inputNumber_multiple");
+        const main = $("#main_solutions");
+        const tbody = $("tbody");
+        const select = $("#select_lifetime");
+        worker.onmessage = e => {
+            solutions = e.data;
+            if (solutions.length > 0) {
+                main.hidden = false;
+                document.title = "(祷)导出来辣!!!";
+                input_generate.value = `生成\n共${solutions.length}种方案${input_fluctuatingLifetime.valueAsNumber === 0 ? "" : `\t成功率:${Math.round(1 / (input_fluctuatingLifetime.valueAsNumber * 2 + 1) * 10000) / 100/* 保留两位小数 */}%`}`;
+            }
+            else {
+                main.hidden = true;
+                document.title = "没(祷)导出来!!!";
+                input_generate.value = `重新生成\n无解决方案`;
+            }
+            renderData(0);
+        };
+        let elt;
+        let blt;
+        let flt;
+        let maxlt;
+        let minlt;
+        let limit;
+        let multiple;
+        const updateData = () => {
+            limit = input_limit.valueAsNumber;
+            elt =
+                ((input_boomerangSpells.checked ? 20 : 0) + (input_bouncingSpells.checked ? 60 : 0)) * input_times_of_extra_modifier.valueAsNumber
+                + input_ws.valueAsNumber * 280
+                + input_lb.valueAsNumber * 75
+                - input_hb.valueAsNumber * 42
+                + input_pp.valueAsNumber * 25
+                + input_lx.valueAsNumber * 50
+                + input_xw.valueAsNumber * 80
+                - input_ls.valueAsNumber * 30
+                ;//天赋与法术提供的额外lifetime
+            blt = input_baseLifetime.valueAsNumber;
+            if (isNaN(blt)) {
+                blt = elt;
+                console.warn("基本存在时间参数非法 将按照0处理");
+            }
+            else blt += elt;
+            flt = input_fluctuatingLifetime.valueAsNumber;
+            if (isNaN(flt)) {
+                flt = 0;
+                console.warn("波动存在时间参数非法 将按照0处理");
+            }
+            maxlt = blt + flt;
+            minlt = blt - flt;
+            limit = input_limit.valueAsNumber;
+            if (isNaN(limit)) {
+                console.warn("最大修正数量参数非法 将按照10处理");
+                limit = 10;
+            }
+            multiple = input_multiple.valueAsNumber;
+            if (isNaN(multiple)) {
+                console.warn("修正倍数参数非法 将按照0处理");
+                multiple = 0;
+            }
+        };
+        const renderData = (() => {
+            let htmlStrs = [];
+            const createTr = solution => {
+                if (solution) htmlStrs.push(
+                    `<tr>`,
+                    `<th>${solution[0]}</th>`,
+                    `<th>${solution[1]}</th>`,
+                    `<th>${solution[2]}</th>`,
+                    `<th>${solution[3]}</th>`,
+                    `<th>${solution[4]}</th>`,
+                    `<th>${solution[5]}</th>`,
+                    `<th>${solution[6]}</th>`,
+                    `<th>${solution[7]}</th>`,
+                    `</tr>`
+                );
+            };
+            return sortIndex => {
+                solutions.sort((a, b) => a[sortIndex] - b[sortIndex]);
+                console.table(solutions);
+                htmlStrs = [];
+                const renderRowAmount = Math.min(maxRenderRowAmount, solutions.length);
+                for (let i = 0; i < renderRowAmount; createTr(solutions[i++]));
+                tbody.innerHTML = htmlStrs.join("");
+            };
+        })();
+        let generateSolutionsAndRenderData = () => {
+            updateData();
+            if (multiple > 0) {
+                // 投射物所需的范围
+                const permanentLifetimeRange_min = -1 - maxlt;
+                const permanentLifetimeRange_max = -1 - minlt;
+                const tempMultiple = limit * multiple;
+                // 修正可提供的范围
+                const providedLifetimeRange_min = -42 * tempMultiple;
+                const providedLifetimeRange_max = 80 * tempMultiple;
+                // 区间相交判断 所需范围最大值或最小值处于提供范围
+                if (
+                    ((permanentLifetimeRange_min >= providedLifetimeRange_min) && (permanentLifetimeRange_min <= providedLifetimeRange_max))
+                    ||
+                    ((permanentLifetimeRange_max >= providedLifetimeRange_min) && (permanentLifetimeRange_max <= providedLifetimeRange_max))
+                ) {
+                    worker.postMessage({
+                        limit: limit,
+                        multiple: multiple,
+                        maxlt: blt + flt,
+                        minlt: blt - flt
+                    });
+                    input_generate.value = "少女祈祷中...";
+                    document.title = "正在导(祷)...";
+                } else {
+                    // //最小值溢出
+                    const overflow_min = providedLifetimeRange_min - permanentLifetimeRange_min;
+                    //最大值溢出
+                    const overflow_max = permanentLifetimeRange_max - providedLifetimeRange_max;
+                    let needAmount = 0;
+                    if (overflow_min > 0) needAmount = Math.ceil(permanentLifetimeRange_max / (-42 * multiple));
+                    console.log(needAmount);
+                    if (overflow_max > 0) {
+                        let temp = Math.ceil(permanentLifetimeRange_min / (80 * multiple));
+                        if (temp < needAmount) needAmount = temp;
+                    }
+                    alert(`修正数量不足以生成任何可行方案! 至少需要:${needAmount}`);
+                    input_limit.value = needAmount;
+                }
+            }
+            else alert("修正倍数必须大于0");
+        };
+        const optionHTMLStr = lifetimeDataList.map((e, i, a) => `<option data-blt="${e[1]}" data-flt="${e[2]}" value="${e[0]}">${e[0]} {${e[1]}, ${e[2]}}</option>`).join("");
+        select.innerHTML += optionHTMLStr;
+        const enterSimulatedClick = e => { if (e.key === "Enter") e.target.click(); };
+        for (const label of [...$$("label"), ...$$("thead>tr>th")]) label.addEventListener("keydown", enterSimulatedClick);
+        const displayLifetime = () => {
+            updateData();
+            if (flt === 0) /*非波动值*/ h2_lifetime.innerHTML = `存在时间 ${blt}`;
+            else /*波动值*/ h2_lifetime.innerHTML = `存在时间 ${minlt} ~ ${maxlt}`;
+        };
+        const fillData = () => {
+            if (select.value === "-1") return;
+            const result = lifetimeDataList.find(e => e[0] === select.value);
+            input_baseLifetime.value = result[1];
+            input_fluctuatingLifetime.value = result[2];
+        };
+        select.onchange = () => {
+            fillData();
+            displayLifetime();
+        };
+
+        input_baseLifetime.oninput = displayLifetime;
+        input_fluctuatingLifetime.oninput = displayLifetime;
+        input_times_of_extra_modifier.oninput = displayLifetime;
+        input_boomerangSpells.onchange = displayLifetime;
+        input_bouncingSpells.onchange = displayLifetime;
+        input_ws.oninput = displayLifetime;
+        input_lb.oninput = displayLifetime;
+        input_hb.oninput = displayLifetime;
+        input_pp.oninput = displayLifetime;
+        input_lx.oninput = displayLifetime;
+        input_xw.oninput = displayLifetime;
+        input_ls.oninput = displayLifetime;
+        input_generate.onclick = generateSolutionsAndRenderData;
+        displayLifetime();
+        console.log(`%c${zfh}`, `color:#E89BC5`);
+    </script>
+</body>
+
+</html>

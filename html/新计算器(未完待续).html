@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算器</title>
+    <script src="../js/noitaLib.js"></script>
+    <style>
+        :root {
+            background-color: #1f1f1f;
+            color: #EEEEEE;
+            font-size: 20px;
+        }
+
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        li {
+            display: flex;
+        }
+    </style>
+</head>
+
+<body>
+    <details>
+        <summary>从法术中获取数据</summary>
+        <ul>
+            <li><noita-spell spell.id="BOMB"></noita-spell></li>
+            <li><noita-spell spell.expression="LIGHT_BULLET|LIGHT_BULLET_TRIGGER|LIGHT_BULLET_TIMER|LIGHT_BULLET_TRIGGER_2"></noita-spell></li>
+            <li><noita-spell spell.expression="BULLET|BULLET_TRIGGER|BULLET_TIMER"></noita-spell></li>
+            <li><noita-spell spell.expression="HEAVY_BULLET|HEAVY_BULLET_TRIGGER|HEAVY_BULLET_TIMER"></noita-spell></li>
+            <li><noita-spell spell.id="AIR_BULLET"></noita-spell></li>
+            <li><noita-spell spell.expression="SLOW_BULLET|SLOW_BULLET_TRIGGER|SLOW_BULLET_TIMER"></noita-spell></li>
+            <li><noita-spell spell.expression="BLACK_HOLE|BLACK_HOLE_DEATH_TRIGGER"></noita-spell></li>
+            <li><noita-spell spell.id="BLACK_HOLE_BIG"></noita-spell></li>
+            <li><noita-spell spell.id="BLACK_HOLE_GIGA"></noita-spell></li>
+            <li><noita-spell spell.expression="SPITTER|SPITTER_TIMER"></noita-spell></li>
+            <li><noita-spell spell.expression="SPITTER_TIER_2|SPITTER_TIER_2_TIMER"></noita-spell></li>
+            <li><noita-spell spell.expression="SPITTER_TIER_3|SPITTER_TIER_3_TIMER"></noita-spell></li>
+            <li><noita-spell spell.expression="BUBBLESHOT|BUBBLESHOT_TRIGGER"></noita-spell></li>
+            <li><noita-spell spell.id="DISC_BULLET"></noita-spell></li>
+            <li><noita-spell spell.id="DISC_BULLET_BIG"></noita-spell></li>
+            <li><noita-spell spell.id="DISC_BULLET_BIGGER"></noita-spell></li>
+            <li><noita-spell spell.expression="BOUNCY_ORB|BOUNCY_ORB_TIMER"></noita-spell><noita-spell spell.id="RUBBER_BALL"></noita-spell><noita-spell spell.id="ARROW"></noita-spell><noita-spell spell.id="POLLEN"></noita-spell></li>
+            <li><noita-spell spell.expression="LANCE|LANCE_HOLY"></noita-spell></li>
+            <li><noita-spell spell.expression="ROCKET|ROCKET_TIER_2|ROCKET_TIER_3"></noita-spell></li>
+            <li><noita-spell spell.expression="GRENADE|GRENADE_TRIGGER|GRENADE_ANTI|GRENADE_TIER_2|GRENADE_TIER_3|GRENADE_LARGE"></noita-spell></li>
+            <li><noita-spell spell.id="EXPLODING_DUCKS"></noita-spell></li>
+            <li><noita-spell spell.id="WORM_SHOT"></noita-spell></li>
+            <li><noita-spell spell.id="BOMB_DETONATOR"></noita-spell></li>
+            <li><noita-spell spell.id="LASER"></noita-spell></li>
+            <li title="引导器"><noita-spell spell.id="MEGALASER" data-target="MEGALASER"></noita-spell></li>
+            <li title="光束"><noita-spell spell.id="MEGALASER" data-target="MEGALASER_beam"></noita-spell></li>
+            <li><noita-spell spell.id="LIGHTNING"></noita-spell></li>
+            <li><noita-spell spell.id="BALL_LIGHTNING"></noita-spell></li>
+            <li><noita-spell spell.expression="LASER_EMITTER|LASER_EMITTER_FOUR"></noita-spell></li>
+            <li><noita-spell spell.id="LASER_EMITTER_CUTTER"></noita-spell></li>
+            <li><noita-spell spell.expression="DIGGER|POWERDIGGER"></noita-spell></li>
+            <li><noita-spell spell.id="CHAINSAW"></noita-spell></li>
+            <li><noita-spell spell.expression="LUMINOUS_DRILL|LASER_LUMINOUS_DRILL"></noita-spell></li>
+            <li><noita-spell spell.expression="TENTACLE|TENTACLE_TIMER"></noita-spell><noita-spell spell.id="HEAL_BULLET"></noita-spell></li>
+            <li><noita-spell spell.id="SPIRAL_SHOT"></noita-spell></li>
+            <li><noita-spell spell.expression="MAGIC_SHIELD|BIG_MAGIC_SHIELD"></noita-spell></li>
+            <li><noita-spell spell.id="CHAIN_BOLT"></noita-spell></li>
+            <li><noita-spell spell.expression="FIREBALL|ICEBALL"></noita-spell></li>
+            <li><noita-spell spell.id="METEOR"></noita-spell></li>
+            <li><noita-spell spell.id="FLAMETHROWER"></noita-spell></li>
+            <li><noita-spell spell.id="SLIMEBALL"></noita-spell></li>
+            <li><noita-spell spell.id="DARKFLAME"></noita-spell><noita-spell spell.id="MISSILE"></noita-spell></li>
+            <li><noita-spell spell.id="FUNKY_SPELL"></noita-spell></li>
+            <li><noita-spell spell.id="PEBBLE"></noita-spell><noita-spell spell.id="DYNAMITE"></noita-spell></li>
+            <li><noita-spell spell.id="GLITTER_BOMB"></noita-spell></li>
+            <li><noita-spell spell.id="BUCKSHOT"></noita-spell></li>
+            <li><noita-spell spell.id="FREEZING_GAZE"></noita-spell></li>
+            <li><noita-spell spell.id="GLOWING_BOLT"></noita-spell></li>
+            <li><noita-spell spell.id="SPORE_POD"></noita-spell></li>
+            <li><noita-spell spell.id="GLUE_SHOT"></noita-spell></li>
+            <li><noita-spell spell.id="BOMB_HOLY"></noita-spell></li>
+            <li><noita-spell spell.id="BOMB_HOLY_GIGA"></noita-spell></li>
+            <li><noita-spell spell.id="BOMB_CART"></noita-spell></li>
+            <li><noita-spell spell.id="EXPANDING_ORB"></noita-spell></li>
+            <li><noita-spell spell.id="CRUMBLING_EARTH"></noita-spell></li>
+            <li><noita-spell spell.id="SWARM_FLY"></noita-spell></li>
+            <li><noita-spell spell.id="SWARM_FIREBUG"></noita-spell></li>
+            <li><noita-spell spell.id="SWARM_WASP"></noita-spell></li>
+            <li><noita-spell spell.id="FRIEND_FLY"></noita-spell></li>
+            <li><noita-spell spell.id="ACIDSHOT"></noita-spell></li>
+            <li><noita-spell spell.id="THUNDERBALL"></noita-spell></li>
+            <li><noita-spell spell.id="FIREBOMB"></noita-spell></li>
+            <li><noita-spell spell.id="SOILBALL"></noita-spell></li>
+            <li><noita-spell spell.id="DEATH_CROSS"></noita-spell></li>
+            <li><noita-spell spell.id="DEATH_CROSS_BIG"></noita-spell></li>
+            <li><noita-spell spell.id="INFESTATION"></noita-spell></li>
+            <li><noita-spell spell.expression="WALL_HORIZONTAL|WALL_VERTICAL|WALL_SQUARE"></noita-spell></li>
+            <li><noita-spell spell.id="PURPLE_EXPLOSION_FIELD"></noita-spell></li>
+            <li><noita-spell spell.id="DELAYED_SPELL"></noita-spell></li>
+            <li><noita-spell spell.id="LONG_DISTANCE_CAST"></noita-spell></li>
+            <li><noita-spell spell.id="TELEPORT_CAST"></noita-spell></li>
+            <li><noita-spell spell.id="SUPER_TELEPORT_CAST"></noita-spell></li>
+            <li><noita-spell spell.expression="MIST_RADIOACTIVE|MIST_SLIME|MIST_BLOOD"></noita-spell></li>
+            <li><noita-spell spell.id="MIST_ALCOHOL"></noita-spell></li>
+            <li><noita-spell spell.expression="CIRCLE_OIL|CIRCLE_ACID|CIRCLE_FIRE|CIRCLE_WATER"></noita-spell></li>
+            <li><noita-spell spell.id="TELEPORT_PROJECTILE_SHORT"></noita-spell></li>
+            <li><noita-spell spell.id="TELEPORT_PROJECTILE"></noita-spell></li>
+            <li><noita-spell spell.id="TELEPORT_PROJECTILE_STATIC"></noita-spell></li>
+            <li><noita-spell spell.id="SWAPPER_PROJECTILE"></noita-spell><noita-spell spell.id="TELEPORT_PROJECTILE_CLOSER"></noita-spell></li>
+            <li><noita-spell spell.id="NUKE"></noita-spell></li>
+            <li><noita-spell spell.id="NUKE_GIGA"></noita-spell></li>
+            <li><noita-spell spell.id="FIREWORK"></noita-spell></li>
+            <li><noita-spell spell.expression="EXPLOSION|POISON_BLAST|FIRE_BLAST|ALCOHOL_BLAST|EXPLOSION_LIGHT"></noita-spell></li>
+            <li><noita-spell spell.id="THUNDER_BLAST"></noita-spell></li>
+            <li><noita-spell spell.expression="VACUUM_LIQUID|VACUUM_POWDER"></noita-spell></li>
+            <li><noita-spell spell.id="VACUUM_ENTITIES"></noita-spell></li>
+            <li><noita-spell spell.id="X_RAY"></noita-spell></li>
+            <li><noita-spell spell.expression="CLOUD_WATER|CLOUD_OIL|CLOUD_BLOOD|CLOUD_ACID|CLOUD_THUNDER"></noita-spell></li>
+        </ul>
+    </details>
+    
+</body>
+
+</html>
