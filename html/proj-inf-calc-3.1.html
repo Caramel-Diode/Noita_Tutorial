@@ -151,6 +151,7 @@
             return () => new Worker(URL.createObjectURL(new Blob([`(${webWorker.toString()})()`])));
         })();
         let worker = runWebWorker();
+        console.groupCollapsed("noitaLib解析信息")
     </script>
     <style>
         [type="number"] {
@@ -208,21 +209,27 @@
         li {
             display: flex;
             border-radius: 4px;
-            font-size: 16px;
+            font-size: 12px;
             line-height: 40px;
             font-weight: bold;
+            flex-wrap: wrap;
         }
 
         li:hover {
             background-color: #3f3f3f;
         }
 
-        li.filtered {
+        noita-spell.filtered {
             opacity: 0.1;
         }
 
         li>noita-spell {
             cursor: pointer;
+        }
+        li>strong {
+            font-weight: bold;
+            font-size: 40px;
+            color: #FF00FF;
         }
 
         details {
@@ -382,16 +389,13 @@
                 var(--bg3) center/calc(100% - 6px) calc(100% - 6px) no-repeat;
         }
     </style>
-    <script>
-        console.groupCollapsed("noitaLib解析信息")
-    </script>
 </head>
 
 <body>
-    <h1>存在时间 :<output id="out-lt">?</output> 永久化成功率: <output id="out-prob">?</output></h1>
+    <h1>存在时间：<output id="out-lt">?</output> 永久化成功率：<output id="out-prob">?</output></h1>
     <main>
-        <label>基本: <input type="number" id="lifetime_base" value="2"></label>
-        <label>波动: <input type="number" id="lifetime_fluctuat" value="0"></label>
+        <label>基本：<input type="number" id="lifetime_base" value="2"></label>
+        <label>波动：<input type="number" id="lifetime_fluctuat" value="0"></label>
         <label>最大修正数量：<input type="number" id="spell_limit" value="15" min="1"></label>
         <label>修正倍数：<input type="number" id="spell_multiple" value="1" min="1"></label>
     </main>
@@ -454,7 +458,7 @@
             <li><noita-spell spell.expression="TENTACLE|TENTACLE_TIMER" no-default-click-fn></noita-spell><noita-spell
                     spell.id="HEAL_BULLET" no-default-click-fn></noita-spell></li>
             <li><noita-spell spell.id="SPIRAL_SHOT" no-default-click-fn></noita-spell></li>
-            <li><noita-spell spell.expression="MAGIC_SHIELD|BIG_MAGIC_SHIELD" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.expression="MAGIC_SHIELD|BIG_MAGIC_SHIELD" no-default-click-fn></noita-spell> <strong title="无法真正的永久化">*</strong> </li>
             <li><noita-spell spell.id="CHAIN_BOLT" no-default-click-fn></noita-spell></li>
             <li><noita-spell spell.expression="FIREBALL|ICEBALL" no-default-click-fn></noita-spell></li>
             <li><noita-spell spell.id="METEOR" no-default-click-fn></noita-spell></li>
@@ -506,13 +510,14 @@
             <li><noita-spell spell.id="NUKE_GIGA" no-default-click-fn></noita-spell></li>
             <li><noita-spell spell.id="FIREWORK" no-default-click-fn></noita-spell></li>
             <li><noita-spell spell.expression="EXPLOSION|POISON_BLAST|FIRE_BLAST|ALCOHOL_BLAST|EXPLOSION_LIGHT"
-                    no-default-click-fn></noita-spell></li>
+                    no-default-click-fn></noita-spell> <strong title="无法真正的永久化">*</strong> </li>
             <li><noita-spell spell.id="THUNDER_BLAST" no-default-click-fn></noita-spell></li>
             <li><noita-spell spell.expression="VACUUM_LIQUID|VACUUM_POWDER" no-default-click-fn></noita-spell></li>
             <li><noita-spell spell.id="VACUUM_ENTITIES" no-default-click-fn></noita-spell></li>
             <li><noita-spell spell.id="X_RAY" no-default-click-fn></noita-spell></li>
             <li><noita-spell spell.expression="CLOUD_WATER|CLOUD_OIL|CLOUD_BLOOD|CLOUD_ACID|CLOUD_THUNDER"
                     no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.expression="MATERIAL_WATER|MATERIAL_OIL|MATERIAL_BLOOD|MATERIAL_ACID|MATERIAL_CEMENT" no-default-click-fn></noita-spell></li>
         </ul>
     </details>
     <details style="grid-area: perk;">
@@ -584,6 +589,25 @@
             <li>控制台可见所有数据。</li>
             <li>盘旋路径与乒乓路径存在时间修正一致(+25)。</li>
             <li>自身环绕与相位存在时间修正一致(+80)。</li>
+            <li>*：受限于特殊原因，该法术提供的投射物仅能达到"印象深刻"判定而无法达到真正意义上的永久存在。</li>
+            <li>
+                <noita-spell spell.expression="SEA_WATER|SEA_OIL|SEA_ALCOHOL|SEA_LAVA|SEA_SWAMP|SEA_ACID|SEA_ACID_GAS"></noita-spell>
+                <noita-spell spell.expression="CIRCLE_FIRE|CIRCLE_ACID|CIRCLE_OIL|CIRCLE_WATER"></noita-spell>
+                提供的投射物由于不存在允许修改的&nbsp;<var>存在时间</var>&nbsp;属性无法进行永久化
+                
+            </li>
+            <li>
+                <noita-spell spell.expression="BERSERK_FIELD|POLYMORPH_FIELD|CHAOS_POLYMORPH_FIELD|ELECTROCUTION_FIELD|FREEZE_FIELD|REGENERATION_FIELD|TELEPORTATION_FIELD|LEVITATION_FIELD|SHIELD_FIELD"></noita-spell>
+                提供的投射物拥有离谱的存在时间(9999999f)而且还有最大存在时间限制，达到印象深刻判定也不切实际
+                <details>
+                    <summary>理论方案</summary>
+                    <ul>
+                        <li>238095 × <noita-spell spell.id="LIFETIME_DOWN"></noita-spell></li>
+                        <li>2 × <noita-spell spell.id="CHAIN_SHOT"></noita-spell></li>
+                        <li>1 × <noita-spell spell.id="SPIRALING_SHOT"></noita-spell></li>
+                    </ul>
+                </details>
+            </li>
         </ul>
     </details>
 
@@ -688,7 +712,7 @@
                     const spellData = noitaSpell.spellDatas[j];
                     searchDatas.push({
                         matchStr: `${spellData.name}  ${spellData.id}`,
-                        li: noitaSpell.parentElement
+                        element: noitaSpell
                     });
                 }
                 const spellData = noitaSpell.spellDatas[0];
@@ -702,9 +726,6 @@
                         }
                     }
                 } else {
-                    if (spellData.offeredProjectiles[0] === undefined) {
-                        console.log(spellData);
-                    }
                     projectileData = spellData.offeredProjectiles[0].projectileData;
                 }
                 noitaSpell.addEventListener("click", event => {
@@ -719,9 +740,9 @@
                 for (let i = 0; i < searchDatas.length; i++) {
                     const data = searchDatas[i];
                     if (data.matchStr.includes(value)) {
-                        data.li.classList.remove("filtered");
+                        data.element.classList.remove("filtered");
                     } else {
-                        data.li.classList.add("filtered");
+                        data.element.classList.add("filtered");
                     }
                 }
             });
