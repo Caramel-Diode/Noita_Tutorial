@@ -156,6 +156,7 @@
     <style>
         [type="number"] {
             -moz-appearance: textfield;
+            appearance: textfield;
         }
 
         [type="number"]::-webkit-inner-spin-button,
@@ -192,7 +193,7 @@
                 'gen gen gen' auto
                 'result result result' auto
                 'help help help' auto
-                /340px 20px 340px
+                /230px 10px 230px
             ;
             place-items: start stretch;
             place-content: center;
@@ -202,7 +203,7 @@
         ul {
             display: flex;
             flex-wrap: wrap;
-            margin: 10px 40px;
+            margin: 10px 20px;
             padding: 0;
         }
 
@@ -226,6 +227,7 @@
         li>noita-spell {
             cursor: pointer;
         }
+
         li>strong {
             font-weight: bold;
             font-size: 40px;
@@ -280,11 +282,12 @@
         label {
             display: inline-flex;
             place-items: center;
+            font-size: 16px;
         }
 
         details>label {
             display: flex;
-            margin: 10px 40px 0 40px;
+            margin: 10px 15px 0 15px;
         }
 
         img {
@@ -304,7 +307,7 @@
             padding: 10px;
             display: grid;
             grid-template-rows: 40px 40px;
-            grid-template-columns: 300px 300px;
+            grid-template-columns: 1fr 1fr;
             place-content: center;
         }
 
@@ -388,6 +391,11 @@
                 var(--bg2) right bottom/var(--h2), var(--bg2) right bottom/var(--v2),
                 var(--bg3) center/calc(100% - 6px) calc(100% - 6px) no-repeat;
         }
+
+        #perk_multiple,
+        details [id*="spell_"] {
+            width: 60px;
+        }
     </style>
 </head>
 
@@ -404,10 +412,11 @@
         <input type="search" id="spellFilter" placeholder="搜索">
         <ul>
             <li><noita-spell spell.id="BOMB" no-default-click-fn></noita-spell></li>
-            <li><noita-spell
+            <li>
+                <noita-spell
                     spell.expression="LIGHT_BULLET|LIGHT_BULLET_TRIGGER|LIGHT_BULLET_TIMER|LIGHT_BULLET_TRIGGER_2"
-                    no-default-click-fn></noita-spell></li>
-            <li><noita-spell spell.expression="BULLET|BULLET_TRIGGER|BULLET_TIMER" no-default-click-fn></noita-spell>
+                    no-default-click-fn></noita-spell>
+                <noita-spell spell.expression="BULLET|BULLET_TRIGGER|BULLET_TIMER" no-default-click-fn></noita-spell>
             </li>
             <li><noita-spell spell.expression="HEAVY_BULLET|HEAVY_BULLET_TRIGGER|HEAVY_BULLET_TIMER"
                     no-default-click-fn></noita-spell></li>
@@ -424,14 +433,17 @@
             <li><noita-spell spell.expression="SPITTER_TIER_3|SPITTER_TIER_3_TIMER" no-default-click-fn></noita-spell>
             </li>
             <li><noita-spell spell.expression="BUBBLESHOT|BUBBLESHOT_TRIGGER" no-default-click-fn></noita-spell></li>
-            <li><noita-spell spell.id="DISC_BULLET" no-default-click-fn></noita-spell></li>
+            <li>
+                </noita-spell><noita-spell spell.id="POLLEN" no-default-click-fn></noita-spell>
+            </li>
+            <li>
+                <noita-spell spell.expression="BOUNCY_ORB|BOUNCY_ORB_TIMER" no-default-click-fn></noita-spell>
+                <noita-spell spell.id="RUBBER_BALL" no-default-click-fn></noita-spell>
+                <noita-spell spell.id="ARROW" no-default-click-fn></noita-spell>
+                <noita-spell spell.id="DISC_BULLET" no-default-click-fn></noita-spell>
+            </li>
             <li><noita-spell spell.id="DISC_BULLET_BIG" no-default-click-fn></noita-spell></li>
             <li><noita-spell spell.id="DISC_BULLET_BIGGER" no-default-click-fn></noita-spell></li>
-            <li><noita-spell spell.expression="BOUNCY_ORB|BOUNCY_ORB_TIMER"
-                    no-default-click-fn></noita-spell><noita-spell spell.id="RUBBER_BALL"
-                    no-default-click-fn></noita-spell><noita-spell spell.id="ARROW"
-                    no-default-click-fn></noita-spell><noita-spell spell.id="POLLEN" no-default-click-fn></noita-spell>
-            </li>
             <li><noita-spell spell.expression="LANCE|LANCE_HOLY" no-default-click-fn></noita-spell></li>
             <li><noita-spell spell.expression="ROCKET|ROCKET_TIER_2|ROCKET_TIER_3" no-default-click-fn></noita-spell>
             </li>
@@ -458,7 +470,8 @@
             <li><noita-spell spell.expression="TENTACLE|TENTACLE_TIMER" no-default-click-fn></noita-spell><noita-spell
                     spell.id="HEAL_BULLET" no-default-click-fn></noita-spell></li>
             <li><noita-spell spell.id="SPIRAL_SHOT" no-default-click-fn></noita-spell></li>
-            <li><noita-spell spell.expression="MAGIC_SHIELD|BIG_MAGIC_SHIELD" no-default-click-fn></noita-spell> <strong title="无法真正的永久化">*</strong> </li>
+            <li><noita-spell spell.expression="MAGIC_SHIELD|BIG_MAGIC_SHIELD" no-default-click-fn></noita-spell> <strong
+                    title="无法真正的永久化">*</strong> </li>
             <li><noita-spell spell.id="CHAIN_BOLT" no-default-click-fn></noita-spell></li>
             <li><noita-spell spell.expression="FIREBALL|ICEBALL" no-default-click-fn></noita-spell></li>
             <li><noita-spell spell.id="METEOR" no-default-click-fn></noita-spell></li>
@@ -502,12 +515,13 @@
                     no-default-click-fn></noita-spell></li>
             <li><noita-spell spell.id="MIST_ALCOHOL" no-default-click-fn></noita-spell></li>
             <li><noita-spell spell.id="TELEPORT_PROJECTILE_SHORT" no-default-click-fn></noita-spell></li>
-            <li><noita-spell spell.id="TELEPORT_PROJECTILE" no-default-click-fn></noita-spell></li>
+            <li>
+                <noita-spell spell.id="TELEPORT_PROJECTILE" no-default-click-fn></noita-spell>
+                <noita-spell spell.id="SWAPPER_PROJECTILE" no-default-click-fn></noita-spell><noita-spell
+                    spell.id="TELEPORT_PROJECTILE_CLOSER" no-default-click-fn></noita-spell>
+            </li>
             <li><noita-spell spell.id="TELEPORT_PROJECTILE_STATIC" no-default-click-fn></noita-spell></li>
-            <li><noita-spell spell.id="SWAPPER_PROJECTILE" no-default-click-fn></noita-spell><noita-spell
-                    spell.id="TELEPORT_PROJECTILE_CLOSER" no-default-click-fn></noita-spell></li>
-            <li><noita-spell spell.id="NUKE" no-default-click-fn></noita-spell></li>
-            <li><noita-spell spell.id="NUKE_GIGA" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.expression="NUKE|NUKE_GIGA" no-default-click-fn></noita-spell></li>
             <li><noita-spell spell.id="FIREWORK" no-default-click-fn></noita-spell></li>
             <li><noita-spell spell.expression="EXPLOSION|POISON_BLAST|FIRE_BLAST|ALCOHOL_BLAST|EXPLOSION_LIGHT"
                     no-default-click-fn></noita-spell> <strong title="无法真正的永久化">*</strong> </li>
@@ -517,19 +531,20 @@
             <li><noita-spell spell.id="X_RAY" no-default-click-fn></noita-spell></li>
             <li><noita-spell spell.expression="CLOUD_WATER|CLOUD_OIL|CLOUD_BLOOD|CLOUD_ACID|CLOUD_THUNDER"
                     no-default-click-fn></noita-spell></li>
-            <li><noita-spell spell.expression="MATERIAL_WATER|MATERIAL_OIL|MATERIAL_BLOOD|MATERIAL_ACID|MATERIAL_CEMENT" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.expression="MATERIAL_WATER|MATERIAL_OIL|MATERIAL_BLOOD|MATERIAL_ACID|MATERIAL_CEMENT"
+                    no-default-click-fn></noita-spell></li>
         </ul>
     </details>
     <details style="grid-area: perk;">
-        <summary>天赋影响</summary>
-        <label>额外修正层数: <input type="number" id="perk_multiple" value="1" min="1"></label>
-        <label id="label_perkEffect-boomerangSpells" title="+20">
+        <summary>天赋影响 (<output id="out_lt_perk">0</output>)</summary>
+        <label>额外修正层数：<input type="number" id="perk_multiple" value="1" min="1"></label>
+        <label title="+20">
             <input type="checkbox" id="perk_20">
             <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABNElEQVQ4ja2TMUvDUBSFvxZpMSFdU+jUQCGLIHQwY2cH6dTVrPYXdHXzF3TOqlNBcO4i1CHipIVCAoWAb+0zgWSpg75QmgQL9Uz3cd8995zDe3AkaqoYD5xttIkPGuq0dKbzRS0nGA+c7extiWkYADS0ZmHo8uyW2csEACElw3Ob6XxRqwNEmxjTMGhozcrh59Ujw4s7GloT0zBQauuHSBZxyPvaR8RhoZcTlG1WMPUuV841pt4t3K1UsFiuAOhbbk6ye1Y4KRt07B6O3aNvufiBx2jUzvtPD5/0LZdI3JcTOHYvr/3AA+Dr4wbgNwMPP/Bo66dFC0r2PkQclgZYINjdrrDvuTKDLEl5Xa8LJMrGLrIkhTILZQr+Qh1+3raQkixJK3NQm7MkRUhJp6UD//CZjsY35bxx+7hbR1wAAAAASUVORK5CYII="
                 alt="回旋法术" tabindex="0" role="checkbox">
             回旋法术 (+20)
         </label>
-        <label id="label_perkEffect-bouncingSpells" title="+60">
+        <label title="+60">
             <input type="checkbox" id="perk_60">
             <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA4klEQVQ4jaWTLQ+CUBSGH5jTTQaV4GZj3uLmSDdSLBb9Hfwgf4cWi8VIYM7NwkY2WGW6acEgF/EDRH3T3Tnnfc4bzoU/pamH78l0dzjWMnUsg+kq0HKA78l0tomwTROAZrv11ng5nQHYJwmTgWC6CrQGwO5wxDbNUqOS6tuZB6BRK3OmIIoBcLvdvKYX6Wrgk4pJ9WJDCqcSIoWDFM5DTX839Aypgr4AniFBFL9s/Qj4RqUAlaJq+wNAHUkdFWc1gLHbT8VwVBsAEC0XzNfb2yV2LIMwDL8C9CzjngB+/0x/6wryPklzSLJvSwAAAABJRU5ErkJggg=="
                 alt="弹跳法术" tabindex="0" role="checkbox">
@@ -537,19 +552,19 @@
         </label>
     </details>
     <details style="grid-area: spell;">
-        <summary>法术影响</summary>
+        <summary>法术影响 (<output id="out_lt_spell">0</output>)</summary>
         <label><noita-spell spell.id="ZERO_DAMAGE"></noita-spell> <input type="number" value="0" min="0"
                 id="spell_280"></label>
         <label><noita-spell spell.id="LIFETIME"></noita-spell> <input type="number" value="0" min="0"
                 id="spell_75"></label>
         <label><noita-spell spell.id="LIFETIME_DOWN"></noita-spell> <input type="number" value="0" min="0"
                 id="spell_-42"></label>
-        <label><noita-spell spell.id="PINGPONG_PATH"></noita-spell><noita-spell
-                spell.id="ORBIT_SHOT"></noita-spell><input type="number" value="0" min="0" id="spell_25"></label>
+        <label><noita-spell spell.expression="PINGPONG_PATH|ORBIT_SHOT"></noita-spell>
+            <input type="number" value="0" min="0" id="spell_25"></label>
         <label><noita-spell spell.id="SPIRALING_SHOT"></noita-spell> <input type="number" value="0" min="0"
                 id="spell_50"></label>
-        <label><noita-spell spell.id="PHASING_ARC"></noita-spell><noita-spell spell.id="TRUE_ORBIT"></noita-spell><input
-                type="number" value="0" min="0" id="spell_80"></label>
+        <label><noita-spell spell.expression="PHASING_ARC|TRUE_ORBIT"></noita-spell>
+            <input type="number" value="0" min="0" id="spell_80"></label>
         <label><noita-spell spell.id="CHAIN_SHOT"></noita-spell> <input type="number" value="0" min="0"
                 id="spell_-30"></label>
     </details>
@@ -559,22 +574,19 @@
             <thead>
                 <tr>
                     <th onclick="renderData(0)" title="点击表头以该法术使用量升序排列。" tabindex="0" role="button">总数</th>
-                    <th onclick="renderData(1)" tabindex="0" role="button"><noita-spell no-default-click-fn
+                    <th onclick="renderData(1)" tabindex="0" role="button" title="+280"><noita-spell no-default-click-fn
                             spell.id="ZERO_DAMAGE"></noita-spell></th>
-                    <th onclick="renderData(2)" tabindex="0" role="button"><noita-spell no-default-click-fn
+                    <th onclick="renderData(2)" tabindex="0" role="button" title="+75"><noita-spell no-default-click-fn
                             spell.id="LIFETIME"></noita-spell></th>
-                    <th onclick="renderData(3)" tabindex="0" role="button"><noita-spell no-default-click-fn
+                    <th onclick="renderData(3)" tabindex="0" role="button" title="-42"><noita-spell no-default-click-fn
                             spell.id="LIFETIME_DOWN"></noita-spell></th>
-                    <th onclick="renderData(4)" tabindex="0" role="button"><noita-spell no-default-click-fn
-                            spell.id="PINGPONG_PATH"></noita-spell><noita-spell no-default-click-fn
-                            spell.id="ORBIT_SHOT"></noita-spell>
-                    </th>
-                    <th onclick="renderData(5)" tabindex="0" role="button"><noita-spell no-default-click-fn
+                    <th onclick="renderData(4)" tabindex="0" role="button" title="+25"><noita-spell no-default-click-fn
+                            spell.expression="PINGPONG_PATH|ORBIT_SHOT"></noita-spell></th>
+                    <th onclick="renderData(5)" tabindex="0" role="button" title="+50"><noita-spell no-default-click-fn
                             spell.id="SPIRALING_SHOT"></noita-spell></th>
-                    <th onclick="renderData(6)" tabindex="0" role="button"><noita-spell no-default-click-fn
-                            spell.id="PHASING_ARC"></noita-spell><noita-spell no-default-click-fn
-                            spell.id="TRUE_ORBIT"></noita-spell></th>
-                    <th onclick="renderData(7)" tabindex="0" role="button"><noita-spell no-default-click-fn
+                    <th onclick="renderData(6)" tabindex="0" role="button" title="+80"><noita-spell no-default-click-fn
+                            spell.expression="PHASING_ARC|TRUE_ORBIT"></noita-spell></th>
+                    <th onclick="renderData(7)" tabindex="0" role="button" title="-30"><noita-spell no-default-click-fn
                             spell.id="CHAIN_SHOT"></noita-spell></th>
                 </tr>
             </thead>
@@ -591,13 +603,15 @@
             <li>自身环绕与相位存在时间修正一致(+80)。</li>
             <li>*：受限于特殊原因，该法术提供的投射物仅能达到"印象深刻"判定而无法达到真正意义上的永久存在。</li>
             <li>
-                <noita-spell spell.expression="SEA_WATER|SEA_OIL|SEA_ALCOHOL|SEA_LAVA|SEA_SWAMP|SEA_ACID|SEA_ACID_GAS"></noita-spell>
+                <noita-spell
+                    spell.expression="SEA_WATER|SEA_OIL|SEA_ALCOHOL|SEA_LAVA|SEA_SWAMP|SEA_ACID|SEA_ACID_GAS"></noita-spell>
                 <noita-spell spell.expression="CIRCLE_FIRE|CIRCLE_ACID|CIRCLE_OIL|CIRCLE_WATER"></noita-spell>
                 提供的投射物由于不存在允许修改的&nbsp;<var>存在时间</var>&nbsp;属性无法进行永久化
-                
+
             </li>
             <li>
-                <noita-spell spell.expression="BERSERK_FIELD|POLYMORPH_FIELD|CHAOS_POLYMORPH_FIELD|ELECTROCUTION_FIELD|FREEZE_FIELD|REGENERATION_FIELD|TELEPORTATION_FIELD|LEVITATION_FIELD|SHIELD_FIELD"></noita-spell>
+                <noita-spell
+                    spell.expression="BERSERK_FIELD|POLYMORPH_FIELD|CHAOS_POLYMORPH_FIELD|ELECTROCUTION_FIELD|FREEZE_FIELD|REGENERATION_FIELD|TELEPORTATION_FIELD|LEVITATION_FIELD|SHIELD_FIELD"></noita-spell>
                 提供的投射物拥有离谱的存在时间(9999999f)而且还有最大存在时间限制，达到印象深刻判定也不切实际
                 <details>
                     <summary>理论方案</summary>
@@ -621,11 +635,13 @@
         const spell_limit = document.querySelector("#spell_limit");
         const spell_multiple = document.querySelector("#spell_multiple");
         //#region 天赋影响
+        const out_lt_perk = document.querySelector("#out_lt_perk");
         const perk_multiple = document.querySelector("#perk_multiple");
         const perk_20 = document.querySelector("#perk_20");
         const perk_60 = document.querySelector("#perk_60");
         //#endregion
         //#region 法术影响
+        const out_lt_spell = document.querySelector("#out_lt_spell");
         const spell_280 = document.querySelector("#spell_280");
         const spell_75 = document.querySelector("#spell_75");
         const spell__42 = document.querySelector("#spell_-42");
@@ -637,6 +653,21 @@
         let workerParam = {};
         const checkFeasibility = () => {
             // 可行性判断
+            if(spell_limit.valueAsNumber < 1) {
+                spell_limit.value = "1";
+                spell_limit.setCustomValidity("不得小于1");
+                return false;
+            }
+            if(spell_multiple.valueAsNumber < 1) {
+                spell_multiple.value = "1";
+                spell_multiple.setCustomValidity("不得小于1");
+                return false;
+            }
+            if(perk_multiple.valueAsNumber < 1) {
+                perk_multiple.value = "1";
+                perk_multiple.setCustomValidity("不得小于1");
+                return false;
+            }
             // 投射物所需的范围
             const permanentLifetimeRange_min = -1 - workerParam.maxlt;
             const permanentLifetimeRange_max = -1 - workerParam.minlt;
@@ -668,19 +699,18 @@
             }
         };
         const updateLifetime = () => {
-            let lt =
-                lifetime_base.valueAsNumber +
-                perk_multiple.valueAsNumber * (
-                    perk_20.checked ? 20 : 0 + perk_60.checked ? 60 : 0
-                )
-                + spell_280.valueAsNumber * 280
+            const lt__perks = perk_multiple.valueAsNumber * (
+                (perk_20.checked ? 20 : 0) + (perk_60.checked ? 60 : 0)
+            );
+            const lt__spells =
+                spell_280.valueAsNumber * 280
                 + spell_75.valueAsNumber * 75
                 - spell__42.valueAsNumber * 42
                 + spell_25.valueAsNumber * 25
                 + spell_50.valueAsNumber * 50
                 + spell_80.valueAsNumber * 80
-                - spell__30.valueAsNumber * 30
-                ;
+                - spell__30.valueAsNumber * 30;
+            let lt = lifetime_base.valueAsNumber + lt__perks + lt__spells;
             let minlt = lt - lifetime_fluctuat.valueAsNumber;
             let maxlt = lt + lifetime_fluctuat.valueAsNumber;
             if (minlt === maxlt) {
@@ -690,13 +720,14 @@
                 out_lt.innerHTML = `${minlt} ~ ${maxlt}`;
                 out_prob.innerHTML = `1/${lifetime_fluctuat.valueAsNumber * 2 + 1}`;
             }
+            out_lt_perk.innerHTML = `${lt__perks > 0 ? "+" : ""}${lt__perks}`;
+            out_lt_spell.innerHTML = `${lt__spells > 0 ? "+" : ""}${lt__spells}`;
             workerParam = {
                 limit: spell_limit.valueAsNumber,
                 multiple: spell_multiple.valueAsNumber,
                 maxlt: maxlt,
                 minlt: minlt
             };
-
         };
         (() => {
             const details_datas = document.querySelector("#datas");
@@ -732,6 +763,10 @@
                     lifetime_base.value = projectileData.projectileComponent.lifetime;
                     lifetime_fluctuat.value = projectileData.projectileComponent.fluctuatingLifetime;
                     updateLifetime();
+                });
+                noitaSpell.addEventListener("keydown", event => {
+                    if (event.key === "Enter") noitaSpell.click();
+                    else if (event.key === "Escape") noitaSpell.blur();
                 });
             }
             const spellFilter = document.querySelector("#spellFilter");
