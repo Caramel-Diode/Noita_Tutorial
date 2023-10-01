@@ -7,9 +7,9 @@
     "description": "用于测试NoitaLib.js",
     "icons": [
         {
-            "src": "favicon.ico",
+            "src": "img/App icon.webp",
             "sizes": "256x256",
-            "type": "image/x-icon"
+            "type": "image/webp"
         }
     ]
 }
