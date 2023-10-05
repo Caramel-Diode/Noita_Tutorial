@@ -133,9 +133,7 @@
             <button onclick="gdDoc.showArticle(gdDoc.articles.get('实体面板'))"> 实体面板测试页面 </button>
             <p> <var>noitaLib</var> 为库的调用入口 </p>
             <p>
-                <code>
-                    &#60;noita-spell&#62;
-                </code>
+                <code>&#60;noita-spell&#62;</code>
                 noita 法术组件 <br>
                 <noita-spell spell.id="BOMB"></noita-spell>
                 <noita-spell spell.id="NOLLA"></noita-spell>
@@ -144,46 +142,15 @@
                 <noita-spell spell.expression="#lifetime_mod"></noita-spell>
                 <br>
                 <noita-spell spell.expression="#type_passive" display="panel"></noita-spell>
-                <br>
-                属性:
-            <ul>
-                <li><code>spell.id</code> : 通过法术id指定法术</li>
-                <li><code>spell.name</code> : 通过法术名指定法术</li>
-                <li><code>spell.expression</code> : 通过查询表达式指定多个法术</li>
-                <li><code>display</code> : 渲染模式(icon/panel)</li>
-            </ul>
             <hr>
-            <code>
-                    &#60;noita-wand&#62;
-                </code>
+            <code>&#60;noita-wand&#62;</code>
             noita 法杖组件<br>
             <noita-wand display="panel" wand.name="幽魂闪光" wand.capacity="26" wand.draw="1" wand.fire-rate-wait="15"
                 wand.reload-time="0" wand.shuffle="false" wand.spread-degrees="0" wand.speed-multiplier="1"
                 wand.mana-charge-speed="600" wand.mana-max="1600" wand.static-spells="MANA_REDUCE:-1"
                 wand.dynamic-spells="BLOOD_MAGIC:2 BURST_X ADD_DEATH_TRIGGER CURSE_WITHER_PROJECTILE [DIGGER|POWERDIGGER|CHAINSAW] NOLLA SPIRAL_SHOT LIGHT_BULLET SUMMON_PORTAL:-1 [DIGGER|POWERDIGGER|MATERIAL_WATER|MATERIAL_OIL|MATERIAL_BLOOD|MATERIAL_ACID|MATERIAL_CEMENT]:13 CHAINSAW RESET">
             </noita-wand>
-            <br>
-            属性(部分,详见devtools):
-            <ul>
-                <li><code>wand.name</code> : 法杖名</li>
-                <li><code>wand.capacity</code> : 法杖法术容量</li>
-                <li><code>wand.draw</code> : 法杖抽取数</li>
-                <li>...</li>
-            </ul>
             </p>
-            <div style="vertical-align: bottom;">
-                <noita-perk perk.id="CRITICAL_HIT"></noita-perk>
-                <noita-perk perk.id="CRITICAL_HIT" display="panel"></noita-perk>
-                <noita-perk perk.id="BREATH_UNDERWATER" display="panel"></noita-perk>
-                <noita-perk perk.id="GREED_CURSE"></noita-perk>
-                <noita-perk perk.id="GREED_CURSE" display="panel"></noita-perk>
-                <noita-perk perk.id="ESSENCE_AIR"></noita-perk>
-                <noita-perk perk.id="ESSENCE_ALCOHOL"></noita-perk>
-                <noita-perk perk.id="ESSENCE_FIRE"></noita-perk>
-                <noita-perk perk.id="ESSENCE_LASER"></noita-perk>
-                <noita-perk perk.id="ESSENCE_WATER"></noita-perk>
-                <noita-perk perk.id="EXTRA_HP"></noita-perk>
-            </div>
         </article>
         <article title="wiki">
             <iframe src="https://noita.wiki.gg/zh/wiki/Noita_Wiki" frameborder="0"
