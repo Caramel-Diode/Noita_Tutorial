@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>印♡象♡深♡刻计算器</title>
+    <link rel="shortcut icon" type="image/x-icon"
+        href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGOfPtRkwAAACBjSFJNAAB6JQAAgIMAAPn/AACA6AAAdTAAAOpgAAA6lwAAF2+XqZnUAAABI0lEQVR4nGL8//8/AyUAIICYKNINBAABxILMYWRkZDCUlf3PxsWOU8Ovbz8Zzj9+zAhzOUAAobiAkGYQAMmD1MH4AAGE4YVyHmEUmhAACCBG5EBcb2KBEaKdX95i1Xjixm1GEA0QQEz4FIP4BQ3NDMdv3AJjEBsdAAQQA8gFMGyurvIfhNcZm4Pp5cuX/0cG/4AQJAaSg+kBCCAUL1hoqKJ44cWP3wz3H9xnUFRQBPNBbBCw1FCDewEggPCmA5hmmEYQWLliJYoagABCcYGRnBxKNIL8jQ5AtoMAzAUAAYTXBSDbUvTN4bSRoRFDiYEdODHBAEAAobgAlhJBbJhLQBq2X78MZrtWFjF0lZWhpESAAGKkNDMBBBDFmQkggCg2ACDAACeNk0X3s8cKAAAAAElFTkSuQmCC">
+    <script src="../js/noitaLib.js"></script>
+    <script web-woker>
+        let solutions = [];//解决方案数组
+        let maxRenderRowAmount = 16;//default
+        const runWebWorker = (() => {
+            const webWorker = () => {
+                const getSolutions = (() => {
+                    /** @type {Array} */
+                    let solutions;
+                    let multiple_;
+                    /** @type {Number} 无伤 +280 */
+                    let ws = 0;
+                    /** @type {Number} 蓝表 +75 */
+                    let lb = 0;
+                    /** @type {Number} 红表 -42 */
+                    let hb = 0;
+                    /** @type {Number} 乒乓 +25 */
+                    let pp = 0;
+                    /** @type {Number} 螺旋 +50 */
+                    let lx = 0;
+                    /** @type {Number} 相位 +80 */
+                    let xw = 0;
+                    /** @type {Number} 连锁 +30 */
+                    let ls = 0;
+
+                    const getlifetime = () => (ws * 280 + lb * 75 - hb * 42 + pp * 25 + lx * 50 + xw * 80 - ls * 30) * multiple_;
+                    /**
+                     * 获取方案是否能够成功永久化投射物
+                     * @returns {Boolean} success?
+                     */
+                    let isPermanent;
+                    let permanentLifetimeRange_min;
+                    let permanentLifetimeRange_max;
+                    let permanentLifetime;
+                    const isPermanent_1 = () => {
+                        const r = getlifetime();
+                        return r <= permanentLifetimeRange_max && r >= permanentLifetimeRange_min;
+                    };
+                    const isPermanent_2 = () => getlifetime() === permanentLifetime;
+
+                    return (maxCount, multiple, lifetime_max, lifetime_min) => {
+                        console.time("祈祷耗时");
+                        //向闭包内变量传入数据
+                        ws = 0;
+                        lb = 0;
+                        hb = 0;
+                        pp = 0;
+                        lx = 0;
+                        xw = 0;
+                        ls = 0;
+                        multiple_ = multiple;
+                        solutions = [];
+
+                        if (lifetime_max === lifetime_min) {
+                            permanentLifetime = -1 - lifetime_min;
+                            isPermanent = isPermanent_2;
+                        }
+                        else {
+                            permanentLifetimeRange_max = -1 - lifetime_min;
+                            permanentLifetimeRange_min = -1 - lifetime_max;
+                            isPermanent = isPermanent_1;
+                        }
+
+
+                        // 循环开始
+                        /** 无伤已使用数量 */
+                        let c1 = 0;
+                        /** 无伤+蓝表已使用数量 */
+                        let c2 = 0;
+                        /** 无伤+蓝表+红表已使用数量 */
+                        let c3 = 0;
+                        /** 无伤+蓝表+红表+乒乓已使用数量 */
+                        let c4 = 0;
+                        /** 无伤+蓝表+红表+乒乓+螺旋已使用数量 */
+                        let c5 = 0;
+                        /** 无伤+蓝表+红表+乒乓+螺旋+相位已使用数量 */
+                        let c6 = 0;
+                        /** 无伤+蓝表+红表+乒乓+螺旋+相位+连锁已使用数量 */
+                        let c7 = 0;
+
+                        ws = maxCount;
+                        do/* 无伤 */ {
+                            c1 = ws;
+                            lb = maxCount - c1;
+                            if (lb > 0) {
+                                do/* 蓝表 */ {
+                                    c2 = lb;
+                                    hb = maxCount - c2;
+                                    if (hb > 0) {
+                                        do/* 红表 */ {
+                                            c3 = c2 + hb;
+                                            pp = maxCount - c3;
+                                            if (pp > 0) {
+                                                do/* 乒乓 */ {
+                                                    c4 = c3 + pp;
+                                                    lx = maxCount - c4;
+                                                    if (lx > 0) {
+                                                        do/* 螺旋 */ {
+                                                            c5 = c4 + lx;
+                                                            xw = maxCount - c5;
+                                                            if (xw > 0) {
+                                                                do/* 相位 */ {
+                                                                    c6 = c5 + xw;
+                                                                    ls = maxCount - c6;
+                                                                    if (ls > 0) {
+                                                                        do/* 连锁 */ {
+                                                                            c7 = c6 + ls;
+                                                                            if (isPermanent()) solutions.push([c7, ws, lb, hb, pp, lx, xw, ls]);
+                                                                            ls--;
+                                                                        } while (ls >= 0);
+                                                                        ls = 0;
+                                                                    } else if (isPermanent()) solutions.push([c6, ws, lb, hb, pp, lx, xw, ls]);
+                                                                    xw--;
+                                                                } while (xw >= 0);
+                                                                xw = 0;
+                                                            } else if (isPermanent()) solutions.push([c5, ws, lb, hb, pp, lx, xw, ls]);
+                                                            lx--;
+                                                        } while (lx >= 0);
+                                                        lx = 0;
+                                                    } else if (isPermanent()) solutions.push([c4, ws, lb, hb, pp, lx, xw, ls]);
+                                                    pp--;
+                                                } while (pp >= 0);
+                                                pp = 0;
+                                            } else if (isPermanent()) solutions.push([c3, ws, lb, hb, pp, lx, xw, ls]);
+                                            hb--;
+                                        } while (hb >= 0);
+                                        hb = 0;
+                                    } else if (isPermanent()) solutions.push([c2, ws, lb, hb, pp, lx, xw, ls]);
+                                    lb--;
+                                } while (lb >= 0);
+                            } else if (isPermanent()) solutions.push([c1, ws, lb, hb, pp, lx, xw, ls]);
+                            ws--;
+                        } while (ws >= 0);
+                        ws = 0;
+
+                        console.timeEnd("祈祷耗时");
+                        return solutions;
+                    };
+                })();
+                onmessage = e => postMessage(getSolutions(e.data.limit, e.data.multiple, e.data.maxlt, e.data.minlt));
+            };
+            return () => new Worker(URL.createObjectURL(new Blob([`(${webWorker.toString()})()`])));
+        })();
+        let worker = runWebWorker();
+        console.groupCollapsed("noitaLib解析信息")
+    </script>
+    <style>
+        [type="number"] {
+            -moz-appearance: textfield;
+            appearance: textfield;
+        }
+
+        [type="number"]::-webkit-inner-spin-button,
+        [type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        * {
+            box-sizing: border-box;
+            image-rendering: pixelated;
+            font-family: sans-serif;
+            user-select: none;
+        }
+
+        :root {
+            background-color: #1f1f1f;
+            color: #EEEEEE;
+            font-size: 20px;
+            --themeColor: #C69BC5;
+        }
+
+        ::marker {
+            color: var(--themeColor);
+        }
+
+        body {
+            display: grid;
+            grid-template:
+                'h1 h1 h1' auto
+                'main main main' auto
+                'data data data'
+                'perk . spell' auto
+                'gen gen gen' auto
+                'result result result' auto
+                'help help help' auto
+                /230px 10px 230px
+            ;
+            place-items: start stretch;
+            place-content: center;
+            margin: 50px;
+        }
+
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 10px 20px;
+            padding: 0;
+        }
+
+        li {
+            display: flex;
+            border-radius: 4px;
+            font-size: 12px;
+            line-height: 40px;
+            font-weight: bold;
+            flex-wrap: wrap;
+        }
+
+        li:hover {
+            background-color: #3f3f3f;
+        }
+
+        noita-spell.filtered {
+            opacity: 0.1;
+        }
+
+        li>noita-spell {
+            cursor: pointer;
+        }
+
+        li>strong {
+            font-weight: bold;
+            font-size: 40px;
+            color: #FF00FF;
+        }
+
+        details {
+            border: 1px solid #5F5F5F;
+            padding: 8px;
+            margin: 10px 0 0 0;
+            border-radius: 6px;
+        }
+
+        details[open] {
+            border: 2px solid var(--themeColor);
+        }
+
+        summary {
+            cursor: pointer;
+        }
+
+        h1 {
+            grid-area: h1;
+            font-size: 24px;
+            text-align: center;
+            border-bottom: 2px var(--themeColor) solid;
+            padding: 20px;
+        }
+
+        input {
+            background-color: #252525;
+            border-radius: 4px;
+            border: 2px #5F5F5F solid;
+            color: #EEEEEE;
+            height: 30px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        input[type="number"] {
+            max-width: 100px;
+        }
+
+        input[type="search"] {
+            margin: 20px 0 0 40px;
+        }
+
+        input[type="checkbox"] {
+            display: none;
+        }
+
+        label {
+            display: inline-flex;
+            place-items: center;
+            font-size: 16px;
+        }
+
+        details>label {
+            display: flex;
+            margin: 10px 15px 0 15px;
+        }
+
+        img {
+            height: 36px;
+            width: 36px;
+            border: 2px solid transparent;
+            transition: all 250ms linear 0ms;
+        }
+
+        /* :has 兼容性不佳 */
+        /* label:has(> [type="checkbox"]:checked)>noita-perk {
+            outline: 2px dashed var(--themeColor);
+            border-radius: 6px;
+        } */
+
+        noita-perk {
+            transition: all 250ms linear 0ms;
+        }
+        
+        [type="checkbox"]:checked+noita-perk {
+            outline: 2px dashed var(--themeColor);
+            border-radius: 3px;
+        }
+
+        main {
+            grid-area: main;
+            padding: 10px;
+            display: grid;
+            grid-template-rows: 40px 40px;
+            grid-template-columns: 1fr 1fr;
+            place-content: center;
+        }
+
+        #datas {
+            grid-area: data;
+        }
+
+        table {
+            border-collapse: collapse;
+            transition: all 250ms linear 0ms;
+        }
+
+        th,
+        td {
+            color: #DDDDDD !important;
+            height: 40px;
+            width: 50px;
+            border: 2px solid #555555;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        th {
+            font-weight: bolder;
+            background: #333333;
+            transition: background-color 250ms linear 0ms;
+            padding: 4px 0;
+        }
+
+        td {
+            background: #1D1D1D;
+            font-weight: lighter;
+        }
+
+        th,
+        td {
+            color: #DDDDDD !important;
+            height: 40px;
+            width: 50px;
+            border: 2px solid #555555;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        thead>tr>th:hover {
+            background: #666666;
+        }
+
+        th:focus-visible {
+            background: #100F0E;
+            border-radius: 5px;
+        }
+
+        #gen {
+            grid-area: gen;
+            display: block;
+            margin: 15px 0;
+        }
+
+        #result {
+            /* width: 600px;                 */
+            grid-area: result;
+            display: grid;
+            place-items: center;
+            margin: 5px 0;
+            padding: 16px;
+            --c1: #948064;
+            --c2: #B49F81;
+            --c3: #0E0D0CF2;
+            --bg1: linear-gradient(var(--c1), var(--c1));
+            --bg2: linear-gradient(var(--c2), var(--c2));
+            --bg3: linear-gradient(var(--c3), var(--c3));
+            --h1: 3px calc(100% - 9px) no-repeat;
+            --v1: calc(100% - 9px) 3px no-repeat;
+            --h2: 3px calc(100% - 3px) no-repeat;
+            --v2: calc(100% - 3px) 3px no-repeat;
+            background:
+                var(--bg1) left top 3px/var(--h1), var(--bg1) left 3px top/var(--v1),
+                var(--bg1) right bottom 3px/var(--h1), var(--bg1) right 3px bottom/var(--v1),
+                var(--bg2) left top/var(--h2), var(--bg2) left top/var(--v2),
+                var(--bg2) right bottom/var(--h2), var(--bg2) right bottom/var(--v2),
+                var(--bg3) center/calc(100% - 6px) calc(100% - 6px) no-repeat;
+        }
+
+        #perk_multiple,
+        details [id*="spell_"] {
+            width: 60px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>存在时间：<output id="out-lt">?</output> 永久化成功率：<output id="out-prob">?</output></h1>
+    <main>
+        <label>基本：<input type="number" id="lifetime_base" value="2"></label>
+        <label>波动：<input type="number" id="lifetime_fluctuat" value="0"></label>
+        <label>最大修正数量：<input type="number" id="spell_limit" value="15" min="1"></label>
+        <label>修正倍数：<input type="number" id="spell_multiple" value="1" min="1"></label>
+    </main>
+    <details id="datas">
+        <summary>从法术中获取数据</summary>
+        <input type="search" id="spellFilter" placeholder="搜索">
+        <ul>
+            <li><noita-spell spell.id="BOMB" no-default-click-fn></noita-spell></li>
+            <li>
+                <noita-spell
+                    spell.expression="LIGHT_BULLET|LIGHT_BULLET_TRIGGER|LIGHT_BULLET_TIMER|LIGHT_BULLET_TRIGGER_2"
+                    no-default-click-fn></noita-spell>
+                <noita-spell spell.expression="BULLET|BULLET_TRIGGER|BULLET_TIMER" no-default-click-fn></noita-spell>
+            </li>
+            <li><noita-spell spell.expression="HEAVY_BULLET|HEAVY_BULLET_TRIGGER|HEAVY_BULLET_TIMER"
+                    no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="AIR_BULLET" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.expression="SLOW_BULLET|SLOW_BULLET_TRIGGER|SLOW_BULLET_TIMER"
+                    no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.expression="BLACK_HOLE|BLACK_HOLE_DEATH_TRIGGER" no-default-click-fn></noita-spell>
+            </li>
+            <li><noita-spell spell.id="BLACK_HOLE_BIG" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="BLACK_HOLE_GIGA" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.expression="SPITTER|SPITTER_TIMER" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.expression="SPITTER_TIER_2|SPITTER_TIER_2_TIMER" no-default-click-fn></noita-spell>
+            </li>
+            <li><noita-spell spell.expression="SPITTER_TIER_3|SPITTER_TIER_3_TIMER" no-default-click-fn></noita-spell>
+            </li>
+            <li><noita-spell spell.expression="BUBBLESHOT|BUBBLESHOT_TRIGGER" no-default-click-fn></noita-spell></li>
+            <li>
+                </noita-spell><noita-spell spell.id="POLLEN" no-default-click-fn></noita-spell>
+            </li>
+            <li>
+                <noita-spell spell.expression="BOUNCY_ORB|BOUNCY_ORB_TIMER" no-default-click-fn></noita-spell>
+                <noita-spell spell.id="RUBBER_BALL" no-default-click-fn></noita-spell>
+                <noita-spell spell.id="ARROW" no-default-click-fn></noita-spell>
+                <noita-spell spell.id="DISC_BULLET" no-default-click-fn></noita-spell>
+            </li>
+            <li><noita-spell spell.id="DISC_BULLET_BIG" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="DISC_BULLET_BIGGER" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.expression="LANCE|LANCE_HOLY" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.expression="ROCKET|ROCKET_TIER_2|ROCKET_TIER_3" no-default-click-fn></noita-spell>
+            </li>
+            <li><noita-spell
+                    spell.expression="GRENADE|GRENADE_TRIGGER|GRENADE_ANTI|GRENADE_TIER_2|GRENADE_TIER_3|GRENADE_LARGE"
+                    no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="EXPLODING_DUCKS" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="WORM_SHOT" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="BOMB_DETONATOR" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="LASER" no-default-click-fn></noita-spell></li>
+            <li title="引导器"><noita-spell spell.id="MEGALASER" data-target="MEGALASER"
+                    no-default-click-fn></noita-spell>引导器
+            </li>
+            <li title="光束"><noita-spell spell.id="MEGALASER" data-target="MEGALASER_BEAM"
+                    no-default-click-fn></noita-spell>光束</li>
+            <li><noita-spell spell.id="LIGHTNING" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="BALL_LIGHTNING" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.expression="LASER_EMITTER|LASER_EMITTER_FOUR" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="LASER_EMITTER_CUTTER" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.expression="DIGGER|POWERDIGGER" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="CHAINSAW" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.expression="LUMINOUS_DRILL|LASER_LUMINOUS_DRILL" no-default-click-fn></noita-spell>
+            </li>
+            <li><noita-spell spell.expression="TENTACLE|TENTACLE_TIMER" no-default-click-fn></noita-spell><noita-spell
+                    spell.id="HEAL_BULLET" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="SPIRAL_SHOT" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.expression="MAGIC_SHIELD|BIG_MAGIC_SHIELD" no-default-click-fn></noita-spell> <strong
+                    title="无法真正的永久化">*</strong> </li>
+            <li><noita-spell spell.id="CHAIN_BOLT" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.expression="FIREBALL|ICEBALL" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="METEOR" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="FLAMETHROWER" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="SLIMEBALL" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="DARKFLAME" no-default-click-fn></noita-spell><noita-spell spell.id="MISSILE"
+                    no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="FUNKY_SPELL" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="PEBBLE" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="DYNAMITE" no-default-click-fn></noita-spell><noita-spell spell.id="GLITTER_BOMB"
+                    no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="BUCKSHOT" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="FREEZING_GAZE" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="GLOWING_BOLT" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="SPORE_POD" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="GLUE_SHOT" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="BOMB_HOLY" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="BOMB_HOLY_GIGA" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="BOMB_CART" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="EXPANDING_ORB" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="CRUMBLING_EARTH" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="SWARM_FLY" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="SWARM_FIREBUG" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="SWARM_WASP" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="FRIEND_FLY" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="ACIDSHOT" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="THUNDERBALL" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="FIREBOMB" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="SOILBALL" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="DEATH_CROSS" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="DEATH_CROSS_BIG" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="INFESTATION" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.expression="WALL_HORIZONTAL|WALL_VERTICAL|WALL_SQUARE"
+                    no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="PURPLE_EXPLOSION_FIELD" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="DELAYED_SPELL" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="LONG_DISTANCE_CAST" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="TELEPORT_CAST" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="SUPER_TELEPORT_CAST" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.expression="MIST_RADIOACTIVE|MIST_SLIME|MIST_BLOOD"
+                    no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="MIST_ALCOHOL" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="TELEPORT_PROJECTILE_SHORT" no-default-click-fn></noita-spell></li>
+            <li>
+                <noita-spell spell.id="TELEPORT_PROJECTILE" no-default-click-fn></noita-spell>
+                <noita-spell spell.id="SWAPPER_PROJECTILE" no-default-click-fn></noita-spell><noita-spell
+                    spell.id="TELEPORT_PROJECTILE_CLOSER" no-default-click-fn></noita-spell>
+            </li>
+            <li><noita-spell spell.id="TELEPORT_PROJECTILE_STATIC" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.expression="NUKE|NUKE_GIGA" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="FIREWORK" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.expression="EXPLOSION|POISON_BLAST|FIRE_BLAST|ALCOHOL_BLAST|EXPLOSION_LIGHT"
+                    no-default-click-fn></noita-spell> <strong title="无法真正的永久化">*</strong> </li>
+            <li><noita-spell spell.id="THUNDER_BLAST" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.expression="VACUUM_LIQUID|VACUUM_POWDER" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="VACUUM_ENTITIES" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.id="X_RAY" no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.expression="CLOUD_WATER|CLOUD_OIL|CLOUD_BLOOD|CLOUD_ACID|CLOUD_THUNDER"
+                    no-default-click-fn></noita-spell></li>
+            <li><noita-spell spell.expression="MATERIAL_WATER|MATERIAL_OIL|MATERIAL_BLOOD|MATERIAL_ACID|MATERIAL_CEMENT"
+                    no-default-click-fn></noita-spell></li>
+        </ul>
+    </details>
+    <details style="grid-area: perk;">
+        <summary>天赋影响 (<output id="out_lt_perk">0</output>)</summary>
+        <label>额外修正层数：<input type="number" id="perk_multiple" value="1" min="1"></label>
+        <label title="+20">
+            <input type="checkbox" id="perk_20" tabindex="0" role="checkbox">
+            <noita-perk perk.id="PROJECTILE_HOMING_SHOOTER"></noita-perk>
+            回旋法术 (+20)
+        </label>
+        <label title="+60">
+            <input type="checkbox" id="perk_60" tabindex="0" role="checkbox">
+            <noita-perk perk.id="BOUNCE"></noita-perk>
+            弹跳法术 (+60)
+        </label>
+    </details>
+    <details style="grid-area: spell;">
+        <summary>法术影响 (<output id="out_lt_spell">0</output>)</summary>
+        <label><noita-spell spell.id="ZERO_DAMAGE"></noita-spell> <input type="number" value="0" min="0"
+                id="spell_280"></label>
+        <label><noita-spell spell.id="LIFETIME"></noita-spell> <input type="number" value="0" min="0"
+                id="spell_75"></label>
+        <label><noita-spell spell.id="LIFETIME_DOWN"></noita-spell> <input type="number" value="0" min="0"
+                id="spell_-42"></label>
+        <label><noita-spell spell.expression="PINGPONG_PATH|ORBIT_SHOT"></noita-spell>
+            <input type="number" value="0" min="0" id="spell_25"></label>
+        <label><noita-spell spell.id="SPIRALING_SHOT"></noita-spell> <input type="number" value="0" min="0"
+                id="spell_50"></label>
+        <label><noita-spell spell.expression="PHASING_ARC|TRUE_ORBIT"></noita-spell>
+            <input type="number" value="0" min="0" id="spell_80"></label>
+        <label><noita-spell spell.id="CHAIN_SHOT"></noita-spell> <input type="number" value="0" min="0"
+                id="spell_-30"></label>
+    </details>
+    <input type="button" value="生成方案" id="gen" onclick="getSolutions()">
+    <div id="result">
+        <table>
+            <thead>
+                <tr>
+                    <th onclick="renderData(0)" title="点击表头以该法术使用量升序排列。" tabindex="0" role="button">总数</th>
+                    <th onclick="renderData(1)" tabindex="0" role="button" title="+280"><noita-spell no-default-click-fn
+                            spell.id="ZERO_DAMAGE"></noita-spell></th>
+                    <th onclick="renderData(2)" tabindex="0" role="button" title="+75"><noita-spell no-default-click-fn
+                            spell.id="LIFETIME"></noita-spell></th>
+                    <th onclick="renderData(3)" tabindex="0" role="button" title="-42"><noita-spell no-default-click-fn
+                            spell.id="LIFETIME_DOWN"></noita-spell></th>
+                    <th onclick="renderData(4)" tabindex="0" role="button" title="+25"><noita-spell no-default-click-fn
+                            spell.expression="PINGPONG_PATH|ORBIT_SHOT"></noita-spell></th>
+                    <th onclick="renderData(5)" tabindex="0" role="button" title="+50"><noita-spell no-default-click-fn
+                            spell.id="SPIRALING_SHOT"></noita-spell></th>
+                    <th onclick="renderData(6)" tabindex="0" role="button" title="+80"><noita-spell no-default-click-fn
+                            spell.expression="PHASING_ARC|TRUE_ORBIT"></noita-spell></th>
+                    <th onclick="renderData(7)" tabindex="0" role="button" title="-30"><noita-spell no-default-click-fn
+                            spell.id="CHAIN_SHOT"></noita-spell></th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <details style="grid-area: help;">
+        <summary>帮助</summary>
+        <ul>
+            <li>点击表头以该法术使用量升序排列，倒序点击表头进行优先级排序。</li>
+            <li>控制台输入 <code>maxRenderRowAmount = ?</code> 调整最大渲染行数。 默认16</li>
+            <li>控制台可见所有数据。</li>
+            <li>盘旋路径与乒乓路径存在时间修正一致(+25)。</li>
+            <li>自身环绕与相位存在时间修正一致(+80)。</li>
+            <li>*：受限于特殊原因，该法术提供的投射物仅能达到"印象深刻"判定而无法达到真正意义上的永久存在。</li>
+            <li>
+                <noita-spell
+                    spell.expression="SEA_WATER|SEA_OIL|SEA_ALCOHOL|SEA_LAVA|SEA_SWAMP|SEA_ACID|SEA_ACID_GAS"></noita-spell>
+                <noita-spell spell.expression="CIRCLE_FIRE|CIRCLE_ACID|CIRCLE_OIL|CIRCLE_WATER"></noita-spell>
+                提供的投射物由于不存在允许修改的&nbsp;<var>存在时间</var>&nbsp;属性无法进行永久化
+
+            </li>
+            <li>
+                <noita-spell
+                    spell.expression="BERSERK_FIELD|POLYMORPH_FIELD|CHAOS_POLYMORPH_FIELD|ELECTROCUTION_FIELD|FREEZE_FIELD|REGENERATION_FIELD|TELEPORTATION_FIELD|LEVITATION_FIELD|SHIELD_FIELD"></noita-spell>
+                提供的投射物拥有离谱的存在时间(9999999f)而且还有最大存在时间限制，达到印象深刻判定也不切实际
+                <details>
+                    <summary>理论方案</summary>
+                    <ul>
+                        <li>238095 × <noita-spell spell.id="LIFETIME_DOWN"></noita-spell></li>
+                        <li>2 × <noita-spell spell.id="CHAIN_SHOT"></noita-spell></li>
+                        <li>1 × <noita-spell spell.id="SPIRALING_SHOT"></noita-spell></li>
+                    </ul>
+                </details>
+            </li>
+        </ul>
+    </details>
+
+    <script>
+        console.groupEnd();
+        const out_lt = document.querySelector("#out-lt");
+        const out_prob = document.querySelector("#out-prob");
+
+        const lifetime_base = document.querySelector("#lifetime_base");
+        const lifetime_fluctuat = document.querySelector("#lifetime_fluctuat");
+        const spell_limit = document.querySelector("#spell_limit");
+        const spell_multiple = document.querySelector("#spell_multiple");
+        //#region 天赋影响
+        const out_lt_perk = document.querySelector("#out_lt_perk");
+        const perk_multiple = document.querySelector("#perk_multiple");
+        const perk_20 = document.querySelector("#perk_20");
+        const perk_60 = document.querySelector("#perk_60");
+        //#endregion
+        //#region 法术影响
+        const out_lt_spell = document.querySelector("#out_lt_spell");
+        const spell_280 = document.querySelector("#spell_280");
+        const spell_75 = document.querySelector("#spell_75");
+        const spell__42 = document.querySelector("#spell_-42");
+        const spell_25 = document.querySelector("#spell_25");
+        const spell_50 = document.querySelector("#spell_50");
+        const spell_80 = document.querySelector("#spell_80");
+        const spell__30 = document.querySelector("#spell_-30");
+        //#endregion
+        let workerParam = {};
+        const checkFeasibility = () => {
+            // 可行性判断
+            if (spell_limit.valueAsNumber < 1) {
+                spell_limit.value = "1";
+                spell_limit.setCustomValidity("不得小于1");
+                return false;
+            }
+            if (spell_multiple.valueAsNumber < 1) {
+                spell_multiple.value = "1";
+                spell_multiple.setCustomValidity("不得小于1");
+                return false;
+            }
+            if (perk_multiple.valueAsNumber < 1) {
+                perk_multiple.value = "1";
+                perk_multiple.setCustomValidity("不得小于1");
+                return false;
+            }
+            // 投射物所需的范围
+            const permanentLifetimeRange_min = -1 - workerParam.maxlt;
+            const permanentLifetimeRange_max = -1 - workerParam.minlt;
+            // 修正可提供的范围
+            const mul = workerParam.limit * workerParam.multiple;
+            const providedLifetimeRange_min = -42 * mul;
+            const providedLifetimeRange_max = 280 * mul;
+            // 区间相交判断 所需范围最大值或最小值处于提供范围
+            if (
+                ((permanentLifetimeRange_min >= providedLifetimeRange_min) && (permanentLifetimeRange_min <= providedLifetimeRange_max))
+                ||
+                ((permanentLifetimeRange_max >= providedLifetimeRange_min) && (permanentLifetimeRange_max <= providedLifetimeRange_max))
+            ) {
+                return true;
+            } else {
+                //最小值溢出
+                const overflow_min = providedLifetimeRange_min - permanentLifetimeRange_min;
+                //最大值溢出
+                const overflow_max = permanentLifetimeRange_max - providedLifetimeRange_max;
+                let needAmount = 0;
+                if (overflow_min > 0) needAmount = Math.ceil(permanentLifetimeRange_max / (-42 * workerParam.multiple));
+                if (overflow_max > 0) {
+                    let temp = Math.ceil(permanentLifetimeRange_min / (280 * workerParam.multiple));
+                    if (temp < needAmount) needAmount = temp;
+                }
+                alert(`修正数量不足以生成任何可行方案! 至少需要:${needAmount}`);
+                spell_limit.value = needAmount;
+                return false;
+            }
+        };
+        const updateLifetime = () => {
+            const lt__perks = perk_multiple.valueAsNumber * (
+                (perk_20.checked ? 20 : 0) + (perk_60.checked ? 60 : 0)
+            );
+            const lt__spells =
+                spell_280.valueAsNumber * 280
+                + spell_75.valueAsNumber * 75
+                - spell__42.valueAsNumber * 42
+                + spell_25.valueAsNumber * 25
+                + spell_50.valueAsNumber * 50
+                + spell_80.valueAsNumber * 80
+                - spell__30.valueAsNumber * 30;
+            let lt = lifetime_base.valueAsNumber + lt__perks + lt__spells;
+            let minlt = lt - lifetime_fluctuat.valueAsNumber;
+            let maxlt = lt + lifetime_fluctuat.valueAsNumber;
+            if (minlt === maxlt) {
+                out_lt.innerHTML = `${lt}`;
+                out_prob.innerHTML = `1`;
+            } else {
+                out_lt.innerHTML = `${minlt} ~ ${maxlt}`;
+                out_prob.innerHTML = `1/${lifetime_fluctuat.valueAsNumber * 2 + 1}`;
+            }
+            out_lt_perk.innerHTML = `${lt__perks > 0 ? "+" : ""}${lt__perks}`;
+            out_lt_spell.innerHTML = `${lt__spells > 0 ? "+" : ""}${lt__spells}`;
+            workerParam = {
+                limit: spell_limit.valueAsNumber,
+                multiple: spell_multiple.valueAsNumber,
+                maxlt: maxlt,
+                minlt: minlt
+            };
+        };
+        (() => {
+            const details_datas = document.querySelector("#datas");
+            const searchDatas = [];
+            const noitaSpells = document.querySelectorAll("#datas noita-spell");
+            details_datas.addEventListener("contextmenu", event => {
+                event.preventDefault();
+                details_datas.open = details_datas.open ? false : true;
+            });
+            for (let i = 0; i < noitaSpells.length; i++) {
+                const noitaSpell = noitaSpells[i];
+                for (let j = 0; j < noitaSpell.spellDatas.length; j++) {
+                    const spellData = noitaSpell.spellDatas[j];
+                    searchDatas.push({
+                        matchStr: `${spellData.name}  ${spellData.id}`,
+                        element: noitaSpell
+                    });
+                }
+                const spellData = noitaSpell.spellDatas[0];
+                let projectileData;
+                if (noitaSpell.hasAttribute("data-target")) {
+                    const target = noitaSpell.getAttribute("data-target");
+                    for (let j = 0; j < spellData.offeredProjectiles.length; j++) {
+                        if (spellData.offeredProjectiles[j].projectileData.id === target) {
+                            projectileData = spellData.offeredProjectiles[j].projectileData;
+                            break;
+                        }
+                    }
+                } else {
+                    projectileData = spellData.offeredProjectiles[0].projectileData;
+                }
+                noitaSpell.addEventListener("click", event => {
+                    lifetime_base.value = projectileData.projectileComponent.lifetime;
+                    lifetime_fluctuat.value = projectileData.projectileComponent.fluctuatingLifetime;
+                    updateLifetime();
+                });
+                noitaSpell.addEventListener("keydown", event => {
+                    if (event.key === "Enter") noitaSpell.click();
+                    else if (event.key === "Escape") noitaSpell.blur();
+                });
+            }
+            const spellFilter = document.querySelector("#spellFilter");
+            spellFilter.addEventListener("input", e => {
+                const value = spellFilter.value.toUpperCase();
+                for (let i = 0; i < searchDatas.length; i++) {
+                    const data = searchDatas[i];
+                    if (data.matchStr.includes(value)) {
+                        data.element.classList.remove("filtered");
+                    } else {
+                        data.element.classList.add("filtered");
+                    }
+                }
+            });
+        })();
+
+        const getSolutions = () => {
+            updateLifetime();
+            if (checkFeasibility()) {
+                worker.postMessage(workerParam);
+            }
+        };
+
+        const renderData = (() => {
+            const tbody = document.querySelector("tbody");
+            let htmlStrs = [];
+            const createTr = solution => {
+                if (solution) htmlStrs.push(
+                    `<tr>`,
+                    `<th>${solution[0]}</th>`,
+                    `<th>${solution[1]}</th>`,
+                    `<th>${solution[2]}</th>`,
+                    `<th>${solution[3]}</th>`,
+                    `<th>${solution[4]}</th>`,
+                    `<th>${solution[5]}</th>`,
+                    `<th>${solution[6]}</th>`,
+                    `<th>${solution[7]}</th>`,
+                    `</tr>`
+                );
+            };
+            return sortIndex => {
+                solutions.sort((a, b) => a[sortIndex] - b[sortIndex]);
+                console.table(solutions);
+                htmlStrs = [];
+                const renderRowAmount = Math.min(maxRenderRowAmount, solutions.length);
+                for (let i = 0; i < renderRowAmount; createTr(solutions[i++]));
+                tbody.innerHTML = htmlStrs.join("");
+            };
+        })();
+
+        worker.addEventListener("message", e => {
+            solutions = e.data;
+            console.log(solutions);
+            renderData(0);
+        });
+        lifetime_base.addEventListener("input", updateLifetime);
+        lifetime_fluctuat.addEventListener("input", updateLifetime);
+        spell_limit.addEventListener("input", updateLifetime);
+        spell_multiple.addEventListener("input", updateLifetime);
+        perk_multiple.addEventListener("input", updateLifetime);
+        perk_20.addEventListener("input", updateLifetime);
+        perk_60.addEventListener("input", updateLifetime);
+        perk_60.addEventListener("input", updateLifetime);
+        spell_280.addEventListener("input", updateLifetime);
+        spell_75.addEventListener("input", updateLifetime);
+        spell__42.addEventListener("input", updateLifetime);
+        spell_25.addEventListener("input", updateLifetime);
+        spell_50.addEventListener("input", updateLifetime);
+        spell_80.addEventListener("input", updateLifetime);
+        spell__30.addEventListener("input", updateLifetime);
+        updateLifetime();
+    </script>
+</body>
+
+</html>
