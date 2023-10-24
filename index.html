@@ -12,7 +12,7 @@
             rel="manifest"
             href="manifest.json"
         />
-        <script>
+        <!-- <script>
             if ("serviceWorker" in navigator) {
                 window.addEventListener("load", () => {
                     navigator.serviceWorker
@@ -28,7 +28,7 @@
                         });
                 });
             }
-        </script>
+        </script> -->
         <meta charset="UTF-8" />
         <meta
             http-equiv="X-UA-Compatible"
@@ -40,6 +40,7 @@
         />
         <script src="js/gdDoc.js"></script>
         <script src="js/noitaLib.js"></script>
+        <script src="js/util.js"></script>
         <style>
             @font-face {
                 font-family: noita_secret;
@@ -190,9 +191,18 @@
                 </noita-wand>
                 <hr />
                 noita 天赋组件<br />
-                <noita-perk display="panel" perk.name="技巧贪婪"></noita-perk>
-                <noita-perk display="icon" perk.name="贪婪"></noita-perk>
-                <noita-perk display="icon" perk.name="技巧血金"></noita-perk>
+                <noita-perk
+                    display="panel"
+                    perk.name="技巧贪婪"
+                ></noita-perk>
+                <noita-perk
+                    display="icon"
+                    perk.name="贪婪"
+                ></noita-perk>
+                <noita-perk
+                    display="icon"
+                    perk.name="技巧血金"
+                ></noita-perk>
             </article>
             <article title="wiki">
                 <iframe
@@ -323,22 +333,9 @@
                         const articles = document.querySelectorAll("main>article");
                         let currentArticle;
                         for (let i = 0; i < articles.length; i++) {
-                            if (!articles[i].hasAttribute("style")) {
-                                currentArticle = articles[i];
-                            }
+                            if (!articles[i].hasAttribute("style")) currentArticle = articles[i];
                         }
                         const h2s = currentArticle.querySelectorAll("h2");
-                        let fragment = document.createDocumentFragment();
-                        const appendSpellElements = (exp) => {
-                            const arr = noitaLib.spell.queryByExpression(exp);
-                            for (let i = 0; i < arr.length; i++) fragment.append(new noitaLib.spell.HTMLElement([arr[i]]));
-                        };
-                        const appendSpellElementsWithSort = (exp) => {
-                            const arr = noitaLib.spell.queryByExpression(exp);
-                            const prop = "prob_lv" + exp.match(/[0-9]+/)[0];
-                            arr.sort((a, b) => b.spawningData[prop] - a.spawningData[prop]);
-                            for (let i = 0; i < arr.length; i++) fragment.append(new noitaLib.spell.HTMLElement([arr[i]]));
-                        };
                         appendSpellElements("#type_projectile");
                         h2s[0].after(fragment);
                         appendSpellElements("#type_staticProjectile");
@@ -374,40 +371,14 @@
                         const articles = document.querySelectorAll("main>article");
                         let currentArticle;
                         for (let i = 0; i < articles.length; i++) {
-                            if (!articles[i].hasAttribute("style")) {
-                                currentArticle = articles[i];
-                            }
+                            if (!articles[i].hasAttribute("style")) currentArticle = articles[i];
                         }
                         const h2s = currentArticle.querySelectorAll("h2");
-                        let fragment = document.createDocumentFragment();
-                        const appendSpellElements = (exp) => {
-                            const arr = noitaLib.spell.queryByExpression(exp);
-                            for (let i = 0; i < arr.length; i++) fragment.append(new noitaLib.spell.HTMLElement([arr[i]]));
-                        };
-                        const appendSpellElementsWithSort = (exp) => {
-                            const arr = noitaLib.spell.queryByExpression(exp);
-                            const prop = "prob_lv" + exp.match(/[0-9]+/)[0];
-                            arr.sort((a, b) => b.spawningData[prop] - a.spawningData[prop]);
-                            for (let i = 0; i < arr.length; i++) fragment.append(new noitaLib.spell.HTMLElement([arr[i]]));
-                        };
-                        appendSpellElementsWithSort("#level_0");
-                        h2s[0].after(fragment);
-                        appendSpellElementsWithSort("#level_1");
-                        h2s[1].after(fragment);
-                        appendSpellElementsWithSort("#level_2");
-                        h2s[2].after(fragment);
-                        appendSpellElementsWithSort("#level_3");
-                        h2s[3].after(fragment);
-                        appendSpellElementsWithSort("#level_4");
-                        h2s[4].after(fragment);
-                        appendSpellElementsWithSort("#level_5");
-                        h2s[5].after(fragment);
-                        appendSpellElementsWithSort("#level_6");
-                        h2s[6].after(fragment);
-                        appendSpellElementsWithSort("#level_7");
-                        h2s[7].after(fragment);
-                        appendSpellElementsWithSort("#level_10");
-                        h2s[8].after(fragment);
+                        const exps = ["#level_0","#level_1","#level_2","#level_3","#level_4","#level_5","#level_6","#level_7","#level_10"];
+                        for(let i = 0; i < 9; i++) {
+                            appendSpellElementsWithSort(exps[i])
+                            h2s[i].after(fragment);
+                        }
                     })();
                 </script>
             </article>
@@ -1023,7 +994,7 @@
                     perk.id="ESSENCE_WATER"
                 ></noita-perk>
             </article>
-            <article title="法杖">
+            <article title="法杖图鉴">
                 <h1>塔杖</h1>
                 <noita-wand
                     display="panel"

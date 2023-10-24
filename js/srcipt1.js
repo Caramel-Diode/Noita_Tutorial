@@ -1,6 +1,6 @@
 // import { noitaLib } from "/js/noitaLib.js";
 document.body.addEventListener("articleChanged", /** @param {{article: HTMLElement}} e */e => {
-  [...e.article.querySelectorAll("script")].forEach(e => e.remove());
+  // [...e.article.querySelectorAll("script")].forEach(e => e.remove());
 });
 
 // // 选取需要监听的节点
