@@ -122,7 +122,7 @@
                 <h2>
                     <a
                         style="color: gold"
-                        href="./html/proj-inf-calc-3.3.html"
+                        href="./html/proj-inf-calc-3.4.html"
                         title="点我也行"
                         target="_blank"
                         >永久化计算器</a
@@ -232,13 +232,10 @@
                     style="height: calc(100vh - 70px); width: 100%"
                 ></iframe>
             </article>
-            <article
-                title="印象深刻计算器"
-                class="noita-wand-atlas"
-            >
+            <article title="印象深刻计算器">
                 <!-- 暂时采用嵌入的方式 -->
                 <iframe
-                    src="./html/proj-inf-calc-3.3.html"
+                    src="./html/proj-inf-calc-3.4.html"
                     frameborder="0"
                     style="height: calc(100vh - 70px); width: 100%"
                 ></iframe>
@@ -289,10 +286,15 @@
                             >Github</a
                         >
                     </li>
+                    <li>
+                        <a
+                            href="./html/proj-inf-calc-3.4.html"
+                            target="_blank"
+                            >印象深刻计算器</a
+                        >
+                    </li>
                 </ul>
-                <!-- <iframe src="https://www.noitool.com" frameborder="0" style="height: calc(100vh - 70px); width: 100%;"></iframe> -->
             </article>
-
             <article title="法术图鉴-类型">
                 <h1>法术类型分类</h1>
                 <h2>
@@ -374,53 +376,13 @@
                             if (!articles[i].hasAttribute("style")) currentArticle = articles[i];
                         }
                         const h2s = currentArticle.querySelectorAll("h2");
-                        const exps = ["#level_0","#level_1","#level_2","#level_3","#level_4","#level_5","#level_6","#level_7","#level_10"];
-                        for(let i = 0; i < 9; i++) {
-                            appendSpellElementsWithSort(exps[i])
+                        const exps = ["#level_0", "#level_1", "#level_2", "#level_3", "#level_4", "#level_5", "#level_6", "#level_7", "#level_10"];
+                        for (let i = 0; i < 9; i++) {
+                            appendSpellElementsWithSort(exps[i]);
                             h2s[i].after(fragment);
                         }
                     })();
                 </script>
-            </article>
-            <article title="法术图鉴-面板">
-                <!-- <input type="button" value="install" id="install">
-            <img src="img/favicon.ico" alt="Noita" width="64" height="64">
-            <script>
-                let deferredPrompt = null;
-                window.addEventListener('beforeinstallprompt', event => {
-                    console.log('Install prompt fired');
-                    event.preventDefault();
-                    deferredPrompt = event;
-                    // Show install button or automatically trigger prompt
-                });
-                // Add click listener to install button
-                const installButton = document.querySelector("#install");
-                installButton.addEventListener('click', () => {
-                    console.log(deferredPrompt);
-                    if (deferredPrompt) {
-                        deferredPrompt.prompt();
-                        deferredPrompt.userChoice.then(choiceResult => {
-                            console.log(`User ${choiceResult.outcome}`);
-                            deferredPrompt = null;
-                        });
-                    }
-                });
-            </script> -->
-                <br />
-                <h1>开始</h1>
-                <script>
-                    (() => {
-                        const articles = document.querySelectorAll("main>article");
-                        let currentArticle;
-                        for (let i = 0; i < articles.length; i++) {
-                            if (!articles[i].hasAttribute("style")) {
-                                currentArticle = articles[i];
-                            }
-                        }
-                        currentArticle.querySelector("h1").after(...noitaLib.spell.queryByExpression("#all").map((e) => new noitaLib.spell.HTMLElement([e], { display: "panel" })));
-                    })();
-                </script>
-                <h1>结束</h1>
             </article>
             <article title="天赋图鉴">
                 <h1>图标模式</h1>
@@ -1119,6 +1081,336 @@
                     display="panel"
                     wand.name="序号指定法杖图标2"
                     wand.icon="#822"
+                ></noita-wand>
+            </article>
+            <article title="配方">
+                <h1>单向传送门</h1>
+                <noita-wand
+                    display="panel"
+                    wand.name="魔杖"
+                    wand.icon="AUTO"
+                    wand.shuffle="false"
+                    wand.draw="1"
+                    wand.mana-max=">=57"
+                    wand.mana-charge-speed=">=0"
+                    wand.capacity=">=5"
+                    wand.spread-degree="0"
+                    wand.static-spells=""
+                    wand.dynamic-spells="LIFETIME_DOWN:3 TRUE_ORBIT LIGHT_SHOT TELEPORT_PROJECTILE_CLOSER"
+                ></noita-wand>
+                <h1>超传</h1>
+                包含
+                <noita-spell
+                    display="icon"
+                    spell.id="X_RAY"
+                ></noita-spell
+                >版本的配方与以下天赋冲突
+                <noita-perk
+                    display="icon"
+                    perk.id="PROJECTILE_HOMING"
+                ></noita-perk>
+                <noita-perk
+                    display="icon"
+                    perk.id="PROJECTILE_REPULSION"
+                ></noita-perk>
+                <br />
+                所有配置均与
+                <noita-perk
+                    display="icon"
+                    perk.id="DUPLICATE_PROJECTILE"
+                ></noita-perk
+                >天赋冲突
+                <br />
+                以<noita-spell
+                    display="icon"
+                    spell.id="BURST_4"
+                ></noita-spell
+                >开头的配置均可以采用法杖抽取不小于4的法杖来省去此法术
+                <h2>NG</h2>
+                <h3>正向</h3>
+                <noita-wand
+                    display="panel"
+                    wand.name="魔杖"
+                    wand.icon="AUTO"
+                    wand.shuffle="false"
+                    wand.draw="1"
+                    wand.fire-rate-wait="0"
+                    wand.reload-time="0"
+                    wand.mana-max="800"
+                    wand.mana-charge-speed="100"
+                    wand.capacity="26"
+                    wand.spread-degree="0"
+                    wand.static-spells=""
+                    wand.dynamic-spells="BURST_4 IF_HALF ADD_DEATH_TRIGGER LARPA_CHAOS_2 BUBBLESHOT [DAMAGE|BLOODLUST] BURST_2 EXPLODING_DEER SWAPPER_PROJECTILE IF_END DIVIDE_10 DIVIDE_4 ADD_TRIGGER IF_HP PHASING_ARC LINE_ARC RESET"
+                ></noita-wand>
+                <noita-wand
+                    display="panel"
+                    wand.name="魔杖"
+                    wand.icon="AUTO"
+                    wand.shuffle="false"
+                    wand.draw="1"
+                    wand.fire-rate-wait="0"
+                    wand.reload-time="0"
+                    wand.mana-max="800"
+                    wand.mana-charge-speed="100"
+                    wand.capacity="26"
+                    wand.spread-degree="0"
+                    wand.static-spells=""
+                    wand.dynamic-spells="BURST_4 IF_HALF LARPA_CHAOS_2 BLACK_HOLE_DEATH_TRIGGER^1 [DAMAGE|BLOODLUST] BURST_2 EXPLODING_DEER SWAPPER_PROJECTILE IF_END DIVIDE_10 DIVIDE_4 ADD_TRIGGER IF_HP PHASING_ARC LINE_ARC RESET"
+                ></noita-wand>
+                <noita-wand
+                    display="panel"
+                    wand.name="魔杖"
+                    wand.icon="AUTO"
+                    wand.shuffle="false"
+                    wand.draw="1"
+                    wand.fire-rate-wait="0"
+                    wand.reload-time="0"
+                    wand.mana-max="800"
+                    wand.mana-charge-speed="100"
+                    wand.capacity="26"
+                    wand.spread-degree="0"
+                    wand.static-spells=""
+                    wand.dynamic-spells="BURST_4 IF_HALF LARPA_CHAOS_2 DELAYED_SPELL [DAMAGE|BLOODLUST] EXPLODING_DEER SWAPPER_PROJECTILE [#mana_drainlowly&!#draw] IF_END DIVIDE_10 DIVIDE_4 ADD_TRIGGER IF_HP PHASING_ARC LINE_ARC RESET"
+                ></noita-wand>
+                <noita-wand
+                    display="panel"
+                    wand.name="魔杖"
+                    wand.icon="AUTO"
+                    wand.shuffle="false"
+                    wand.draw="1"
+                    wand.fire-rate-wait="0"
+                    wand.reload-time="0"
+                    wand.mana-max="800"
+                    wand.mana-charge-speed="100"
+                    wand.capacity="26"
+                    wand.spread-degree="0"
+                    wand.static-spells=""
+                    wand.dynamic-spells="BURST_8 DIVIDE_10 DIVIDE_4 DIVIDE_3 ADD_TRIGGER DIVIDE_4:2 DIVIDE_2 ADD_TRIGGER PHASING_ARC LINE_ARC LIGHT_SHOT SPEED ACCELERATING_SHOT BLOOD_MAGIC CLIPPING_SHOT TELEPORT_PROJECTILE_CLOSER BLACK_HOLE SLOW_BULLET_TIMER RESET"
+                ></noita-wand>
+                <h3>反向</h3>
+                <noita-wand
+                    display="panel"
+                    wand.name="魔杖"
+                    wand.icon="AUTO"
+                    wand.shuffle="false"
+                    wand.draw="1"
+                    wand.fire-rate-wait="0"
+                    wand.reload-time="0"
+                    wand.mana-max="800"
+                    wand.mana-charge-speed="100"
+                    wand.capacity="26"
+                    wand.spread-degree="0"
+                    wand.static-spells=""
+                    wand.dynamic-spells="BURST_4 IF_HALF ADD_DEATH_TRIGGER HOMING_SHOOTER X_RAY [DAMAGE|BLOODLUST] BURST_2 EXPLODING_DEER SWAPPER_PROJECTILE IF_END TAU DIVIDE_10 ADD_TRIGGER DIVIDE_3:3 ADD_TRIGGER IF_HP PHASING_ARC LINE_ARC RESET"
+                ></noita-wand>
+                <noita-wand
+                    display="panel"
+                    wand.name="魔杖"
+                    wand.icon="AUTO"
+                    wand.shuffle="false"
+                    wand.draw="1"
+                    wand.fire-rate-wait="0"
+                    wand.reload-time="0"
+                    wand.mana-max="800"
+                    wand.mana-charge-speed="100"
+                    wand.capacity="26"
+                    wand.spread-degree="0"
+                    wand.static-spells=""
+                    wand.dynamic-spells="BURST_4 IF_HALF ADD_DEATH_TRIGGER HOMING_SHOOTER X_RAY [DAMAGE|BLOODLUST] BURST_2 EXPLODING_DEER SWAPPER_PROJECTILE IF_END DIVIDE_10:2 ADD_TRIGGER DIVIDE_3:3 ADD_TRIGGER PHASING_ARC LINE_ARC RESET"
+                ></noita-wand>
+                <noita-wand
+                    display="panel"
+                    wand.name="魔杖"
+                    wand.icon="AUTO"
+                    wand.shuffle="false"
+                    wand.draw="1"
+                    wand.fire-rate-wait="0"
+                    wand.reload-time="0"
+                    wand.mana-max="800"
+                    wand.mana-charge-speed="100"
+                    wand.capacity="26"
+                    wand.spread-degree="0"
+                    wand.static-spells=""
+                    wand.dynamic-spells="BURST_4 IF_HALF ADD_DEATH_TRIGGER HOMING_SHOOTER X_RAY [DAMAGE|BLOODLUST] BURST_2 EXPLODING_DEER SWAPPER_PROJECTILE IF_END DIVIDE_4:3 DIVIDE_2 ADD_TRIGGER IF_HP PHASING_ARC LINE_ARC RESET"
+                ></noita-wand>
+                <h2>NG+</h2>
+                <noita-wand
+                    display="panel"
+                    wand.name="魔杖"
+                    wand.icon="AUTO"
+                    wand.shuffle="false"
+                    wand.draw="1"
+                    wand.fire-rate-wait="0"
+                    wand.reload-time="0"
+                    wand.mana-max="800"
+                    wand.mana-charge-speed="100"
+                    wand.capacity="26"
+                    wand.spread-degree="0"
+                    wand.static-spells=""
+                    wand.dynamic-spells="BURST_8 LARPA_CHAOS DELAYED_SPELL [BLOODLUST|DAMAGE] EXPLODING_DEER SWAPPER_PROJECTILE [#mana_drainlowly&!#draw] DIVIDE_4 DIVIDE_3 DIVIDE_2 ADD_TRIGGER IF_HALF PHASING_ARC LINE_ARC RESET
+                    "
+                ></noita-wand>
+                <noita-wand
+                    display="panel"
+                    wand.name="魔杖"
+                    wand.icon="AUTO"
+                    wand.shuffle="false"
+                    wand.draw="1"
+                    wand.fire-rate-wait="0"
+                    wand.reload-time="0"
+                    wand.mana-max="800"
+                    wand.mana-charge-speed="100"
+                    wand.capacity="26"
+                    wand.spread-degree="0"
+                    wand.static-spells=""
+                    wand.dynamic-spells="BURST_8 ADD_DEATH_TRIGGER LARPA_CHAOS_2 SPIRAL_SHOT [BLOODLUST|DAMAGE] BURST_8 EXPLODING_DEER SWAPPER_PROJECTILE DIVIDE_10 DIVIDE_3 ADD_TRIGGER DIVIDE_3 DIVIDE_2 ADD_TRIGGER IF_HALF PHASING_ARC LINE_ARC RESET"
+                ></noita-wand>
+                <noita-wand
+                    display="panel"
+                    wand.name="魔杖"
+                    wand.icon="AUTO"
+                    wand.shuffle="false"
+                    wand.draw="1"
+                    wand.fire-rate-wait="0"
+                    wand.reload-time="0"
+                    wand.mana-max="800"
+                    wand.mana-charge-speed="100"
+                    wand.capacity="26"
+                    wand.spread-degree="0"
+                    wand.static-spells=""
+                    wand.dynamic-spells="BURST_8 ADD_DEATH_TRIGGER HOMING_SHOOTER X_RAY [BLOODLUST|DAMAGE] BURST_2 EXPLODING_DEER SWAPPER_PROJECTILE TAU DIVIDE_10 ADD_TRIGGER DIVIDE_4:2 ADD_TRIGGER IF_HP PHASING_ARC LINE_ARC RESET"
+                ></noita-wand>
+                <noita-wand
+                    display="panel"
+                    wand.name="魔杖"
+                    wand.icon="AUTO"
+                    wand.shuffle="false"
+                    wand.draw="1"
+                    wand.fire-rate-wait="0"
+                    wand.reload-time="0"
+                    wand.mana-max="800"
+                    wand.mana-charge-speed="100"
+                    wand.capacity="26"
+                    wand.spread-degree="0"
+                    wand.static-spells=""
+                    wand.dynamic-spells="BURST_8 ADD_DEATH_TRIGGER HOMING_SHOOTER X_RAY [BLOODLUST|DAMAGE] BURST_2 EXPLODING_DEER SWAPPER_PROJECTILE DIVIDE_10 DIVIDE_10 ADD_TRIGGER DIVIDE_4:2 ADD_TRIGGER PHASING_ARC LINE_ARC RESET"
+                ></noita-wand>
+                <noita-wand
+                    display="panel"
+                    wand.name="魔杖"
+                    wand.icon="AUTO"
+                    wand.shuffle="false"
+                    wand.draw="1"
+                    wand.fire-rate-wait="0"
+                    wand.reload-time="0"
+                    wand.mana-max="800"
+                    wand.mana-charge-speed="100"
+                    wand.capacity="26"
+                    wand.spread-degree="0"
+                    wand.static-spells=""
+                    wand.dynamic-spells="BURST_8 DIVIDE_10 DIVIDE_4 DIVIDE_3 ADD_TRIGGER DIVIDE_4:2 ADD_TRIGGER DIVIDE_2 ADD_TRIGGER PHASING_ARC LINE_ARC LIGHT_SHOT SPEED ACCELERATING_SHOT BLOOD_MAGIC CLIPPING_SHOT TELEPORT_PROJECTILE_CLOSER BLACK_HOLE^1 SLOW_BULLET_TIMER RESET"
+                ></noita-wand>
+                <h1>输出</h1>
+                <h2>材料暴击+法术转伤害+差速</h2>
+                先使用辅助杖为输出杖准备一颗待吸收的休眠晶体 需要无限金钱<br />
+                <noita-wand
+                    display="panel"
+                    wand.name="输出杖"
+                    wand.icon="AUTO"
+                    wand.shuffle="false"
+                    wand.draw="1"
+                    wand.fire-rate-wait="0"
+                    wand.reload-time="0"
+                    wand.mana-max="800"
+                    wand.mana-charge-speed="100"
+                    wand.capacity="26"
+                    wand.spread-degree="0"
+                    wand.static-spells=""
+                    wand.dynamic-spells="BURST_X GRAVITY_ANTI PIERCING_SHOT DIVIDE_10:2 DIVIDE_4 DIVIDE_2 ADD_TRIGGER ACCELERATING_SHOT HOMING_ROTATE SPELLS_TO_POWER [HITFX_CRITICAL_WATER|HITFX_CRITICAL_BLOOD|HITFX_CRITICAL_OIL]:8 MONEY_MAGIC GAMMA [MATERIAL_WATER|MATERIAL_BLOOD|MATERIAL_OIL] BOUNCY_ORB RESET OMEGA"
+                ></noita-wand>
+                <noita-wand
+                    display="panel"
+                    wand.name="辅助杖"
+                    wand.icon="AUTO"
+                    wand.shuffle="false"
+                    wand.draw="1"
+                    wand.fire-rate-wait="0"
+                    wand.reload-time="0"
+                    wand.mana-max="800"
+                    wand.mana-charge-speed="100"
+                    wand.capacity="26"
+                    wand.spread-degree="0"
+                    wand.static-spells=""
+                    wand.dynamic-spells="BURST_X DIVIDE_10:2 DIVIDE_4 DIVIDE_2:2 MONEY_MAGIC DIVIDE_10:2 DIVIDE_4 DIVIDE_2:2 MONEY_MAGIC DIVIDE_10:2 DIVIDE_4 DIVIDE_2:2 MONEY_MAGIC:3 DIVIDE_10:2 DIVIDE_4 OMEGA PIPE_BOMB"
+                ></noita-wand>
+                <h2>饿灵额外修正叠加</h2>
+                需要
+                <noita-perk
+                    display="icon"
+                    perk.id="HUNGRY_GHOST"
+                ></noita-perk
+                >天赋 <br />
+                <noita-wand
+                    display="panel"
+                    wand.name="编程火花"
+                    wand.icon="AUTO"
+                    wand.shuffle="false"
+                    wand.draw="1"
+                    wand.fire-rate-wait="0"
+                    wand.reload-time="0"
+                    wand.mana-max="800"
+                    wand.mana-charge-speed="100"
+                    wand.capacity="26"
+                    wand.spread-degree="0"
+                    wand.static-spells=""
+                    wand.dynamic-spells="BLOOD_MAGIC:2 BURST_X IF_PROJECTILE CURSE_WITHER_PROJECTILE LIGHT_BULLET:15 IF_ELSE MAGIC_SHIELD IF_END COLOUR_INVIS CHAINSAW RESET"
+                ></noita-wand>
+                <noita-wand
+                    display="panel"
+                    wand.name="幽魂闪光"
+                    wand.icon="AUTO"
+                    wand.shuffle="false"
+                    wand.draw="1"
+                    wand.fire-rate-wait="0"
+                    wand.reload-time="0"
+                    wand.mana-max="800"
+                    wand.mana-charge-speed="100"
+                    wand.capacity="26"
+                    wand.spread-degree="0"
+                    wand.static-spells=""
+                    wand.dynamic-spells="BLOOD_MAGIC:2 BURST_X ADD_DEATH_TRIGGER CURSE_WITHER_PROJECTILE [DIGGER|POWERDIGGER|CHAINSAW] NOLLA SPIRAL_SHOT LIGHT_BULLET SUMMON_PORTAL [#mana_drainlowly&(#type_projectile|#type_staticProjectile|#type_material)]:14 CHAINSAW RESET"
+                ></noita-wand>
+                <h2>法术转伤害触手</h2>
+                <noita-wand
+                    display="panel"
+                    wand.name="魔杖"
+                    wand.icon="AUTO"
+                    wand.shuffle="false"
+                    wand.draw="1"
+                    wand.fire-rate-wait="0"
+                    wand.reload-time="0"
+                    wand.mana-max="800"
+                    wand.mana-charge-speed="100"
+                    wand.capacity="6"
+                    wand.spread-degree="0"
+                    wand.static-spells=""
+                    wand.dynamic-spells="TENTACLE_TIMER HEAVY_SHOT SPELLS_TO_POWER DIVIDE_10 OMEGA MISSILE"
+                ></noita-wand>
+                <noita-wand
+                    display="panel"
+                    wand.name="魔杖"
+                    wand.icon="AUTO"
+                    wand.shuffle="false"
+                    wand.draw="1"
+                    wand.fire-rate-wait="0"
+                    wand.reload-time="0"
+                    wand.mana-max="800"
+                    wand.mana-charge-speed="100"
+                    wand.capacity="6"
+                    wand.spread-degree="0"
+                    wand.static-spells=""
+                    wand.dynamic-spells="TENTACLE_TIMER HEAVY_SHOT SPELLS_TO_POWER:2 RECOIL_DAMPER:~1 DIVIDE_2 DIVIDE_3 DUPLICATE IF_HALF CURSE_WITHER_PROJECTILE MISSILE RESET IF_END"
                 ></noita-wand>
             </article>
         </template>

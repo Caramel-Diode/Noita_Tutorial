@@ -619,7 +619,7 @@
             </li>
             <li>
                 <noita-spell
-                    spell.exp="BERSERK_FIELD|POLYMORPH_FIELD|CHAOS_POLYMORPH_FIELD|ELECTROCUTION_FIELD|FREEZE_FIELD|REGENERATION_FIELD|TELEPORTATION_FIELD|LEVITATION_FIELD|SHIELD_FIELD"></noita-spell>
+                    spell.exp="BERSERK_FIELD|POLYMORPH_FIELD|CHAOS_POLYMORPH_FIELD|ELECTROCUTION_FIELD|FREEZE_FIELD|REGENERATION_FIELD|TELEPORTATION_FIELD|LEVITATION_FIELD"></noita-spell>
                 提供的投射物拥有离谱的存在时间(9999999f)而且还有最大存在时间限制，达到印象深刻判定也不切实际
                 <details>
                     <summary>理论方案</summary>
@@ -768,8 +768,8 @@
                     projectileData = spellData.offeredProjectiles[0].projectileData;
                 }
                 noitaSpell.addEventListener("click", event => {
-                    lifetime_base.value = projectileData.projectileComponent.lifetime;
-                    lifetime_fluctuat.value = projectileData.projectileComponent.fluctuatingLifetime;
+                    lifetime_base.value = projectileData.projectileComponent.lifetime.base;
+                    lifetime_fluctuat.value = projectileData.projectileComponent.lifetime.fluctuation;
                     updateLifetime();
                 });
                 noitaSpell.addEventListener("keydown", event => {
