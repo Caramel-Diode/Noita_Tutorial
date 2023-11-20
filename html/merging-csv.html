@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <title>csv汉化文件合并</title>
+        <style>
+            :root {
+                background: #1f1f1f;
+            }
+            * {
+                font-family: sans-serif;
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+                color: white;
+            }
+            table {
+                border-collapse: collapse;
+            }
+            th,
+            td {
+                border: solid 1px white;
+                padding: 5px;
+            }
+            body {
+                display: grid;
+                place-items: center;
+                place-content: center;
+                height: 100vh;
+                width: 100vw;
+                gap: 15px;
+            }
+            input[type="file"] {
+                display: none;
+            }
+            label {
+                font-weight: 500;
+                color: var(---);
+                border: 2px solid var(---, yellow);
+                padding: 10px;
+                border-radius: 5px;
+            }
+            caption {
+                font-weight: 700;
+                font-size: 20px;
+            }
+            button {
+                all: unset;
+                border: 2px solid #aaaaaa;
+                border-radius: 6px;
+                padding: 10px;
+                text-align: center;
+                line-height: 1.2em;
+            }
+            :is(button, label):hover {
+                background-color: #ffffff10;
+                cursor: pointer;
+            }
+            small {
+                font: 0.5em;
+                color: #ffffff80;
+            }
+        </style>
+        <script src="../js/csvParser.js"></script>
+    </head>
+    <body>
+        <strong>首列表头必须手动添加"id"</strong>
+        <label style="---: #067fd6">
+            选择原始数据文件
+            <span id="filename_raw"></span>
+            <input
+                type="file"
+                id="rawData"
+                accept=".csv"
+            />
+        </label>
+        <label style="---: #62e258">
+            选择更新数据文件
+            <span id="filename_new"></span>
+            <input
+                type="file"
+                id="newData"
+                accept=".csv"
+            />
+        </label>
+        <div style="min-height: 10vh; max-height: 50vh; overflow: auto">
+            <table>
+                <caption>
+                    日志信息
+                </caption>
+                <thead>
+                    <tr>
+                        <th>更新类型</th>
+                        <th>信息</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <button>
+            复制结果到剪切板
+            <br />
+            <small>右键转为文件下载</small>
+        </button>
+        <script>
+            const tbody = document.querySelector("tbody");
+            let resultStr = "结果生成失败 请刷新页面重新尝试";
+            const try_ = (() => {
+                let raw_csvData = null;
+                let new_csvData = null;
+                const htmlStrCache = [];
+                return (raw_data, new_data) => {
+                    raw_csvData = raw_data ?? raw_csvData;
+                    new_csvData = new_data ?? new_csvData;
+                    if (raw_csvData && new_csvData) {
+                        // 过滤无意义的空表头
+                        const colHeads = new_csvData.columnHeads.filter((v) => v);
+                        for (let i = 0; i < colHeads.length; i++) {
+                            const colHead = colHeads[i];
+                            const rawData = raw_csvData.get(colHead, "zh-cn");
+                            const newData = new_csvData.get(colHead, "zh-cn");
+                            if (rawData) {
+                                if (rawData !== newData) {
+                                    raw_csvData.set(colHead, "zh-cn", newData);
+                                    htmlStrCache.push(`<tr style="background:#f0d000aa"><th>替换</th><td>${rawData} → ${newData}</td></tr>`);
+                                    console.log("替换", rawData, "→", newData);
+                                }
+                            } else {
+                                raw_csvData.set(colHead, "zh-cn", newData);
+                                htmlStrCache.push(`<tr style="background:#e16f0baa"><th>新增</th><td>${colHead} : ${newData}</td></tr>`);
+                                console.log("新增", colHead, ":", newData);
+                            }
+                        }
+                        tbody.innerHTML = htmlStrCache.join("");
+                        resultStr = raw_csvData.toString();
+                        console.log(resultStr);
+                    }
+                };
+            })();
+            document.querySelector("#rawData").addEventListener("change", async function () {
+                document.querySelector("#filename_raw").innerHTML = this.files[0].name;
+                try_(parseCSV(await this.files[0].text()), null);
+            });
+            document.querySelector("#newData").addEventListener("change", async function () {
+                document.querySelector("#filename_new").innerHTML = this.files[0].name;
+                try_(null, parseCSV(await this.files[0].text()));
+            });
+            const button = document.querySelector("button");
+            button.addEventListener("click", () => {
+                navigator.clipboard.writeText(resultStr);
+                alert("数据在剪切板!");
+            });
+            button.addEventListener("contextmenu", (e) => {
+                e.preventDefault();
+                const a = document.createElement("a");
+                a.download = "common_result.csv";
+                a.href = URL.createObjectURL(new Blob([resultStr]));
+                a.click();
+            });
+        </script>
+    </body>
+</html>
