@@ -378,28 +378,8 @@
         }
 
         #result {
-            /* width: 600px;                 */
             grid-area: result;
-            display: grid;
-            place-items: center;
-            margin: 5px 0;
-            padding: 16px;
-            --c1: #948064;
-            --c2: #B49F81;
-            --c3: #0E0D0CF2;
-            --bg1: linear-gradient(var(--c1), var(--c1));
-            --bg2: linear-gradient(var(--c2), var(--c2));
-            --bg3: linear-gradient(var(--c3), var(--c3));
-            --h1: 3px calc(100% - 9px) no-repeat;
-            --v1: calc(100% - 9px) 3px no-repeat;
-            --h2: 3px calc(100% - 3px) no-repeat;
-            --v2: calc(100% - 3px) 3px no-repeat;
-            background:
-                var(--bg1) left top 3px/var(--h1), var(--bg1) left 3px top/var(--v1),
-                var(--bg1) right bottom 3px/var(--h1), var(--bg1) right 3px bottom/var(--v1),
-                var(--bg2) left top/var(--h2), var(--bg2) left top/var(--v2),
-                var(--bg2) right bottom/var(--h2), var(--bg2) right bottom/var(--v2),
-                var(--bg3) center/calc(100% - 6px) calc(100% - 6px) no-repeat;
+            height: 500px;
         }
 
         #perk_multiple,
@@ -577,7 +557,7 @@
                 id="spell_-30"></label>
     </details>
     <input type="button" value="生成方案" id="gen" onclick="getSolutions()">
-    <div id="result">
+    <noita-panel id="result">
         <table>
             <thead>
                 <tr>
@@ -600,7 +580,7 @@
             </thead>
             <tbody></tbody>
         </table>
-    </div>
+    </noita-panel>
     <details style="grid-area: help;">
         <summary>帮助</summary>
         <ul>
@@ -758,14 +738,14 @@
                 let projectileData;
                 if (noitaSpell.hasAttribute("data-target")) {
                     const target = noitaSpell.getAttribute("data-target");
-                    for (let j = 0; j < spellData.offeredProjectiles.length; j++) {
-                        if (spellData.offeredProjectiles[j].projectileData.id === target) {
-                            projectileData = spellData.offeredProjectiles[j].projectileData;
+                    for (let j = 0; j < spellData.offeredProjectile.length; j++) {
+                        if (spellData.offeredProjectile[j].projectile.id === target) {
+                            projectileData = spellData.offeredProjectile[j].projectile;
                             break;
                         }
                     }
                 } else {
-                    projectileData = spellData.offeredProjectiles[0].projectileData;
+                    projectileData = spellData.offeredProjectile[0].projectile;
                 }
                 noitaSpell.addEventListener("click", event => {
                     lifetime_base.value = projectileData.projectileComponent.lifetime.base;

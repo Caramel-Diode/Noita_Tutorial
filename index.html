@@ -1,18 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <script src="js/statistics.js"></script>
-        <title>Noita 教学文档 综合测试</title>
-        <link
-            rel="shortcut icon"
-            href="img/favicon.ico"
-            type="image/x-icon"
-        />
-        <link
-            rel="manifest"
-            href="manifest.json"
-        />
-        <!-- <script>
+
+<head>
+    <script src="js/statistics.js"></script>
+    <title>Noita 教学文档 综合测试</title>
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+    <link rel="manifest" href="manifest.json" />
+    <!-- <script>
             if ("serviceWorker" in navigator) {
                 window.addEventListener("load", () => {
                     navigator.serviceWorker
@@ -29,1466 +23,750 @@
                 });
             }
         </script> -->
-        <meta charset="UTF-8" />
-        <meta
-            http-equiv="X-UA-Compatible"
-            content="IE=edge"
-        />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0"
-        />
-        <script src="js/gdDoc.js"></script>
-        <script src="js/noitaLib.js"></script>
-        <!-- <script src="js/test.js"></script> -->
-        <script src="js/util.js"></script>
-        <style>
-            @font-face {
-                font-family: noita_secret;
-                src: url("font/Noita\ pixel\ secret.ttf");
-            }
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="js/gdDoc.js"></script>
+    <script src="js/noitaLib.js"></script>
+    <!-- <script src="js/test.js"></script> -->
+    <script src="js/util.js"></script>
+    <style>
+        @font-face {
+            font-family: noita_secret;
+            src: url("font/Noita\ pixel\ secret.ttf");
+        }
 
-            @font-face {
-                font-family: noita_en;
-                src: url("font/Noita\ pixel\ en.ttf");
-            }
+        @font-face {
+            font-family: noita_en;
+            src: url("font/Noita\ pixel\ en.ttf");
+        }
 
-            @font-face {
-                font-family: noita_zh;
-                src: url("font/BoutiqueBitmap7x7_1.6.ttf");
-            }
+        @font-face {
+            font-family: noita_zh;
+            src: url("font/BoutiqueBitmap7x7_1.6.ttf");
+        }
 
-            .noita-en {
-                font-family: noita_en !important;
-            }
+        .noita-en {
+            font-family: noita_en !important;
+        }
 
-            .noita-secret {
-                font-family: noita_secret !important;
-            }
+        .noita-secret {
+            font-family: noita_secret !important;
+        }
 
-            body {
-                image-rendering: pixelated;
-            }
+        body {
+            image-rendering: pixelated;
+        }
 
-            dialog {
-                display: grid;
-                place-content: center;
-                place-items: center;
-                width: 100%;
-                min-height: 100%;
-                background-color: #00000000;
-                border-style: none;
-                padding: 0;
-                margin: 10px 10px;
-                border: 1px solid black;
-            }
+        dialog {
+            display: grid;
+            place-content: center;
+            place-items: center;
+            width: 100%;
+            min-height: 100%;
+            background-color: #00000000;
+            border-style: none;
+            padding: 0;
+            margin: 10px 10px;
+            border: 1px solid black;
+        }
 
-            dialog::backdrop {
-                position: fixed;
-                inset: 0px;
-                background: #00000030;
-                backdrop-filter: blur(5px);
-            }
+        dialog::backdrop {
+            position: fixed;
+            inset: 0px;
+            background: #00000030;
+            backdrop-filter: blur(5px);
+        }
 
-            dialog button {
-                display: block;
-                height: 4em;
-                width: 4em;
-                background: #1f1f1f50;
-                border-color: #333333;
-                border-radius: 2em;
-                border-style: solid;
-            }
+        dialog button {
+            display: block;
+            height: 4em;
+            width: 4em;
+            background: #1f1f1f50;
+            border-color: #333333;
+            border-radius: 2em;
+            border-style: solid;
+        }
 
-            article > * {
-                content-visibility: auto;
-            }
-        </style>
-    </head>
+        article>* {
+            content-visibility: auto;
+        }
+    </style>
+</head>
 
-    <body is="gd-doc">
-        <template visible>
-            <article
-                title="Test"
-                default
-            >
-                <h1>
-                    暂时处于测试阶段 更多数据请转至<a
-                        style="color: #23a9f2"
-                        href="https://noita.wiki.gg/zh/wiki/Noita_Wiki"
-                        target="_blank"
-                        >Wiki</a
-                    >
-                </h1>
-                <h2>
-                    <a
-                        style="color: gold"
-                        href="./html/proj-inf-calc-3.4.html"
-                        title="点我也行"
-                        target="_blank"
-                        >永久化计算器</a
-                    >在侧栏 如果没显示侧栏点一下左上角按钮
-                </h2>
-                <h3>
-                    <a
-                        style="color: pink"
-                        href="https://github.com/Caramel-Diode"
-                    >
-                        <svg
-                            height="32"
-                            width="32"
-                            aria-hidden="true"
-                            viewBox="0 0 16 16"
-                            version="1.1"
-                            fill="#FFFFFF"
-                        >
-                            <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path>
-                        </svg>
-                        Github主页
-                    </a>
-                </h3>
-                <h3>
-                    <a
-                        style="color: pink"
-                        href="https://github.com/Caramel-Diode/Noita_Lib"
-                    >
-                        <img
-                            src="./img/favicon.ico"
-                            alt="图标"
-                            height="32"
-                            width="32"
-                        />
-                        NoitaLib仓库
-                    </a>
-                </h3>
-                <p><a href="https://github.com/jenspalmqvist/noita-data">Noita data.wak 解包数据</a></p>
-                <p><strong>noitaLib</strong>为页面内所有的noita元素提供了UI渲染</p>
-                <button onclick="gdDoc.showArticle(gdDoc.articles.get('字体测试'))">字体测试页面</button><button onclick="gdDoc.showArticle(gdDoc.articles.get('实体面板'))">实体面板测试页面</button>
-                <p><var>noitaLib</var> 为库的调用入口</p>
-                noita 法术组件 <br />
-                <noita-spell
-                    spell.exp="#type_passive"
-                    display="panel"
-                ></noita-spell>
-                <noita-spell spell.id="BOMB"></noita-spell><noita-spell spell.id="NOLLA"></noita-spell><noita-spell spell.id="RESET"></noita-spell> <noita-spell spell.exp="#type_projectile"></noita-spell><noita-spell spell.exp="#lifetime_mod"></noita-spell>
-                <hr />
-                noita 法杖组件<br />
-                <noita-wand
-                    display="panel"
-                    wand.icon="群体之杖"
-                    wand.name="幽魂闪光"
-                    wand.capacity="26"
-                    wand.draw="1"
-                    wand.fire-rate-wait="15"
-                    wand.reload-time="0"
-                    wand.shuffle="false"
-                    wand.spread-degrees="0"
-                    wand.speed-multiplier="1"
-                    wand.mana-charge-speed="600"
-                    wand.mana-max="1600"
-                    wand.static-spells="MANA_REDUCE:0~4"
-                    wand.dynamic-spells="BLOOD_MAGIC:2 BURST_X ADD_DEATH_TRIGGER CURSE_WITHER_PROJECTILE [DIGGER|POWERDIGGER|CHAINSAW] NOLLA SPIRAL_SHOT LIGHT_BULLET SUMMON_PORTAL:~1 [DIGGER|POWERDIGGER|MATERIAL_WATER|MATERIAL_OIL|MATERIAL_BLOOD|MATERIAL_ACID|MATERIAL_CEMENT]:13 CHAINSAW RESET"
-                >
-                </noita-wand>
-                <hr />
-                noita 天赋组件<br />
-                <noita-perk
-                    display="panel"
-                    perk.name="技巧贪婪"
-                ></noita-perk>
-                <noita-perk
-                    display="icon"
-                    perk.name="贪婪"
-                ></noita-perk>
-                <noita-perk
-                    display="icon"
-                    perk.name="技巧血金"
-                ></noita-perk>
-                <hr>
-                noita 容器组件<br/>
-                <noita-container display="panel" container.type="common" container.content="#700000:50"></noita-container>
-                <noita-container title="酸液:100%" container.type="conical" container.content="#229922:100"></noita-container>
-                <noita-container title="水:40%" container.type="jar" container.content="#666699:40"></noita-container>
-                <noita-container title="骨灰:90%" container.type="bag" container.content="#999999:90"></noita-container>
-                混合显示: <noita-container title="☆" container.type="common" container.content="#ff0000:30 #00ff00:30 #0000ff:30"></noita-container>
-            </article>
-            <article title="wiki">
-                <iframe
-                    src="https://noita.wiki.gg/zh/wiki/Noita_Wiki"
-                    frameborder="0"
-                    style="height: calc(100vh - 70px); width: 100%"
-                ></iframe>
-            </article>
-            <article title="salakieli编辑器">
-                <iframe
-                    src="https://lightbourn.net/games/Noita/editor.html"
-                    frameborder="0"
-                    style="height: calc(100vh - 70px); width: 100%"
-                ></iframe>
-            </article>
-            <article title="法杖运行调试工具">
-                <iframe
-                    src="https://noita-wand-simulator.salinecitrine.com"
-                    frameborder="0"
-                    style="height: calc(100vh - 70px); width: 100%"
-                ></iframe>
-            </article>
-            <article title="26+法杖生成查询">
-                <iframe
-                    src="https://pudy248.github.io/noitaWandAtlas/"
-                    frameborder="0"
-                    style="height: calc(100vh - 70px); width: 100%"
-                ></iframe>
-            </article>
-            <article title="⏱︎ 印象深刻计算器">
-                <!-- 暂时采用嵌入的方式 -->
-                <iframe
-                    src="./html/proj-inf-calc-3.4.html"
-                    frameborder="0"
-                    style="height: calc(100vh - 70px); width: 100%"
-                ></iframe>
-            </article>
-            <article title="📄 csv汉化文件合并工具">
-                <!-- 暂时采用嵌入的方式 -->
-                <iframe
-                    src="./html/merging-csv.html"
-                    frameborder="0"
-                    style="height: calc(100vh - 70px); width: 100%"
-                ></iframe>
-            </article>
-            <article title="☆在线工具导航☆">
-                <ul style="font-size: 1.5em">
-                    <li>
-                        <a
-                            href="https://www.noitool.com"
-                            target="_blank"
-                            >noitool 种子工具</a
-                        >
-                        <a
-                            style="font-size: 0.5em"
-                            href="https://github.com/TwoAbove/noita-tools"
-                            >Github</a
-                        >
-                    </li>
-                    <li>
-                        <a
-                            href="https://lightbourn.net/games/Noita/editor.html"
-                            target="_blank"
-                            title="解密存档中的加密文件"
-                            >salakieli编辑器</a
-                        >
-                    </li>
-                    <li>
-                        <a
-                            href="https://noita-wand-simulator.salinecitrine.com"
-                            target="_blank"
-                            >法杖运行调试工具</a
-                        >
-                        <a
-                            style="font-size: 0.5em"
-                            href="https://github.com/salinecitrine/noita-wand-simulator"
-                            >Github</a
-                        >
-                    </li>
-                    <li>
-                        <a
-                            href="https://pudy248.github.io/noitaWandAtlas/"
-                            target="_blank"
-                            >法杖26+生成查询</a
-                        >
-                        <a
-                            style="font-size: 0.5em"
-                            href="https://github.com/pudy248/noitaWandAtlas"
-                            >Github</a
-                        >
-                    </li>
-                    <li>
-                        <a
-                            href="./html/proj-inf-calc-3.4.html"
-                            target="_blank"
-                            >印象深刻计算器</a
-                        >
-                    </li>
-                </ul>
-            </article>
-            <article title="法术图鉴-类型">
-                <h1>法术类型分类</h1>
-                <h2>
-                    <!-- <noita-spell spell.expression="#type_projectile"></noita-spell> -->
-                    投射物
-                </h2>
-                <h2>
-                    <!-- <noita-spell spell.expression="#type_staticProjectile"></noita-spell> -->
-                    静态投射物
-                </h2>
-                <h2>
-                    <!-- <noita-spell spell.expression="#type_modifier"></noita-spell> -->
-                    修正
-                </h2>
-                <h2>
-                    <!-- <noita-spell spell.expression="#type_drawMany"></noita-spell> -->
-                    多重施放
-                </h2>
-                <h2>
-                    <!-- <noita-spell spell.expression="#type_material"></noita-spell> -->
-                    材料
-                </h2>
-                <h2>
-                    <!-- <noita-spell spell.expression="#type_other"></noita-spell> -->
-                    其他
-                </h2>
-                <h2>
-                    <!-- <noita-spell spell.expression="#type_utility"></noita-spell> -->
-                    实用
-                </h2>
-                <h2>
-                    <!-- <noita-spell spell.expression="#type_passive"></noita-spell> -->
-                    被动
-                </h2>
+<body is="gd-doc">
+    <template visible>
+        <article title="Test" default>
+            <h1>
+                暂时处于测试阶段 更多数据请转至<a style="color: #23a9f2" href="https://noita.wiki.gg/zh/wiki/Noita_Wiki"
+                    target="_blank">Wiki</a>
+            </h1>
+            <h2>
+                <a style="color: gold" href="./html/proj-inf-calc-3.4.html" title="点我也行" target="_blank">永久化计算器</a>在侧栏
+                如果没显示侧栏点一下左上角按钮
+            </h2>
+            <h3>
+                <a style="color: pink" href="https://github.com/Caramel-Diode">
+                    <svg height="32" width="32" aria-hidden="true" viewBox="0 0 16 16" version="1.1" fill="#FFFFFF">
+                        <path
+                            d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z">
+                        </path>
+                    </svg>
+                    Github主页
+                </a>
+            </h3>
+            <h3>
+                <a style="color: pink" href="https://github.com/Caramel-Diode/Noita_Lib">
+                    <img src="./img/favicon.ico" alt="图标" height="32" width="32" />
+                    NoitaLib仓库
+                </a>
+            </h3>
+            <p><a href="https://github.com/jenspalmqvist/noita-data">Noita data.wak 解包数据</a></p>
+            <p><strong>noitaLib</strong>为页面内所有的noita元素提供了UI渲染</p>
+            <button onclick="gdDoc.showArticle(gdDoc.articles.get('字体测试'))">字体测试页面</button><button
+                onclick="gdDoc.showArticle(gdDoc.articles.get('实体面板'))">实体面板测试页面</button>
+            <p><var>noitaLib</var> 为库的调用入口</p>
+            noita 法术组件 <br />
+            <noita-spell spell.exp="#type_passive" display="panel"></noita-spell><br><br><br>
+            <noita-spell spell.id="BOMB"></noita-spell>
+            <!-- <noita-spell spell.id="BOMB1"></noita-spell> -->
+            <noita-spell spell.id="NOLLA"></noita-spell>
+            <noita-spell spell.id="RESET"></noita-spell> <noita-spell
+                spell.exp="#type_projectile"></noita-spell><noita-spell spell.exp="#lifetime_mod"></noita-spell>
+            <hr />
+            noita 法杖组件<br />
+            <noita-wand display="panel" wand.icon="群体之杖" wand.name="幽魂闪光" wand.capacity="26" wand.draw="1"
+                wand.fire-rate-wait="15" wand.reload-time="0" wand.shuffle="false" wand.spread-degrees="0"
+                wand.speed-multiplier="1" wand.mana-charge-speed="600" wand.mana-max="1600"
+                wand.static-spells="MANA_REDUCE:0~4"
+                wand.dynamic-spells="BLOOD_MAGIC:2 BURST_X ADD_DEATH_TRIGGER CURSE_WITHER_PROJECTILE [DIGGER|POWERDIGGER|CHAINSAW] NOLLA SPIRAL_SHOT LIGHT_BULLET SUMMON_PORTAL:~1 [DIGGER|POWERDIGGER|MATERIAL_WATER|MATERIAL_OIL|MATERIAL_BLOOD|MATERIAL_ACID|MATERIAL_CEMENT]:13 CHAINSAW RESET">
+            </noita-wand>
+            <hr />
+            noita 天赋组件<br />
+            <noita-perk display="panel" perk.id="技巧贪婪"></noita-perk>
+            <noita-perk display="icon" perk.id="贪婪"></noita-perk>
+            <noita-perk display="icon" perk.id="技巧血金"></noita-perk>
+            <hr />
+            <noita-message message.style="fungal_shift">环境修正通知框组件</noita-message>
 
-                <script>
-                    (() => {
-                        const articles = document.querySelectorAll("main>article");
-                        let currentArticle;
-                        for (let i = 0; i < articles.length; i++) {
-                            if (!articles[i].hasAttribute("style")) currentArticle = articles[i];
-                        }
-                        const h2s = currentArticle.querySelectorAll("h2");
-                        appendSpellElements("#type_projectile");
-                        h2s[0].after(fragment);
-                        appendSpellElements("#type_staticProjectile");
-                        h2s[1].after(fragment);
-                        appendSpellElements("#type_modifier");
-                        h2s[2].after(fragment);
-                        appendSpellElements("#type_drawMany");
-                        h2s[3].after(fragment);
-                        appendSpellElements("#type_material");
-                        h2s[4].after(fragment);
-                        appendSpellElements("#type_other");
-                        h2s[5].after(fragment);
-                        appendSpellElements("#type_utility");
-                        h2s[6].after(fragment);
-                        appendSpellElements("#type_passive");
-                        h2s[7].after(fragment);
-                    })();
-                </script>
-            </article>
-            <article title="法术图鉴-等级">
-                <h1>法术等级分类</h1>
-                <h2>0级</h2>
-                <h2>1级</h2>
-                <h2>2级</h2>
-                <h2>3级</h2>
-                <h2>4级</h2>
-                <h2>5级</h2>
-                <h2>6级</h2>
-                <h2>7级</h2>
-                <h2>10级</h2>
-                <script>
-                    (() => {
-                        const articles = document.querySelectorAll("main>article");
-                        let currentArticle;
-                        for (let i = 0; i < articles.length; i++) {
-                            if (!articles[i].hasAttribute("style")) currentArticle = articles[i];
-                        }
-                        const h2s = currentArticle.querySelectorAll("h2");
-                        const exps = ["#level_0", "#level_1", "#level_2", "#level_3", "#level_4", "#level_5", "#level_6", "#level_7", "#level_10"];
-                        for (let i = 0; i < 9; i++) {
-                            appendSpellElementsWithSort(exps[i]);
-                            h2s[i].after(fragment);
-                        }
-                    })();
-                </script>
-            </article>
-            <article title="天赋图鉴">
-                <h1>图标模式</h1>
-                <h2>普通天赋</h2>
-                <noita-perk perk.id="CRITICAL_HIT"></noita-perk>
-                <noita-perk perk.id="BREATH_UNDERWATER"></noita-perk>
-                <noita-perk perk.id="EXTRA_MONEY"></noita-perk>
-                <noita-perk perk.id="EXTRA_MONEY_TRICK_KILL"></noita-perk>
-                <noita-perk perk.id="GOLD_IS_FOREVER"></noita-perk>
-                <noita-perk perk.id="TRICK_BLOOD_MONEY"></noita-perk>
-                <noita-perk perk.id="EXPLODING_GOLD"></noita-perk>
-                <noita-perk perk.id="HOVER_BOOST"></noita-perk>
-                <noita-perk perk.id="FASTER_LEVITATION"></noita-perk>
-                <noita-perk perk.id="MOVEMENT_FASTER"></noita-perk>
-                <noita-perk perk.id="STRONG_KICK"></noita-perk>
-                <noita-perk perk.id="TELEKINESIS"></noita-perk>
-                <noita-perk perk.id="REPELLING_CAPE"></noita-perk>
-                <noita-perk perk.id="EXPLODING_CORPSES"></noita-perk>
-                <noita-perk perk.id="SAVING_GRACE"></noita-perk>
-                <noita-perk perk.id="INVISIBILITY"></noita-perk>
-                <noita-perk perk.id="GLOBAL_GORE"></noita-perk>
-                <noita-perk perk.id="REMOVE_FOG_OF_WAR"></noita-perk>
-                <noita-perk perk.id="LEVITATION_TRAIL"></noita-perk>
-                <noita-perk perk.id="VAMPIRISM"></noita-perk>
-                <noita-perk perk.id="HEARTS_MORE_EXTRA_HP"></noita-perk>
-                <noita-perk perk.id="GLASS_CANNON"></noita-perk>
-                <noita-perk perk.id="LOW_HP_DAMAGE_BOOST"></noita-perk>
-                <noita-perk perk.id="WORM_ATTRACTOR"></noita-perk>
-                <noita-perk perk.id="RADAR_ENEMY"></noita-perk>
-                <noita-perk perk.id="FOOD_CLOCK"></noita-perk>
-                <noita-perk perk.id="IRON_STOMACH"></noita-perk>
-                <noita-perk perk.id="WAND_RADAR"></noita-perk>
-                <noita-perk perk.id="ITEM_RADAR"></noita-perk>
-                <noita-perk perk.id="MOON_RADAR"></noita-perk>
-                <noita-perk perk.id="MAP"></noita-perk>
-                <noita-perk perk.id="PROTECTION_FIRE"></noita-perk>
-                <noita-perk perk.id="PROTECTION_RADIOACTIVITY"></noita-perk>
-                <noita-perk perk.id="PROTECTION_EXPLOSION"></noita-perk>
-                <noita-perk perk.id="PROTECTION_MELEE"></noita-perk>
-                <noita-perk perk.id="PROTECTION_ELECTRICITY"></noita-perk>
-                <noita-perk perk.id="TELEPORTITIS"></noita-perk>
-                <noita-perk perk.id="TELEPORTITIS_DODGE"></noita-perk>
-                <noita-perk perk.id="STAINLESS_ARMOUR"></noita-perk>
-                <noita-perk perk.id="EDIT_WANDS_EVERYWHERE"></noita-perk>
-                <noita-perk perk.id="NO_WAND_EDITING"></noita-perk>
-                <noita-perk perk.id="WAND_EXPERIMENTER"></noita-perk>
-                <noita-perk perk.id="ADVENTURER"></noita-perk>
-                <noita-perk perk.id="ABILITY_ACTIONS_MATERIALIZED"></noita-perk>
-                <noita-perk perk.id="PROJECTILE_HOMING"></noita-perk>
-                <noita-perk perk.id="PROJECTILE_HOMING_SHOOTER"></noita-perk>
-                <noita-perk perk.id="UNLIMITED_SPELLS"></noita-perk>
-                <noita-perk perk.id="FREEZE_FIELD"></noita-perk>
-                <noita-perk perk.id="FIRE_GAS"></noita-perk>
-                <noita-perk perk.id="DISSOLVE_POWDERS"></noita-perk>
-                <noita-perk perk.id="BLEED_SLIME"></noita-perk>
-                <noita-perk perk.id="BLEED_OIL"></noita-perk>
-                <noita-perk perk.id="BLEED_GAS"></noita-perk>
-                <noita-perk perk.id="SHIELD"></noita-perk>
-                <noita-perk perk.id="REVENGE_EXPLOSION"></noita-perk>
-                <noita-perk perk.id="REVENGE_TENTACLE"></noita-perk>
-                <noita-perk perk.id="REVENGE_RATS"></noita-perk>
-                <noita-perk perk.id="REVENGE_BULLET"></noita-perk>
-                <noita-perk perk.id="ATTACK_FOOT"></noita-perk>
-                <noita-perk perk.id="LEGGY_FEET"></noita-perk>
-                <noita-perk perk.id="PLAGUE_RATS"></noita-perk>
-                <noita-perk perk.id="VOMIT_RATS"></noita-perk>
-                <noita-perk perk.id="CORDYCEPS"></noita-perk>
-                <noita-perk perk.id="MOLD"></noita-perk>
-                <noita-perk perk.id="WORM_SMALLER_HOLES"></noita-perk>
-                <noita-perk perk.id="PROJECTILE_REPULSION"></noita-perk>
-                <noita-perk perk.id="RISKY_CRITICAL"></noita-perk>
-                <noita-perk perk.id="FUNGAL_DISEASE"></noita-perk>
-                <noita-perk perk.id="PROJECTILE_SLOW_FIELD"></noita-perk>
-                <noita-perk perk.id="PROJECTILE_REPULSION_SECTOR"></noita-perk>
-                <noita-perk perk.id="PROJECTILE_EATER_SECTOR"></noita-perk>
-                <noita-perk perk.id="ORBIT"></noita-perk>
-                <noita-perk perk.id="ANGRY_GHOST"></noita-perk>
-                <noita-perk perk.id="HUNGRY_GHOST"></noita-perk>
-                <noita-perk perk.id="DEATH_GHOST"></noita-perk>
-                <noita-perk perk.id="HOMUNCULUS"></noita-perk>
-                <noita-perk perk.id="LUKKI_MINION"></noita-perk>
-                <noita-perk perk.id="ELECTRICITY"></noita-perk>
-                <noita-perk perk.id="ATTRACT_ITEMS"></noita-perk>
-                <noita-perk perk.id="EXTRA_KNOCKBACK"></noita-perk>
-                <noita-perk perk.id="LOWER_SPREAD"></noita-perk>
-                <noita-perk perk.id="LOW_RECOIL"></noita-perk>
-                <noita-perk perk.id="BOUNCE"></noita-perk>
-                <noita-perk perk.id="FAST_PROJECTILES"></noita-perk>
-                <noita-perk perk.id="NO_MORE_SHUFFLE"></noita-perk>
-                <noita-perk perk.id="NO_MORE_KNOCKBACK"></noita-perk>
-                <noita-perk perk.id="DUPLICATE_PROJECTILE"></noita-perk>
-                <noita-perk perk.id="CONTACT_DAMAGE"></noita-perk>
-                <noita-perk perk.id="EXTRA_PERK"></noita-perk>
-                <noita-perk perk.id="PERKS_LOTTERY"></noita-perk>
-                <noita-perk perk.id="EXTRA_SHOP_ITEM"></noita-perk>
-                <noita-perk perk.id="GENOME_MORE_HATRED"></noita-perk>
-                <noita-perk perk.id="GENOME_MORE_LOVE"></noita-perk>
-                <noita-perk perk.id="PEACE_WITH_GODS"></noita-perk>
-                <noita-perk perk.id="MANA_FROM_KILLS"></noita-perk>
-                <noita-perk perk.id="ANGRY_LEVITATION"></noita-perk>
-                <noita-perk perk.id="LASER_AIM"></noita-perk>
-                <noita-perk perk.id="PERSONAL_LASER"></noita-perk>
-                <h2>一次性天赋</h2>
-                <noita-perk perk.id="EXTRA_HP"></noita-perk>
-                <noita-perk perk.id="RESPAWN"></noita-perk>
-                <noita-perk perk.id="ALWAYS_CAST"></noita-perk>
-                <noita-perk perk.id="EXTRA_MANA"></noita-perk>
-                <noita-perk perk.id="FASTER_WANDS"></noita-perk>
-                <noita-perk perk.id="EXTRA_SLOTS"></noita-perk>
-                <noita-perk perk.id="GAMBLE"></noita-perk>
-                <noita-perk perk.id="MEGA_BEAM_STONE"></noita-perk>
-                <h2>特殊天赋</h2>
-                <noita-perk perk.id="GREED_CURSE"></noita-perk>
-                <h2>精粹</h2>
-                <noita-perk perk.id="ESSENCE_AIR"></noita-perk>
-                <noita-perk perk.id="ESSENCE_ALCOHOL"></noita-perk>
-                <noita-perk perk.id="ESSENCE_FIRE"></noita-perk>
-                <noita-perk perk.id="ESSENCE_LASER"></noita-perk>
-                <noita-perk perk.id="ESSENCE_WATER"></noita-perk>
-                <h1>面板模式</h1>
-                <h2>普通天赋</h2>
-                <noita-perk
-                    display="panel"
-                    perk.id="CRITICAL_HIT"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="BREATH_UNDERWATER"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="EXTRA_MONEY"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="EXTRA_MONEY_TRICK_KILL"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="GOLD_IS_FOREVER"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="TRICK_BLOOD_MONEY"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="EXPLODING_GOLD"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="HOVER_BOOST"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="FASTER_LEVITATION"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="MOVEMENT_FASTER"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="STRONG_KICK"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="TELEKINESIS"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="REPELLING_CAPE"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="EXPLODING_CORPSES"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="SAVING_GRACE"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="INVISIBILITY"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="GLOBAL_GORE"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="REMOVE_FOG_OF_WAR"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="LEVITATION_TRAIL"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="VAMPIRISM"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="HEARTS_MORE_EXTRA_HP"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="GLASS_CANNON"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="LOW_HP_DAMAGE_BOOST"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="WORM_ATTRACTOR"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="RADAR_ENEMY"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="FOOD_CLOCK"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="IRON_STOMACH"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="WAND_RADAR"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="ITEM_RADAR"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="MOON_RADAR"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="MAP"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="PROTECTION_FIRE"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="PROTECTION_RADIOACTIVITY"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="PROTECTION_EXPLOSION"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="PROTECTION_MELEE"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="PROTECTION_ELECTRICITY"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="TELEPORTITIS"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="TELEPORTITIS_DODGE"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="STAINLESS_ARMOUR"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="EDIT_WANDS_EVERYWHERE"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="NO_WAND_EDITING"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="WAND_EXPERIMENTER"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="ADVENTURER"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="ABILITY_ACTIONS_MATERIALIZED"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="PROJECTILE_HOMING"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="PROJECTILE_HOMING_SHOOTER"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="UNLIMITED_SPELLS"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="FREEZE_FIELD"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="FIRE_GAS"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="DISSOLVE_POWDERS"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="BLEED_SLIME"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="BLEED_OIL"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="BLEED_GAS"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="SHIELD"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="REVENGE_EXPLOSION"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="REVENGE_TENTACLE"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="REVENGE_RATS"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="REVENGE_BULLET"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="ATTACK_FOOT"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="LEGGY_FEET"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="PLAGUE_RATS"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="VOMIT_RATS"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="CORDYCEPS"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="MOLD"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="WORM_SMALLER_HOLES"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="PROJECTILE_REPULSION"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="RISKY_CRITICAL"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="FUNGAL_DISEASE"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="PROJECTILE_SLOW_FIELD"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="PROJECTILE_REPULSION_SECTOR"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="PROJECTILE_EATER_SECTOR"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="ORBIT"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="ANGRY_GHOST"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="HUNGRY_GHOST"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="DEATH_GHOST"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="HOMUNCULUS"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="LUKKI_MINION"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="ELECTRICITY"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="ATTRACT_ITEMS"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="EXTRA_KNOCKBACK"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="LOWER_SPREAD"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="LOW_RECOIL"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="BOUNCE"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="FAST_PROJECTILES"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="NO_MORE_SHUFFLE"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="NO_MORE_KNOCKBACK"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="DUPLICATE_PROJECTILE"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="CONTACT_DAMAGE"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="EXTRA_PERK"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="PERKS_LOTTERY"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="EXTRA_SHOP_ITEM"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="GENOME_MORE_HATRED"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="GENOME_MORE_LOVE"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="PEACE_WITH_GODS"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="MANA_FROM_KILLS"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="ANGRY_LEVITATION"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="LASER_AIM"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="PERSONAL_LASER"
-                ></noita-perk>
-                <h2>一次性天赋</h2>
-                <noita-perk
-                    display="panel"
-                    perk.id="EXTRA_HP"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="RESPAWN"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="ALWAYS_CAST"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="EXTRA_MANA"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="FASTER_WANDS"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="EXTRA_SLOTS"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="GAMBLE"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="MEGA_BEAM_STONE"
-                ></noita-perk>
-                <h2>特殊天赋</h2>
-                <noita-perk
-                    display="panel"
-                    perk.id="GREED_CURSE"
-                ></noita-perk>
-                <h2>精粹</h2>
-                <noita-perk
-                    display="panel"
-                    perk.id="ESSENCE_AIR"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="ESSENCE_ALCOHOL"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="ESSENCE_FIRE"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="ESSENCE_LASER"
-                ></noita-perk>
-                <noita-perk
-                    display="panel"
-                    perk.id="ESSENCE_WATER"
-                ></noita-perk>
-            </article>
-            <article title="法杖图鉴">
-                <h1>塔杖</h1>
-                <noita-wand
-                    display="panel"
-                    wand.icon="迅捷之杖"
-                    wand.name="迅捷之杖(名称指定图标)"
-                ></noita-wand>
-                <noita-wand
-                    display="panel"
-                    wand.icon="毁灭之杖"
-                    wand.name="毁灭之杖(名称指定图标)"
-                ></noita-wand>
-                <noita-wand
-                    display="panel"
-                    wand.icon="群体之杖"
-                    wand.name="群体之杖(名称指定图标)"
-                ></noita-wand>
-                <h1>初始杖</h1>
-                <noita-wand
-                    display="panel"
-                    wand.icon="初始攻击杖"
-                    wand.name="初始攻击杖(名称指定图标)"
-                ></noita-wand>
-                <noita-wand
-                    display="panel"
-                    wand.icon="初始炸弹杖"
-                    wand.name="初始炸弹杖(名称指定图标)"
-                ></noita-wand>
-                <h1>主线解密杖</h1>
-                <noita-wand
-                    display="panel"
-                    wand.icon="桑拿拂尘"
-                    wand.name="桑拿拂尘(名称指定图标)"
-                ></noita-wand>
-                <noita-wand
-                    display="panel"
-                    wand.icon="桦木拂尘"
-                    wand.name="桦木拂尘(名称指定图标)"
-                ></noita-wand>
-                <noita-wand
-                    display="panel"
-                    wand.icon="拐杖"
-                    wand.name="拐杖(名称指定图标)"
-                ></noita-wand>
-                <noita-wand
-                    display="panel"
-                    wand.icon="玫瑰"
-                    wand.name="玫瑰(名称指定图标)"
-                ></noita-wand>
-                <noita-wand
-                    display="panel"
-                    wand.icon="权杖"
-                    wand.name="权杖(名称指定图标)"
-                ></noita-wand>
-                <noita-wand
-                    display="panel"
-                    wand.icon="许愿骨"
-                    wand.name="许愿骨(名称指定图标)"
-                ></noita-wand>
-                <noita-wand
-                    display="panel"
-                    wand.icon="魔法扫帚"
-                    wand.name="魔法扫帚(名称指定图标)"
-                ></noita-wand>
-                <h1>其他</h1>
-                <noita-wand
-                    display="panel"
-                    wand.icon="长笛"
-                    wand.name="长笛(名称指定图标)"
-                ></noita-wand>
-                <noita-wand
-                    display="panel"
-                    wand.icon="康特勒琴"
-                    wand.name="康特勒琴(名称指定图标)"
-                ></noita-wand>
-                <noita-wand
-                    display="panel"
-                    wand.icon="狗鱼下颚骨"
-                    wand.name="狗鱼下颚骨(名称指定图标)"
-                ></noita-wand>
-                <noita-wand
-                    display="panel"
-                    wand.icon="康特勒琴(狗鱼下颚骨强化)"
-                    wand.name="康特勒琴(狗鱼下颚骨强化)(名称指定图标)"
-                ></noita-wand>
-                <h1>实验性魔杖</h1>
-                <noita-wand
-                    display="panel"
-                    wand.icon="闪光实验性魔杖"
-                    wand.name="闪光实验性魔杖(名称指定图标)"
-                ></noita-wand>
-                <noita-wand
-                    display="panel"
-                    wand.icon="条件实验性魔杖"
-                    wand.name="条件实验性魔杖(名称指定图标)"
-                ></noita-wand>
-                <noita-wand
-                    display="panel"
-                    wand.icon="机枪实验性魔杖"
-                    wand.name="机枪实验性魔杖(名称指定图标)"
-                ></noita-wand>
-                <h3>常见杖</h3>
-                <noita-wand
-                    display="panel"
-                    wand.icon="AUTO"
-                    wand.name="法杖图标自动匹配测试"
-                    wand.capacity="26"
-                    wand.draw="1"
-                    wand.fire-rate-wait="15"
-                    wand.reload-time="0"
-                    wand.shuffle="false"
-                    wand.spread-degrees="0"
-                    wand.speed-multiplier="1"
-                    wand.mana-charge-speed="600"
-                    wand.mana-max="1600"
-                ></noita-wand>
-                <noita-wand
-                    display="panel"
-                    wand.name="序号指定法杖图标1"
-                    wand.icon="#833"
-                ></noita-wand>
-                <noita-wand
-                    display="panel"
-                    wand.name="序号指定法杖图标2"
-                    wand.icon="#822"
-                ></noita-wand>
-            </article>
-            <article title="配方">
-                <h1>单向传送门</h1>
-                <noita-wand
-                    display="panel"
-                    wand.name="魔杖"
-                    wand.icon="AUTO"
-                    wand.shuffle="false"
-                    wand.draw="1"
-                    wand.mana-max=">=57"
-                    wand.mana-charge-speed=">=0"
-                    wand.capacity=">=5"
-                    wand.spread-degree="0"
-                    wand.static-spells=""
-                    wand.dynamic-spells="LIFETIME_DOWN:3 TRUE_ORBIT LIGHT_SHOT TELEPORT_PROJECTILE_CLOSER"
-                ></noita-wand>
-                <h1>超传</h1>
-                包含
-                <noita-spell
-                    display="icon"
-                    spell.id="X_RAY"
-                ></noita-spell
-                >版本的配方与以下天赋冲突
-                <noita-perk
-                    display="icon"
-                    perk.id="PROJECTILE_HOMING"
-                ></noita-perk>
-                <noita-perk
-                    display="icon"
-                    perk.id="PROJECTILE_REPULSION"
-                ></noita-perk>
-                <br />
-                所有配置均与
-                <noita-perk
-                    display="icon"
-                    perk.id="DUPLICATE_PROJECTILE"
-                ></noita-perk
-                >天赋冲突
-                <br />
-                以<noita-spell
-                    display="icon"
-                    spell.id="BURST_4"
-                ></noita-spell
-                >开头的配置均可以采用法杖抽取不小于4的法杖来省去此法术
-                <h2>NG</h2>
-                <h3>正向</h3>
-                <noita-wand
-                    display="panel"
-                    wand.name="魔杖"
-                    wand.icon="AUTO"
-                    wand.shuffle="false"
-                    wand.draw="1"
-                    wand.fire-rate-wait="0"
-                    wand.reload-time="0"
-                    wand.mana-max="800"
-                    wand.mana-charge-speed="100"
-                    wand.capacity="26"
-                    wand.spread-degree="0"
-                    wand.static-spells=""
-                    wand.dynamic-spells="BURST_4 IF_HALF ADD_DEATH_TRIGGER LARPA_CHAOS_2 BUBBLESHOT [DAMAGE|BLOODLUST] BURST_2 EXPLODING_DEER SWAPPER_PROJECTILE IF_END DIVIDE_10 DIVIDE_4 ADD_TRIGGER IF_HP PHASING_ARC LINE_ARC RESET"
-                ></noita-wand>
-                <noita-wand
-                    display="panel"
-                    wand.name="魔杖"
-                    wand.icon="AUTO"
-                    wand.shuffle="false"
-                    wand.draw="1"
-                    wand.fire-rate-wait="0"
-                    wand.reload-time="0"
-                    wand.mana-max="800"
-                    wand.mana-charge-speed="100"
-                    wand.capacity="26"
-                    wand.spread-degree="0"
-                    wand.static-spells=""
-                    wand.dynamic-spells="BURST_4 IF_HALF LARPA_CHAOS_2 BLACK_HOLE_DEATH_TRIGGER^1 [DAMAGE|BLOODLUST] BURST_2 EXPLODING_DEER SWAPPER_PROJECTILE IF_END DIVIDE_10 DIVIDE_4 ADD_TRIGGER IF_HP PHASING_ARC LINE_ARC RESET"
-                ></noita-wand>
-                <noita-wand
-                    display="panel"
-                    wand.name="魔杖"
-                    wand.icon="AUTO"
-                    wand.shuffle="false"
-                    wand.draw="1"
-                    wand.fire-rate-wait="0"
-                    wand.reload-time="0"
-                    wand.mana-max="800"
-                    wand.mana-charge-speed="100"
-                    wand.capacity="26"
-                    wand.spread-degree="0"
-                    wand.static-spells=""
-                    wand.dynamic-spells="BURST_4 IF_HALF LARPA_CHAOS_2 DELAYED_SPELL [DAMAGE|BLOODLUST] EXPLODING_DEER SWAPPER_PROJECTILE [#mana_drainlowly&!#draw] IF_END DIVIDE_10 DIVIDE_4 ADD_TRIGGER IF_HP PHASING_ARC LINE_ARC RESET"
-                ></noita-wand>
-                <noita-wand
-                    display="panel"
-                    wand.name="魔杖"
-                    wand.icon="AUTO"
-                    wand.shuffle="false"
-                    wand.draw="1"
-                    wand.fire-rate-wait="0"
-                    wand.reload-time="0"
-                    wand.mana-max="800"
-                    wand.mana-charge-speed="100"
-                    wand.capacity="26"
-                    wand.spread-degree="0"
-                    wand.static-spells=""
-                    wand.dynamic-spells="BURST_8 DIVIDE_10 DIVIDE_4 DIVIDE_3 ADD_TRIGGER DIVIDE_4:2 DIVIDE_2 ADD_TRIGGER PHASING_ARC LINE_ARC LIGHT_SHOT SPEED ACCELERATING_SHOT BLOOD_MAGIC CLIPPING_SHOT TELEPORT_PROJECTILE_CLOSER BLACK_HOLE SLOW_BULLET_TIMER RESET"
-                ></noita-wand>
-                <h3>反向</h3>
-                <noita-wand
-                    display="panel"
-                    wand.name="魔杖"
-                    wand.icon="AUTO"
-                    wand.shuffle="false"
-                    wand.draw="1"
-                    wand.fire-rate-wait="0"
-                    wand.reload-time="0"
-                    wand.mana-max="800"
-                    wand.mana-charge-speed="100"
-                    wand.capacity="26"
-                    wand.spread-degree="0"
-                    wand.static-spells=""
-                    wand.dynamic-spells="BURST_4 IF_HALF ADD_DEATH_TRIGGER HOMING_SHOOTER X_RAY [DAMAGE|BLOODLUST] BURST_2 EXPLODING_DEER SWAPPER_PROJECTILE IF_END TAU DIVIDE_10 ADD_TRIGGER DIVIDE_3:3 ADD_TRIGGER IF_HP PHASING_ARC LINE_ARC RESET"
-                ></noita-wand>
-                <noita-wand
-                    display="panel"
-                    wand.name="魔杖"
-                    wand.icon="AUTO"
-                    wand.shuffle="false"
-                    wand.draw="1"
-                    wand.fire-rate-wait="0"
-                    wand.reload-time="0"
-                    wand.mana-max="800"
-                    wand.mana-charge-speed="100"
-                    wand.capacity="26"
-                    wand.spread-degree="0"
-                    wand.static-spells=""
-                    wand.dynamic-spells="BURST_4 IF_HALF ADD_DEATH_TRIGGER HOMING_SHOOTER X_RAY [DAMAGE|BLOODLUST] BURST_2 EXPLODING_DEER SWAPPER_PROJECTILE IF_END DIVIDE_10:2 ADD_TRIGGER DIVIDE_3:3 ADD_TRIGGER PHASING_ARC LINE_ARC RESET"
-                ></noita-wand>
-                <noita-wand
-                    display="panel"
-                    wand.name="魔杖"
-                    wand.icon="AUTO"
-                    wand.shuffle="false"
-                    wand.draw="1"
-                    wand.fire-rate-wait="0"
-                    wand.reload-time="0"
-                    wand.mana-max="800"
-                    wand.mana-charge-speed="100"
-                    wand.capacity="26"
-                    wand.spread-degree="0"
-                    wand.static-spells=""
-                    wand.dynamic-spells="BURST_4 IF_HALF ADD_DEATH_TRIGGER HOMING_SHOOTER X_RAY [DAMAGE|BLOODLUST] BURST_2 EXPLODING_DEER SWAPPER_PROJECTILE IF_END DIVIDE_4:3 DIVIDE_2 ADD_TRIGGER IF_HP PHASING_ARC LINE_ARC RESET"
-                ></noita-wand>
-                <h2>NG+</h2>
-                <noita-wand
-                    display="panel"
-                    wand.name="魔杖"
-                    wand.icon="AUTO"
-                    wand.shuffle="false"
-                    wand.draw="1"
-                    wand.fire-rate-wait="0"
-                    wand.reload-time="0"
-                    wand.mana-max="800"
-                    wand.mana-charge-speed="100"
-                    wand.capacity="26"
-                    wand.spread-degree="0"
-                    wand.static-spells=""
-                    wand.dynamic-spells="BURST_8 LARPA_CHAOS DELAYED_SPELL [BLOODLUST|DAMAGE] EXPLODING_DEER SWAPPER_PROJECTILE [#mana_drainlowly&!#draw] DIVIDE_4 DIVIDE_3 DIVIDE_2 ADD_TRIGGER IF_HALF PHASING_ARC LINE_ARC RESET
-                    "
-                ></noita-wand>
-                <noita-wand
-                    display="panel"
-                    wand.name="魔杖"
-                    wand.icon="AUTO"
-                    wand.shuffle="false"
-                    wand.draw="1"
-                    wand.fire-rate-wait="0"
-                    wand.reload-time="0"
-                    wand.mana-max="800"
-                    wand.mana-charge-speed="100"
-                    wand.capacity="26"
-                    wand.spread-degree="0"
-                    wand.static-spells=""
-                    wand.dynamic-spells="BURST_8 ADD_DEATH_TRIGGER LARPA_CHAOS_2 SPIRAL_SHOT [BLOODLUST|DAMAGE] BURST_8 EXPLODING_DEER SWAPPER_PROJECTILE DIVIDE_10 DIVIDE_3 ADD_TRIGGER DIVIDE_3 DIVIDE_2 ADD_TRIGGER IF_HALF PHASING_ARC LINE_ARC RESET"
-                ></noita-wand>
-                <noita-wand
-                    display="panel"
-                    wand.name="魔杖"
-                    wand.icon="AUTO"
-                    wand.shuffle="false"
-                    wand.draw="1"
-                    wand.fire-rate-wait="0"
-                    wand.reload-time="0"
-                    wand.mana-max="800"
-                    wand.mana-charge-speed="100"
-                    wand.capacity="26"
-                    wand.spread-degree="0"
-                    wand.static-spells=""
-                    wand.dynamic-spells="BURST_8 ADD_DEATH_TRIGGER HOMING_SHOOTER X_RAY [BLOODLUST|DAMAGE] BURST_2 EXPLODING_DEER SWAPPER_PROJECTILE TAU DIVIDE_10 ADD_TRIGGER DIVIDE_4:2 ADD_TRIGGER IF_HP PHASING_ARC LINE_ARC RESET"
-                ></noita-wand>
-                <noita-wand
-                    display="panel"
-                    wand.name="魔杖"
-                    wand.icon="AUTO"
-                    wand.shuffle="false"
-                    wand.draw="1"
-                    wand.fire-rate-wait="0"
-                    wand.reload-time="0"
-                    wand.mana-max="800"
-                    wand.mana-charge-speed="100"
-                    wand.capacity="26"
-                    wand.spread-degree="0"
-                    wand.static-spells=""
-                    wand.dynamic-spells="BURST_8 ADD_DEATH_TRIGGER HOMING_SHOOTER X_RAY [BLOODLUST|DAMAGE] BURST_2 EXPLODING_DEER SWAPPER_PROJECTILE DIVIDE_10 DIVIDE_10 ADD_TRIGGER DIVIDE_4:2 ADD_TRIGGER PHASING_ARC LINE_ARC RESET"
-                ></noita-wand>
-                <noita-wand
-                    display="panel"
-                    wand.name="魔杖"
-                    wand.icon="AUTO"
-                    wand.shuffle="false"
-                    wand.draw="1"
-                    wand.fire-rate-wait="0"
-                    wand.reload-time="0"
-                    wand.mana-max="800"
-                    wand.mana-charge-speed="100"
-                    wand.capacity="26"
-                    wand.spread-degree="0"
-                    wand.static-spells=""
-                    wand.dynamic-spells="BURST_8 DIVIDE_10 DIVIDE_4 DIVIDE_3 ADD_TRIGGER DIVIDE_4:2 ADD_TRIGGER DIVIDE_2 ADD_TRIGGER PHASING_ARC LINE_ARC LIGHT_SHOT SPEED ACCELERATING_SHOT BLOOD_MAGIC CLIPPING_SHOT TELEPORT_PROJECTILE_CLOSER BLACK_HOLE^1 SLOW_BULLET_TIMER RESET"
-                ></noita-wand>
-                <h1>输出</h1>
-                <h2>材料暴击+法术转伤害+差速</h2>
-                先使用辅助杖为输出杖准备一颗待吸收的休眠晶体 需要无限金钱<br />
-                <noita-wand
-                    display="panel"
-                    wand.name="输出杖"
-                    wand.icon="AUTO"
-                    wand.shuffle="false"
-                    wand.draw="1"
-                    wand.fire-rate-wait="0"
-                    wand.reload-time="0"
-                    wand.mana-max="800"
-                    wand.mana-charge-speed="100"
-                    wand.capacity="26"
-                    wand.spread-degree="0"
-                    wand.static-spells=""
-                    wand.dynamic-spells="BURST_X GRAVITY_ANTI PIERCING_SHOT DIVIDE_10:2 DIVIDE_4 DIVIDE_2 ADD_TRIGGER ACCELERATING_SHOT HOMING_ROTATE SPELLS_TO_POWER [HITFX_CRITICAL_WATER|HITFX_CRITICAL_BLOOD|HITFX_CRITICAL_OIL]:8 MONEY_MAGIC GAMMA [MATERIAL_WATER|MATERIAL_BLOOD|MATERIAL_OIL] BOUNCY_ORB RESET OMEGA"
-                ></noita-wand>
-                <noita-wand
-                    display="panel"
-                    wand.name="辅助杖"
-                    wand.icon="AUTO"
-                    wand.shuffle="false"
-                    wand.draw="1"
-                    wand.fire-rate-wait="0"
-                    wand.reload-time="0"
-                    wand.mana-max="800"
-                    wand.mana-charge-speed="100"
-                    wand.capacity="26"
-                    wand.spread-degree="0"
-                    wand.static-spells=""
-                    wand.dynamic-spells="BURST_X DIVIDE_10:2 DIVIDE_4 DIVIDE_2:2 MONEY_MAGIC DIVIDE_10:2 DIVIDE_4 DIVIDE_2:2 MONEY_MAGIC DIVIDE_10:2 DIVIDE_4 DIVIDE_2:2 MONEY_MAGIC:3 DIVIDE_10:2 DIVIDE_4 OMEGA PIPE_BOMB"
-                ></noita-wand>
-                <h2>饿灵额外修正叠加</h2>
-                需要
-                <noita-perk
-                    display="icon"
-                    perk.id="HUNGRY_GHOST"
-                ></noita-perk
-                >天赋 <br />
-                <noita-wand
-                    display="panel"
-                    wand.name="编程火花"
-                    wand.icon="AUTO"
-                    wand.shuffle="false"
-                    wand.draw="1"
-                    wand.fire-rate-wait="0"
-                    wand.reload-time="0"
-                    wand.mana-max="800"
-                    wand.mana-charge-speed="100"
-                    wand.capacity="26"
-                    wand.spread-degree="0"
-                    wand.static-spells=""
-                    wand.dynamic-spells="BLOOD_MAGIC:2 BURST_X IF_PROJECTILE CURSE_WITHER_PROJECTILE LIGHT_BULLET:15 IF_ELSE MAGIC_SHIELD IF_END COLOUR_INVIS CHAINSAW RESET"
-                ></noita-wand>
-                <noita-wand
-                    display="panel"
-                    wand.name="幽魂闪光"
-                    wand.icon="AUTO"
-                    wand.shuffle="false"
-                    wand.draw="1"
-                    wand.fire-rate-wait="0"
-                    wand.reload-time="0"
-                    wand.mana-max="800"
-                    wand.mana-charge-speed="100"
-                    wand.capacity="26"
-                    wand.spread-degree="0"
-                    wand.static-spells=""
-                    wand.dynamic-spells="BLOOD_MAGIC:2 BURST_X ADD_DEATH_TRIGGER CURSE_WITHER_PROJECTILE [DIGGER|POWERDIGGER|CHAINSAW] NOLLA SPIRAL_SHOT LIGHT_BULLET SUMMON_PORTAL [#mana_drainlowly&(#type_projectile|#type_staticProjectile|#type_material)]:14 CHAINSAW RESET"
-                ></noita-wand>
-                <h2>法术转伤害触手</h2>
-                <noita-wand
-                    display="panel"
-                    wand.name="魔杖"
-                    wand.icon="AUTO"
-                    wand.shuffle="false"
-                    wand.draw="1"
-                    wand.fire-rate-wait="0"
-                    wand.reload-time="0"
-                    wand.mana-max="800"
-                    wand.mana-charge-speed="100"
-                    wand.capacity="6"
-                    wand.spread-degree="0"
-                    wand.static-spells=""
-                    wand.dynamic-spells="TENTACLE_TIMER HEAVY_SHOT SPELLS_TO_POWER DIVIDE_10 OMEGA MISSILE"
-                ></noita-wand>
-                <noita-wand
-                    display="panel"
-                    wand.name="魔杖"
-                    wand.icon="AUTO"
-                    wand.shuffle="false"
-                    wand.draw="1"
-                    wand.fire-rate-wait="0"
-                    wand.reload-time="0"
-                    wand.mana-max="800"
-                    wand.mana-charge-speed="100"
-                    wand.capacity="6"
-                    wand.spread-degree="0"
-                    wand.static-spells=""
-                    wand.dynamic-spells="TENTACLE_TIMER HEAVY_SHOT SPELLS_TO_POWER:2 RECOIL_DAMPER:~1 DIVIDE_2 DIVIDE_3 DUPLICATE IF_HALF CURSE_WITHER_PROJECTILE MISSILE RESET IF_END"
-                ></noita-wand>
-            </article>
-            <article title="环境修正图鉴">
-                <noita-message message.preset="BOOBY_TRAPPED"></noita-message>
-                <noita-message message.preset="CONDUCTIVE"></noita-message>
-                <noita-message message.preset="FOG_OF_WAR_REAPPEARS"></noita-message>
-                <noita-message message.preset="FOG_OF_WAR_CLEAR_AT_PLAYER"></noita-message>
-                <noita-message message.preset="FREEZING"></noita-message>
-                <noita-message message.preset="FUNGAL"></noita-message>
-                <noita-message message.preset="FURNISHED"></noita-message>
-                <noita-message message.preset="GAS_FLOODED"></noita-message>
-                <noita-message message.preset="GOLD_VEIN"></noita-message>
-                <noita-message message.preset="GOLD_VEIN_SUPER"></noita-message>
-                <noita-message message.preset="GRAVITY_FIELDS"></noita-message>
-                <noita-message message.preset="HIGH_GRAVITY"></noita-message>
-                <noita-message message.preset="HOT"></noita-message>
-                <noita-message message.preset="INVISIBILITY"></noita-message>
-                <noita-message message.preset="LOW_GRAVITY"></noita-message>
-                <noita-message message.preset="FLOODED"></noita-message>
-                <noita-message message.preset="OMINOUS"></noita-message>
-                <noita-message message.preset="PERFORATED"></noita-message>
-                <noita-message message.preset="PLANT_INFESTED"></noita-message>
-                <noita-message message.preset="SHIELDED"></noita-message>
-                <noita-message message.preset="SPOOKY"></noita-message>
-                <noita-message message.preset="PROTECTION_FIELDS"></noita-message>
-                <noita-message message.preset="WORMY"></noita-message>
-            </article>
-        </template>
-        <template hidden>
-            <article title="字体测试">
-                <h1>淫纹</h1>
-                <h2>小写</h2>
-                <div class="noita-en">abcdefghijklmnopqrstuvwxyz</div>
-                <h2>大写</h2>
-                <div class="noita-en">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
-                <h1>密文</h1>
-                <h2>小写</h2>
-                <div class="noita-secret">abcdefghijklmnopqrstuvwxyz</div>
-                <h2>大写</h2>
-                <div class="noita-secret">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
-            </article>
-            <article title="实体面板">
-                <noita-entity
-                    entity.id="BOMB"
-                    display="panel"
-                ></noita-entity>
-                <noita-entity
-                    entity.id="LIGHT_BULLET"
-                    display="panel"
-                ></noita-entity>
-                <noita-entity
-                    entity.id="SPIRAL_SHOT"
-                    display="panel"
-                ></noita-entity>
-                <noita-entity
-                    entity.id="MEGALASER"
-                    display="panel"
-                ></noita-entity>
-                <!-- <noita-projectile projectile.id="LIGHT_BULLET" display="panel"></noita-projectile>
+
+            <noita-container display="panel" container.type="common" container.content="#700000:50"></noita-container>
+            <noita-panel style="height: 200px; width: 500px;">
+                <template title="滑动条">
+                    滑动条: <noita-input-range></noita-input-range>
+                </template>
+                <template title="容器组件">
+                    <div>
+                        <noita-container title="酸液:100%" container.type="conical"
+                            container.content="acid:100"></noita-container>
+                        <noita-container title="水:40%" container.type="jar"
+                            container.content="#666699:40"></noita-container>
+
+                        <noita-container title="水:40%" container.type="common"
+                            container.content="water:40"></noita-container>
+                        <noita-container title="骨灰:90%" container.type="bag"
+                            container.content="#999999:90"></noita-container>
+                        混合显示: <noita-container title="☆" container.type="common"
+                            container.content="#ff0000:30 #00ff00:30 #0000ff:30"></noita-container>
+                    </div>
+                </template>
+                <template title="空天赋">
+                    <div>
+                        <noita-perk perk.id="$common"></noita-perk>
+                        <noita-perk perk.id="$disposable"></noita-perk>
+                        <noita-perk perk.id="$essence"></noita-perk>
+                    </div>
+                </template>
+                <template title="空法术">
+                    <div>
+                        <noita-spell spell.id="$projectile"></noita-spell>
+                        <noita-spell spell.id="$staticProjectile"></noita-spell>
+                        <noita-spell spell.id="$modifier"></noita-spell>
+                        <noita-spell spell.id="$drawMany"></noita-spell>
+                        <noita-spell spell.id="$material"></noita-spell>
+                        <noita-spell spell.id="$utility"></noita-spell>
+                        <noita-spell spell.id="$other"></noita-spell>
+                        <noita-spell spell.id="$passive"></noita-spell>
+                    </div>
+                </template>
+            </noita-panel>
+
+            <noita-material material.inherit="water"></noita-material>
+            <noita-material material.tag="[fire]"></noita-material>
+            <noita-material material.id="diamond"></noita-material>
+            <noita-wand display="panel" wand.name="序号指定法杖图标3" wand.icon="#276" wand.fire-rate-wait=">=-42"  wand.mana-charge-speed="100~600"></noita-wand>
+            <div id="test"></div>
+        </article>
+        <article title="wiki">
+            <iframe src="https://noita.wiki.gg/zh/wiki/Noita_Wiki" frameborder="0"
+                style="height: calc(100vh - 70px); width: 100%"></iframe>
+        </article>
+        <article title="salakieli编辑器">
+            <iframe src="https://lightbourn.net/games/Noita/editor.html" frameborder="0"
+                style="height: calc(100vh - 70px); width: 100%"></iframe>
+        </article>
+        <article title="法杖运行调试工具">
+            <iframe src="https://noita-wand-simulator.salinecitrine.com" frameborder="0"
+                style="height: calc(100vh - 70px); width: 100%"></iframe>
+        </article>
+        <article title="26+法杖生成查询">
+            <iframe src="https://pudy248.github.io/noitaWandAtlas/" frameborder="0"
+                style="height: calc(100vh - 70px); width: 100%"></iframe>
+        </article>
+        <article title="⏱︎ 印象深刻计算器">
+            <!-- 暂时采用嵌入的方式 -->
+            <iframe src="./html/proj-inf-calc-3.4.html" frameborder="0"
+                style="height: calc(100vh - 70px); width: 100%"></iframe>
+        </article>
+        <article title="📄 csv汉化文件合并工具">
+            <!-- 暂时采用嵌入的方式 -->
+            <iframe src="./html/merging-csv.html" frameborder="0"
+                style="height: calc(100vh - 70px); width: 100%"></iframe>
+        </article>
+        <article title="☆在线工具导航☆">
+            <ul style="font-size: 1.5em">
+                <li>
+                    <a href="https://www.noitool.com" target="_blank">noitool 种子工具</a>
+                    <a style="font-size: 0.5em" href="https://github.com/TwoAbove/noita-tools">Github</a>
+                </li>
+                <li>
+                    <a href="https://lightbourn.net/games/Noita/editor.html" target="_blank"
+                        title="解密存档中的加密文件">salakieli编辑器</a>
+                </li>
+                <li>
+                    <a href="https://noita-wand-simulator.salinecitrine.com" target="_blank">法杖运行调试工具</a>
+                    <a style="font-size: 0.5em" href="https://github.com/salinecitrine/noita-wand-simulator">Github</a>
+                </li>
+                <li>
+                    <a href="https://pudy248.github.io/noitaWandAtlas/" target="_blank">法杖26+生成查询</a>
+                    <a style="font-size: 0.5em" href="https://github.com/pudy248/noitaWandAtlas">Github</a>
+                </li>
+                <li>
+                    <a href="./html/proj-inf-calc-3.4.html" target="_blank">印象深刻计算器</a>
+                </li>
+            </ul>
+        </article>
+        <article title="法术图鉴-类型">
+            <h1>法术类型分类</h1>
+            <h2>
+                <!-- <noita-spell spell.expression="#type_projectile"></noita-spell> -->
+                投射物
+            </h2>
+            <h2>
+                <!-- <noita-spell spell.expression="#type_staticProjectile"></noita-spell> -->
+                静态投射物
+            </h2>
+            <h2>
+                <!-- <noita-spell spell.expression="#type_modifier"></noita-spell> -->
+                修正
+            </h2>
+            <h2>
+                <!-- <noita-spell spell.expression="#type_drawMany"></noita-spell> -->
+                多重施放
+            </h2>
+            <h2>
+                <!-- <noita-spell spell.expression="#type_material"></noita-spell> -->
+                材料
+            </h2>
+            <h2>
+                <!-- <noita-spell spell.expression="#type_other"></noita-spell> -->
+                其他
+            </h2>
+            <h2>
+                <!-- <noita-spell spell.expression="#type_utility"></noita-spell> -->
+                实用
+            </h2>
+            <h2>
+                <!-- <noita-spell spell.expression="#type_passive"></noita-spell> -->
+                被动
+            </h2>
+
+            <script>
+                (() => {
+                    const articles = document.querySelectorAll("main>article");
+                    let currentArticle;
+                    for (let i = 0; i < articles.length; i++) {
+                        if (!articles[i].hasAttribute("style")) currentArticle = articles[i];
+                    }
+                    const h2s = currentArticle.querySelectorAll("h2");
+                    appendSpellElements("#type_projectile");
+                    h2s[0].after(fragment);
+                    appendSpellElements("#type_staticProjectile");
+                    h2s[1].after(fragment);
+                    appendSpellElements("#type_modifier");
+                    h2s[2].after(fragment);
+                    appendSpellElements("#type_drawMany");
+                    h2s[3].after(fragment);
+                    appendSpellElements("#type_material");
+                    h2s[4].after(fragment);
+                    appendSpellElements("#type_other");
+                    h2s[5].after(fragment);
+                    appendSpellElements("#type_utility");
+                    h2s[6].after(fragment);
+                    appendSpellElements("#type_passive");
+                    h2s[7].after(fragment);
+                })();
+            </script>
+        </article>
+        <article title="法术图鉴-等级">
+            <h1>法术等级分类</h1>
+            <h2>0级</h2>
+            <h2>1级</h2>
+            <h2>2级</h2>
+            <h2>3级</h2>
+            <h2>4级</h2>
+            <h2>5级</h2>
+            <h2>6级</h2>
+            <h2>7级</h2>
+            <h2>10级</h2>
+            <script>
+                (() => {
+                    const articles = document.querySelectorAll("main>article");
+                    let currentArticle;
+                    for (let i = 0; i < articles.length; i++) {
+                        if (!articles[i].hasAttribute("style")) currentArticle = articles[i];
+                    }
+                    const h2s = currentArticle.querySelectorAll("h2");
+                    const exps = ["#lv0", "#lv1", "#lv2", "#lv3", "#lv4", "#lv5", "#lv6", "#lv7", "#lv10"];
+                    for (let i = 0; i < 9; i++) {
+                        appendSpellElementsWithSort(exps[i]);
+                        h2s[i].after(fragment);
+                    }
+                })();
+            </script>
+        </article>
+        <article title="天赋图鉴">
+            <h1>图标模式</h1>
+            <h2>普通天赋</h2>
+            <noita-perk perk.id="CRITICAL_HIT"></noita-perk>
+            <noita-perk perk.id="BREATH_UNDERWATER"></noita-perk>
+            <noita-perk perk.id="EXTRA_MONEY"></noita-perk>
+            <noita-perk perk.id="EXTRA_MONEY_TRICK_KILL"></noita-perk>
+            <noita-perk perk.id="GOLD_IS_FOREVER"></noita-perk>
+            <noita-perk perk.id="TRICK_BLOOD_MONEY"></noita-perk>
+            <noita-perk perk.id="EXPLODING_GOLD"></noita-perk>
+            <noita-perk perk.id="HOVER_BOOST"></noita-perk>
+            <noita-perk perk.id="FASTER_LEVITATION"></noita-perk>
+            <noita-perk perk.id="MOVEMENT_FASTER"></noita-perk>
+            <noita-perk perk.id="STRONG_KICK"></noita-perk>
+            <noita-perk perk.id="TELEKINESIS"></noita-perk>
+            <noita-perk perk.id="REPELLING_CAPE"></noita-perk>
+            <noita-perk perk.id="EXPLODING_CORPSES"></noita-perk>
+            <noita-perk perk.id="SAVING_GRACE"></noita-perk>
+            <noita-perk perk.id="INVISIBILITY"></noita-perk>
+            <noita-perk perk.id="GLOBAL_GORE"></noita-perk>
+            <noita-perk perk.id="REMOVE_FOG_OF_WAR"></noita-perk>
+            <noita-perk perk.id="LEVITATION_TRAIL"></noita-perk>
+            <noita-perk perk.id="VAMPIRISM"></noita-perk>
+            <noita-perk perk.id="HEARTS_MORE_EXTRA_HP"></noita-perk>
+            <noita-perk perk.id="GLASS_CANNON"></noita-perk>
+            <noita-perk perk.id="LOW_HP_DAMAGE_BOOST"></noita-perk>
+            <noita-perk perk.id="WORM_ATTRACTOR"></noita-perk>
+            <noita-perk perk.id="RADAR_ENEMY"></noita-perk>
+            <noita-perk perk.id="FOOD_CLOCK"></noita-perk>
+            <noita-perk perk.id="IRON_STOMACH"></noita-perk>
+            <noita-perk perk.id="WAND_RADAR"></noita-perk>
+            <noita-perk perk.id="ITEM_RADAR"></noita-perk>
+            <noita-perk perk.id="MOON_RADAR"></noita-perk>
+            <noita-perk perk.id="MAP"></noita-perk>
+            <noita-perk perk.id="PROTECTION_FIRE"></noita-perk>
+            <noita-perk perk.id="PROTECTION_RADIOACTIVITY"></noita-perk>
+            <noita-perk perk.id="PROTECTION_EXPLOSION"></noita-perk>
+            <noita-perk perk.id="PROTECTION_MELEE"></noita-perk>
+            <noita-perk perk.id="PROTECTION_ELECTRICITY"></noita-perk>
+            <noita-perk perk.id="TELEPORTITIS"></noita-perk>
+            <noita-perk perk.id="TELEPORTITIS_DODGE"></noita-perk>
+            <noita-perk perk.id="STAINLESS_ARMOUR"></noita-perk>
+            <noita-perk perk.id="EDIT_WANDS_EVERYWHERE"></noita-perk>
+            <noita-perk perk.id="NO_WAND_EDITING"></noita-perk>
+            <noita-perk perk.id="WAND_EXPERIMENTER"></noita-perk>
+            <noita-perk perk.id="ADVENTURER"></noita-perk>
+            <noita-perk perk.id="ABILITY_ACTIONS_MATERIALIZED"></noita-perk>
+            <noita-perk perk.id="PROJECTILE_HOMING"></noita-perk>
+            <noita-perk perk.id="PROJECTILE_HOMING_SHOOTER"></noita-perk>
+            <noita-perk perk.id="UNLIMITED_SPELLS"></noita-perk>
+            <noita-perk perk.id="FREEZE_FIELD"></noita-perk>
+            <noita-perk perk.id="FIRE_GAS"></noita-perk>
+            <noita-perk perk.id="DISSOLVE_POWDERS"></noita-perk>
+            <noita-perk perk.id="BLEED_SLIME"></noita-perk>
+            <noita-perk perk.id="BLEED_OIL"></noita-perk>
+            <noita-perk perk.id="BLEED_GAS"></noita-perk>
+            <noita-perk perk.id="SHIELD"></noita-perk>
+            <noita-perk perk.id="REVENGE_EXPLOSION"></noita-perk>
+            <noita-perk perk.id="REVENGE_TENTACLE"></noita-perk>
+            <noita-perk perk.id="REVENGE_RATS"></noita-perk>
+            <noita-perk perk.id="REVENGE_BULLET"></noita-perk>
+            <noita-perk perk.id="ATTACK_FOOT"></noita-perk>
+            <noita-perk perk.id="LEGGY_FEET"></noita-perk>
+            <noita-perk perk.id="PLAGUE_RATS"></noita-perk>
+            <noita-perk perk.id="VOMIT_RATS"></noita-perk>
+            <noita-perk perk.id="CORDYCEPS"></noita-perk>
+            <noita-perk perk.id="MOLD"></noita-perk>
+            <noita-perk perk.id="WORM_SMALLER_HOLES"></noita-perk>
+            <noita-perk perk.id="PROJECTILE_REPULSION"></noita-perk>
+            <noita-perk perk.id="RISKY_CRITICAL"></noita-perk>
+            <noita-perk perk.id="FUNGAL_DISEASE"></noita-perk>
+            <noita-perk perk.id="PROJECTILE_SLOW_FIELD"></noita-perk>
+            <noita-perk perk.id="PROJECTILE_REPULSION_SECTOR"></noita-perk>
+            <noita-perk perk.id="PROJECTILE_EATER_SECTOR"></noita-perk>
+            <noita-perk perk.id="ORBIT"></noita-perk>
+            <noita-perk perk.id="ANGRY_GHOST"></noita-perk>
+            <noita-perk perk.id="HUNGRY_GHOST"></noita-perk>
+            <noita-perk perk.id="DEATH_GHOST"></noita-perk>
+            <noita-perk perk.id="HOMUNCULUS"></noita-perk>
+            <noita-perk perk.id="LUKKI_MINION"></noita-perk>
+            <noita-perk perk.id="ELECTRICITY"></noita-perk>
+            <noita-perk perk.id="ATTRACT_ITEMS"></noita-perk>
+            <noita-perk perk.id="EXTRA_KNOCKBACK"></noita-perk>
+            <noita-perk perk.id="LOWER_SPREAD"></noita-perk>
+            <noita-perk perk.id="LOW_RECOIL"></noita-perk>
+            <noita-perk perk.id="BOUNCE"></noita-perk>
+            <noita-perk perk.id="FAST_PROJECTILES"></noita-perk>
+            <noita-perk perk.id="NO_MORE_SHUFFLE"></noita-perk>
+            <noita-perk perk.id="NO_MORE_KNOCKBACK"></noita-perk>
+            <noita-perk perk.id="DUPLICATE_PROJECTILE"></noita-perk>
+            <noita-perk perk.id="CONTACT_DAMAGE"></noita-perk>
+            <noita-perk perk.id="EXTRA_PERK"></noita-perk>
+            <noita-perk perk.id="PERKS_LOTTERY"></noita-perk>
+            <noita-perk perk.id="EXTRA_SHOP_ITEM"></noita-perk>
+            <noita-perk perk.id="GENOME_MORE_HATRED"></noita-perk>
+            <noita-perk perk.id="GENOME_MORE_LOVE"></noita-perk>
+            <noita-perk perk.id="PEACE_WITH_GODS"></noita-perk>
+            <noita-perk perk.id="MANA_FROM_KILLS"></noita-perk>
+            <noita-perk perk.id="ANGRY_LEVITATION"></noita-perk>
+            <noita-perk perk.id="LASER_AIM"></noita-perk>
+            <noita-perk perk.id="PERSONAL_LASER"></noita-perk>
+            <h2>一次性天赋</h2>
+            <noita-perk perk.id="EXTRA_HP"></noita-perk>
+            <noita-perk perk.id="RESPAWN"></noita-perk>
+            <noita-perk perk.id="ALWAYS_CAST"></noita-perk>
+            <noita-perk perk.id="EXTRA_MANA"></noita-perk>
+            <noita-perk perk.id="FASTER_WANDS"></noita-perk>
+            <noita-perk perk.id="EXTRA_SLOTS"></noita-perk>
+            <noita-perk perk.id="GAMBLE"></noita-perk>
+            <noita-perk perk.id="MEGA_BEAM_STONE"></noita-perk>
+            <h2>特殊天赋</h2>
+            <noita-perk perk.id="GREED_CURSE"></noita-perk>
+            <h2>精粹</h2>
+            <noita-perk perk.id="ESSENCE_AIR"></noita-perk>
+            <noita-perk perk.id="ESSENCE_ALCOHOL"></noita-perk>
+            <noita-perk perk.id="ESSENCE_FIRE"></noita-perk>
+            <noita-perk perk.id="ESSENCE_LASER"></noita-perk>
+            <noita-perk perk.id="ESSENCE_WATER"></noita-perk>
+            <h1>面板模式</h1>
+            <h2>普通天赋</h2>
+            <noita-perk display="panel" perk.id="CRITICAL_HIT"></noita-perk>
+            <noita-perk display="panel" perk.id="BREATH_UNDERWATER"></noita-perk>
+            <noita-perk display="panel" perk.id="EXTRA_MONEY"></noita-perk>
+            <noita-perk display="panel" perk.id="EXTRA_MONEY_TRICK_KILL"></noita-perk>
+            <noita-perk display="panel" perk.id="GOLD_IS_FOREVER"></noita-perk>
+            <noita-perk display="panel" perk.id="TRICK_BLOOD_MONEY"></noita-perk>
+            <noita-perk display="panel" perk.id="EXPLODING_GOLD"></noita-perk>
+            <noita-perk display="panel" perk.id="HOVER_BOOST"></noita-perk>
+            <noita-perk display="panel" perk.id="FASTER_LEVITATION"></noita-perk>
+            <noita-perk display="panel" perk.id="MOVEMENT_FASTER"></noita-perk>
+            <noita-perk display="panel" perk.id="STRONG_KICK"></noita-perk>
+            <noita-perk display="panel" perk.id="TELEKINESIS"></noita-perk>
+            <noita-perk display="panel" perk.id="REPELLING_CAPE"></noita-perk>
+            <noita-perk display="panel" perk.id="EXPLODING_CORPSES"></noita-perk>
+            <noita-perk display="panel" perk.id="SAVING_GRACE"></noita-perk>
+            <noita-perk display="panel" perk.id="INVISIBILITY"></noita-perk>
+            <noita-perk display="panel" perk.id="GLOBAL_GORE"></noita-perk>
+            <noita-perk display="panel" perk.id="REMOVE_FOG_OF_WAR"></noita-perk>
+            <noita-perk display="panel" perk.id="LEVITATION_TRAIL"></noita-perk>
+            <noita-perk display="panel" perk.id="VAMPIRISM"></noita-perk>
+            <noita-perk display="panel" perk.id="HEARTS_MORE_EXTRA_HP"></noita-perk>
+            <noita-perk display="panel" perk.id="GLASS_CANNON"></noita-perk>
+            <noita-perk display="panel" perk.id="LOW_HP_DAMAGE_BOOST"></noita-perk>
+            <noita-perk display="panel" perk.id="WORM_ATTRACTOR"></noita-perk>
+            <noita-perk display="panel" perk.id="RADAR_ENEMY"></noita-perk>
+            <noita-perk display="panel" perk.id="FOOD_CLOCK"></noita-perk>
+            <noita-perk display="panel" perk.id="IRON_STOMACH"></noita-perk>
+            <noita-perk display="panel" perk.id="WAND_RADAR"></noita-perk>
+            <noita-perk display="panel" perk.id="ITEM_RADAR"></noita-perk>
+            <noita-perk display="panel" perk.id="MOON_RADAR"></noita-perk>
+            <noita-perk display="panel" perk.id="MAP"></noita-perk>
+            <noita-perk display="panel" perk.id="PROTECTION_FIRE"></noita-perk>
+            <noita-perk display="panel" perk.id="PROTECTION_RADIOACTIVITY"></noita-perk>
+            <noita-perk display="panel" perk.id="PROTECTION_EXPLOSION"></noita-perk>
+            <noita-perk display="panel" perk.id="PROTECTION_MELEE"></noita-perk>
+            <noita-perk display="panel" perk.id="PROTECTION_ELECTRICITY"></noita-perk>
+            <noita-perk display="panel" perk.id="TELEPORTITIS"></noita-perk>
+            <noita-perk display="panel" perk.id="TELEPORTITIS_DODGE"></noita-perk>
+            <noita-perk display="panel" perk.id="STAINLESS_ARMOUR"></noita-perk>
+            <noita-perk display="panel" perk.id="EDIT_WANDS_EVERYWHERE"></noita-perk>
+            <noita-perk display="panel" perk.id="NO_WAND_EDITING"></noita-perk>
+            <noita-perk display="panel" perk.id="WAND_EXPERIMENTER"></noita-perk>
+            <noita-perk display="panel" perk.id="ADVENTURER"></noita-perk>
+            <noita-perk display="panel" perk.id="ABILITY_ACTIONS_MATERIALIZED"></noita-perk>
+            <noita-perk display="panel" perk.id="PROJECTILE_HOMING"></noita-perk>
+            <noita-perk display="panel" perk.id="PROJECTILE_HOMING_SHOOTER"></noita-perk>
+            <noita-perk display="panel" perk.id="UNLIMITED_SPELLS"></noita-perk>
+            <noita-perk display="panel" perk.id="FREEZE_FIELD"></noita-perk>
+            <noita-perk display="panel" perk.id="FIRE_GAS"></noita-perk>
+            <noita-perk display="panel" perk.id="DISSOLVE_POWDERS"></noita-perk>
+            <noita-perk display="panel" perk.id="BLEED_SLIME"></noita-perk>
+            <noita-perk display="panel" perk.id="BLEED_OIL"></noita-perk>
+            <noita-perk display="panel" perk.id="BLEED_GAS"></noita-perk>
+            <noita-perk display="panel" perk.id="SHIELD"></noita-perk>
+            <noita-perk display="panel" perk.id="REVENGE_EXPLOSION"></noita-perk>
+            <noita-perk display="panel" perk.id="REVENGE_TENTACLE"></noita-perk>
+            <noita-perk display="panel" perk.id="REVENGE_RATS"></noita-perk>
+            <noita-perk display="panel" perk.id="REVENGE_BULLET"></noita-perk>
+            <noita-perk display="panel" perk.id="ATTACK_FOOT"></noita-perk>
+            <noita-perk display="panel" perk.id="LEGGY_FEET"></noita-perk>
+            <noita-perk display="panel" perk.id="PLAGUE_RATS"></noita-perk>
+            <noita-perk display="panel" perk.id="VOMIT_RATS"></noita-perk>
+            <noita-perk display="panel" perk.id="CORDYCEPS"></noita-perk>
+            <noita-perk display="panel" perk.id="MOLD"></noita-perk>
+            <noita-perk display="panel" perk.id="WORM_SMALLER_HOLES"></noita-perk>
+            <noita-perk display="panel" perk.id="PROJECTILE_REPULSION"></noita-perk>
+            <noita-perk display="panel" perk.id="RISKY_CRITICAL"></noita-perk>
+            <noita-perk display="panel" perk.id="FUNGAL_DISEASE"></noita-perk>
+            <noita-perk display="panel" perk.id="PROJECTILE_SLOW_FIELD"></noita-perk>
+            <noita-perk display="panel" perk.id="PROJECTILE_REPULSION_SECTOR"></noita-perk>
+            <noita-perk display="panel" perk.id="PROJECTILE_EATER_SECTOR"></noita-perk>
+            <noita-perk display="panel" perk.id="ORBIT"></noita-perk>
+            <noita-perk display="panel" perk.id="ANGRY_GHOST"></noita-perk>
+            <noita-perk display="panel" perk.id="HUNGRY_GHOST"></noita-perk>
+            <noita-perk display="panel" perk.id="DEATH_GHOST"></noita-perk>
+            <noita-perk display="panel" perk.id="HOMUNCULUS"></noita-perk>
+            <noita-perk display="panel" perk.id="LUKKI_MINION"></noita-perk>
+            <noita-perk display="panel" perk.id="ELECTRICITY"></noita-perk>
+            <noita-perk display="panel" perk.id="ATTRACT_ITEMS"></noita-perk>
+            <noita-perk display="panel" perk.id="EXTRA_KNOCKBACK"></noita-perk>
+            <noita-perk display="panel" perk.id="LOWER_SPREAD"></noita-perk>
+            <noita-perk display="panel" perk.id="LOW_RECOIL"></noita-perk>
+            <noita-perk display="panel" perk.id="BOUNCE"></noita-perk>
+            <noita-perk display="panel" perk.id="FAST_PROJECTILES"></noita-perk>
+            <noita-perk display="panel" perk.id="NO_MORE_SHUFFLE"></noita-perk>
+            <noita-perk display="panel" perk.id="NO_MORE_KNOCKBACK"></noita-perk>
+            <noita-perk display="panel" perk.id="DUPLICATE_PROJECTILE"></noita-perk>
+            <noita-perk display="panel" perk.id="CONTACT_DAMAGE"></noita-perk>
+            <noita-perk display="panel" perk.id="EXTRA_PERK"></noita-perk>
+            <noita-perk display="panel" perk.id="PERKS_LOTTERY"></noita-perk>
+            <noita-perk display="panel" perk.id="EXTRA_SHOP_ITEM"></noita-perk>
+            <noita-perk display="panel" perk.id="GENOME_MORE_HATRED"></noita-perk>
+            <noita-perk display="panel" perk.id="GENOME_MORE_LOVE"></noita-perk>
+            <noita-perk display="panel" perk.id="PEACE_WITH_GODS"></noita-perk>
+            <noita-perk display="panel" perk.id="MANA_FROM_KILLS"></noita-perk>
+            <noita-perk display="panel" perk.id="ANGRY_LEVITATION"></noita-perk>
+            <noita-perk display="panel" perk.id="LASER_AIM"></noita-perk>
+            <noita-perk display="panel" perk.id="PERSONAL_LASER"></noita-perk>
+            <h2>一次性天赋</h2>
+            <noita-perk display="panel" perk.id="EXTRA_HP"></noita-perk>
+            <noita-perk display="panel" perk.id="RESPAWN"></noita-perk>
+            <noita-perk display="panel" perk.id="ALWAYS_CAST"></noita-perk>
+            <noita-perk display="panel" perk.id="EXTRA_MANA"></noita-perk>
+            <noita-perk display="panel" perk.id="FASTER_WANDS"></noita-perk>
+            <noita-perk display="panel" perk.id="EXTRA_SLOTS"></noita-perk>
+            <noita-perk display="panel" perk.id="GAMBLE"></noita-perk>
+            <noita-perk display="panel" perk.id="MEGA_BEAM_STONE"></noita-perk>
+            <h2>特殊天赋</h2>
+            <noita-perk display="panel" perk.id="GREED_CURSE"></noita-perk>
+            <h2>精粹</h2>
+            <noita-perk display="panel" perk.id="ESSENCE_AIR"></noita-perk>
+            <noita-perk display="panel" perk.id="ESSENCE_ALCOHOL"></noita-perk>
+            <noita-perk display="panel" perk.id="ESSENCE_FIRE"></noita-perk>
+            <noita-perk display="panel" perk.id="ESSENCE_LASER"></noita-perk>
+            <noita-perk display="panel" perk.id="ESSENCE_WATER"></noita-perk>
+        </article>
+        <article title="法杖图鉴">
+            <h1>塔杖</h1>
+            <noita-wand display="panel" wand.icon="迅捷之杖" wand.name="迅捷之杖(名称指定图标)"></noita-wand>
+            <noita-wand display="panel" wand.icon="毁灭之杖" wand.name="毁灭之杖(名称指定图标)"></noita-wand>
+            <noita-wand display="panel" wand.icon="群体之杖" wand.name="群体之杖(名称指定图标)"></noita-wand>
+            <h1>初始杖</h1>
+            <noita-wand display="panel" wand.icon="初始攻击杖" wand.name="初始攻击杖(名称指定图标)"></noita-wand>
+            <noita-wand display="panel" wand.icon="初始炸弹杖" wand.name="初始炸弹杖(名称指定图标)"></noita-wand>
+            <h1>主线解密杖</h1>
+            <noita-wand display="panel" wand.icon="桑拿拂尘" wand.name="桑拿拂尘(名称指定图标)"></noita-wand>
+            <noita-wand display="panel" wand.icon="桦木拂尘" wand.name="桦木拂尘(名称指定图标)"></noita-wand>
+            <noita-wand display="panel" wand.icon="拐杖" wand.name="拐杖(名称指定图标)"></noita-wand>
+            <noita-wand display="panel" wand.icon="玫瑰" wand.name="玫瑰(名称指定图标)"></noita-wand>
+            <noita-wand display="panel" wand.icon="权杖" wand.name="权杖(名称指定图标)"></noita-wand>
+            <noita-wand display="panel" wand.icon="许愿骨" wand.name="许愿骨(名称指定图标)"></noita-wand>
+            <noita-wand display="panel" wand.icon="魔法扫帚" wand.name="魔法扫帚(名称指定图标)"></noita-wand>
+            <h1>其他</h1>
+            <noita-wand display="panel" wand.icon="长笛" wand.name="长笛(名称指定图标)"></noita-wand>
+            <noita-wand display="panel" wand.icon="康特勒琴" wand.name="康特勒琴(名称指定图标)"></noita-wand>
+            <noita-wand display="panel" wand.icon="狗鱼下颚骨" wand.name="狗鱼下颚骨(名称指定图标)"></noita-wand>
+            <noita-wand display="panel" wand.icon="康特勒琴(狗鱼下颚骨强化)" wand.name="康特勒琴(狗鱼下颚骨强化)(名称指定图标)"></noita-wand>
+            <h1>实验性魔杖</h1>
+            <noita-wand display="panel" wand.icon="闪光实验性魔杖" wand.name="闪光实验性魔杖(名称指定图标)"></noita-wand>
+            <noita-wand display="panel" wand.icon="条件实验性魔杖" wand.name="条件实验性魔杖(名称指定图标)"></noita-wand>
+            <noita-wand display="panel" wand.icon="机枪实验性魔杖" wand.name="机枪实验性魔杖(名称指定图标)"></noita-wand>
+            <h1>BOSS掉落</h1>
+            <noita-wand display="panel" wand.icon="电锯" wand.name="电锯(名称指定图标)" wand.capacity="3" wand.static-spells="BLOODLUST CHAINSAW"></noita-wand>
+            <h3>常见杖</h3>
+            <noita-wand display="panel" wand.icon="AUTO" wand.name="法杖图标自动匹配测试" wand.capacity="26" wand.draw="1"
+                wand.fire-rate-wait="15" wand.reload-time="0" wand.shuffle="false" wand.spread-degrees="0"
+                wand.speed-multiplier="1" wand.mana-charge-speed="600" wand.mana-max="1600"></noita-wand>
+            <noita-wand display="panel" wand.name="序号指定法杖图标1" wand.icon="#833"></noita-wand>
+            <noita-wand display="panel" wand.name="序号指定法杖图标2" wand.icon="#822"></noita-wand>
+
+        </article>
+        <article title="材料图鉴">
+            <script>
+                (() => {
+                    const articles = document.querySelectorAll("main>article");
+                    let currentArticle;
+                    for (let i = 0; i < articles.length; i++) {
+                        if (!articles[i].hasAttribute("style")) currentArticle = articles[i];
+                    }
+                    currentArticle.innerHTML = noitaLib.Material.datas.map(e => `<noita-material material.id="${e.id}"></noita-material>`).join("");
+                })();
+            </script>
+        </article>
+        <article title="配方">
+            <h1>单向传送门</h1>
+            <noita-wand display="panel" wand.name="魔杖" wand.icon="AUTO" wand.shuffle="false" wand.draw="1"
+                wand.mana-max=">=57" wand.mana-charge-speed=">=0" wand.capacity=">=5" wand.spread-degree="0"
+                wand.static-spells=""
+                wand.dynamic-spells="LIFETIME_DOWN:3 TRUE_ORBIT LIGHT_SHOT TELEPORT_PROJECTILE_CLOSER"></noita-wand>
+            <h1>超传</h1>
+            包含
+            <noita-spell display="icon" spell.id="X_RAY"></noita-spell>版本的配方与以下天赋冲突
+            <noita-perk display="icon" perk.id="PROJECTILE_HOMING"></noita-perk>
+            <noita-perk display="icon" perk.id="PROJECTILE_REPULSION"></noita-perk>
+            <br />
+            所有配置均与
+            <noita-perk display="icon" perk.id="DUPLICATE_PROJECTILE"></noita-perk>天赋冲突
+            <br />
+            以<noita-spell display="icon" spell.id="BURST_4"></noita-spell>开头的配置均可以采用法杖抽取不小于4的法杖来省去此法术
+            <h2>NG</h2>
+            <h3>正向</h3>
+            <noita-wand display="panel" wand.name="魔杖" wand.icon="AUTO" wand.shuffle="false" wand.draw="1"
+                wand.fire-rate-wait="0" wand.reload-time="0" wand.mana-max="800" wand.mana-charge-speed="100"
+                wand.capacity="26" wand.spread-degree="0" wand.static-spells=""
+                wand.dynamic-spells="BURST_4 IF_HALF ADD_DEATH_TRIGGER LARPA_CHAOS_2 BUBBLESHOT [DAMAGE|BLOODLUST] BURST_2 EXPLODING_DEER SWAPPER_PROJECTILE IF_END DIVIDE_10 DIVIDE_4 ADD_TRIGGER IF_HP PHASING_ARC LINE_ARC RESET"></noita-wand>
+            <noita-wand display="panel" wand.name="魔杖" wand.icon="AUTO" wand.shuffle="false" wand.draw="1"
+                wand.fire-rate-wait="0" wand.reload-time="0" wand.mana-max="800" wand.mana-charge-speed="100"
+                wand.capacity="26" wand.spread-degree="0" wand.static-spells=""
+                wand.dynamic-spells="BURST_4 IF_HALF LARPA_CHAOS_2 BLACK_HOLE_DEATH_TRIGGER^1 [DAMAGE|BLOODLUST] BURST_2 EXPLODING_DEER SWAPPER_PROJECTILE IF_END DIVIDE_10 DIVIDE_4 ADD_TRIGGER IF_HP PHASING_ARC LINE_ARC RESET"></noita-wand>
+            <noita-wand display="panel" wand.name="魔杖" wand.icon="AUTO" wand.shuffle="false" wand.draw="1"
+                wand.fire-rate-wait="0" wand.reload-time="0" wand.mana-max="800" wand.mana-charge-speed="100"
+                wand.capacity="26" wand.spread-degree="0" wand.static-spells=""
+                wand.dynamic-spells="BURST_4 IF_HALF LARPA_CHAOS_2 DELAYED_SPELL [DAMAGE|BLOODLUST] EXPLODING_DEER SWAPPER_PROJECTILE [#mana_drainlowly&!#draw] IF_END DIVIDE_10 DIVIDE_4 ADD_TRIGGER IF_HP PHASING_ARC LINE_ARC RESET"></noita-wand>
+            <noita-wand display="panel" wand.name="魔杖" wand.icon="AUTO" wand.shuffle="false" wand.draw="1"
+                wand.fire-rate-wait="0" wand.reload-time="0" wand.mana-max="800" wand.mana-charge-speed="100"
+                wand.capacity="26" wand.spread-degree="0" wand.static-spells=""
+                wand.dynamic-spells="BURST_8 DIVIDE_10 DIVIDE_4 DIVIDE_3 ADD_TRIGGER DIVIDE_4:2 DIVIDE_2 ADD_TRIGGER PHASING_ARC LINE_ARC LIGHT_SHOT SPEED ACCELERATING_SHOT BLOOD_MAGIC CLIPPING_SHOT TELEPORT_PROJECTILE_CLOSER BLACK_HOLE SLOW_BULLET_TIMER RESET"></noita-wand>
+            <h3>反向</h3>
+            <noita-wand display="panel" wand.name="魔杖" wand.icon="AUTO" wand.shuffle="false" wand.draw="1"
+                wand.fire-rate-wait="0" wand.reload-time="0" wand.mana-max="800" wand.mana-charge-speed="100"
+                wand.capacity="26" wand.spread-degree="0" wand.static-spells=""
+                wand.dynamic-spells="BURST_4 IF_HALF ADD_DEATH_TRIGGER HOMING_SHOOTER X_RAY [DAMAGE|BLOODLUST] BURST_2 EXPLODING_DEER SWAPPER_PROJECTILE IF_END TAU DIVIDE_10 ADD_TRIGGER DIVIDE_3:3 ADD_TRIGGER IF_HP PHASING_ARC LINE_ARC RESET"></noita-wand>
+            <noita-wand display="panel" wand.name="魔杖" wand.icon="AUTO" wand.shuffle="false" wand.draw="1"
+                wand.fire-rate-wait="0" wand.reload-time="0" wand.mana-max="800" wand.mana-charge-speed="100"
+                wand.capacity="26" wand.spread-degree="0" wand.static-spells=""
+                wand.dynamic-spells="BURST_4 IF_HALF ADD_DEATH_TRIGGER HOMING_SHOOTER X_RAY [DAMAGE|BLOODLUST] BURST_2 EXPLODING_DEER SWAPPER_PROJECTILE IF_END DIVIDE_10:2 ADD_TRIGGER DIVIDE_3:3 ADD_TRIGGER PHASING_ARC LINE_ARC RESET"></noita-wand>
+            <noita-wand display="panel" wand.name="魔杖" wand.icon="AUTO" wand.shuffle="false" wand.draw="1"
+                wand.fire-rate-wait="0" wand.reload-time="0" wand.mana-max="800" wand.mana-charge-speed="100"
+                wand.capacity="26" wand.spread-degree="0" wand.static-spells=""
+                wand.dynamic-spells="BURST_4 IF_HALF ADD_DEATH_TRIGGER HOMING_SHOOTER X_RAY [DAMAGE|BLOODLUST] BURST_2 EXPLODING_DEER SWAPPER_PROJECTILE IF_END DIVIDE_4:3 DIVIDE_2 ADD_TRIGGER IF_HP PHASING_ARC LINE_ARC RESET"></noita-wand>
+            <h2>NG+</h2>
+            <noita-wand display="panel" wand.name="魔杖" wand.icon="AUTO" wand.shuffle="false" wand.draw="1"
+                wand.fire-rate-wait="0" wand.reload-time="0" wand.mana-max="800" wand.mana-charge-speed="100"
+                wand.capacity="26" wand.spread-degree="0" wand.static-spells="" wand.dynamic-spells="BURST_8 LARPA_CHAOS DELAYED_SPELL [BLOODLUST|DAMAGE] EXPLODING_DEER SWAPPER_PROJECTILE [#mana_drainlowly&!#draw] DIVIDE_4 DIVIDE_3 DIVIDE_2 ADD_TRIGGER IF_HALF PHASING_ARC LINE_ARC RESET
+                    "></noita-wand>
+            <noita-wand display="panel" wand.name="魔杖" wand.icon="AUTO" wand.shuffle="false" wand.draw="1"
+                wand.fire-rate-wait="0" wand.reload-time="0" wand.mana-max="800" wand.mana-charge-speed="100"
+                wand.capacity="26" wand.spread-degree="0" wand.static-spells=""
+                wand.dynamic-spells="BURST_8 ADD_DEATH_TRIGGER LARPA_CHAOS_2 SPIRAL_SHOT [BLOODLUST|DAMAGE] BURST_8 EXPLODING_DEER SWAPPER_PROJECTILE DIVIDE_10 DIVIDE_3 ADD_TRIGGER DIVIDE_3 DIVIDE_2 ADD_TRIGGER IF_HALF PHASING_ARC LINE_ARC RESET"></noita-wand>
+            <noita-wand display="panel" wand.name="魔杖" wand.icon="AUTO" wand.shuffle="false" wand.draw="1"
+                wand.fire-rate-wait="0" wand.reload-time="0" wand.mana-max="800" wand.mana-charge-speed="100"
+                wand.capacity="26" wand.spread-degree="0" wand.static-spells=""
+                wand.dynamic-spells="BURST_8 ADD_DEATH_TRIGGER HOMING_SHOOTER X_RAY [BLOODLUST|DAMAGE] BURST_2 EXPLODING_DEER SWAPPER_PROJECTILE TAU DIVIDE_10 ADD_TRIGGER DIVIDE_4:2 ADD_TRIGGER IF_HP PHASING_ARC LINE_ARC RESET"></noita-wand>
+            <noita-wand display="panel" wand.name="魔杖" wand.icon="AUTO" wand.shuffle="false" wand.draw="1"
+                wand.fire-rate-wait="0" wand.reload-time="0" wand.mana-max="800" wand.mana-charge-speed="100"
+                wand.capacity="26" wand.spread-degree="0" wand.static-spells=""
+                wand.dynamic-spells="BURST_8 ADD_DEATH_TRIGGER HOMING_SHOOTER X_RAY [BLOODLUST|DAMAGE] BURST_2 EXPLODING_DEER SWAPPER_PROJECTILE DIVIDE_10 DIVIDE_10 ADD_TRIGGER DIVIDE_4:2 ADD_TRIGGER PHASING_ARC LINE_ARC RESET"></noita-wand>
+            <noita-wand display="panel" wand.name="魔杖" wand.icon="AUTO" wand.shuffle="false" wand.draw="1"
+                wand.fire-rate-wait="0" wand.reload-time="0" wand.mana-max="800" wand.mana-charge-speed="100"
+                wand.capacity="26" wand.spread-degree="0" wand.static-spells=""
+                wand.dynamic-spells="BURST_8 DIVIDE_10 DIVIDE_4 DIVIDE_3 ADD_TRIGGER DIVIDE_4:2 ADD_TRIGGER DIVIDE_2 ADD_TRIGGER PHASING_ARC LINE_ARC LIGHT_SHOT SPEED ACCELERATING_SHOT BLOOD_MAGIC CLIPPING_SHOT TELEPORT_PROJECTILE_CLOSER BLACK_HOLE^1 SLOW_BULLET_TIMER RESET"></noita-wand>
+            <h1>输出</h1>
+            <h2>材料暴击+法术转伤害+差速</h2>
+            先使用辅助杖为输出杖准备一颗待吸收的休眠晶体 需要无限金钱<br />
+            <noita-wand display="panel" wand.name="输出杖" wand.icon="AUTO" wand.shuffle="false" wand.draw="1"
+                wand.fire-rate-wait="0" wand.reload-time="0" wand.mana-max="800" wand.mana-charge-speed="100"
+                wand.capacity="26" wand.spread-degree="0" wand.static-spells=""
+                wand.dynamic-spells="BURST_X GRAVITY_ANTI PIERCING_SHOT DIVIDE_10:2 DIVIDE_4 DIVIDE_2 ADD_TRIGGER ACCELERATING_SHOT HOMING_ROTATE SPELLS_TO_POWER [HITFX_CRITICAL_WATER|HITFX_CRITICAL_BLOOD|HITFX_CRITICAL_OIL]:8 MONEY_MAGIC GAMMA [MATERIAL_WATER|MATERIAL_BLOOD|MATERIAL_OIL] BOUNCY_ORB RESET OMEGA"></noita-wand>
+            <noita-wand display="panel" wand.name="辅助杖" wand.icon="AUTO" wand.shuffle="false" wand.draw="1"
+                wand.fire-rate-wait="0" wand.reload-time="0" wand.mana-max="800" wand.mana-charge-speed="100"
+                wand.capacity="26" wand.spread-degree="0" wand.static-spells=""
+                wand.dynamic-spells="BURST_X DIVIDE_10:2 DIVIDE_4 DIVIDE_2:2 MONEY_MAGIC DIVIDE_10:2 DIVIDE_4 DIVIDE_2:2 MONEY_MAGIC DIVIDE_10:2 DIVIDE_4 DIVIDE_2:2 MONEY_MAGIC:3 DIVIDE_10:2 DIVIDE_4 OMEGA PIPE_BOMB"></noita-wand>
+            <h2>饿灵额外修正叠加</h2>
+            需要
+            <noita-perk display="icon" perk.id="HUNGRY_GHOST"></noita-perk>天赋 <br />
+            <noita-wand display="panel" wand.name="编程火花" wand.icon="AUTO" wand.shuffle="false" wand.draw="1"
+                wand.fire-rate-wait="0" wand.reload-time="0" wand.mana-max="800" wand.mana-charge-speed="100"
+                wand.capacity="26" wand.spread-degree="0" wand.static-spells=""
+                wand.dynamic-spells="BLOOD_MAGIC:2 BURST_X IF_PROJECTILE CURSE_WITHER_PROJECTILE LIGHT_BULLET:15 IF_ELSE MAGIC_SHIELD IF_END COLOUR_INVIS CHAINSAW RESET"></noita-wand>
+            <noita-wand display="panel" wand.name="幽魂闪光" wand.icon="AUTO" wand.shuffle="false" wand.draw="1"
+                wand.fire-rate-wait="0" wand.reload-time="0" wand.mana-max="800" wand.mana-charge-speed="100"
+                wand.capacity="26" wand.spread-degree="0" wand.static-spells=""
+                wand.dynamic-spells="BLOOD_MAGIC:2 BURST_X ADD_DEATH_TRIGGER CURSE_WITHER_PROJECTILE [DIGGER|POWERDIGGER|CHAINSAW] NOLLA SPIRAL_SHOT LIGHT_BULLET SUMMON_PORTAL [#mana_drainlowly&(#type_projectile|#type_staticProjectile|#type_material)]:14 CHAINSAW RESET"></noita-wand>
+            <h2>法术转伤害触手</h2>
+            <noita-wand display="panel" wand.name="魔杖" wand.icon="AUTO" wand.shuffle="false" wand.draw="1"
+                wand.fire-rate-wait="0" wand.reload-time="0" wand.mana-max="800" wand.mana-charge-speed="100"
+                wand.capacity="6" wand.spread-degree="0" wand.static-spells=""
+                wand.dynamic-spells="TENTACLE_TIMER HEAVY_SHOT SPELLS_TO_POWER DIVIDE_10 OMEGA MISSILE"></noita-wand>
+            <noita-wand display="panel" wand.name="魔杖" wand.icon="AUTO" wand.shuffle="false" wand.draw="1"
+                wand.fire-rate-wait="0" wand.reload-time="0" wand.mana-max="800" wand.mana-charge-speed="100"
+                wand.capacity="6" wand.spread-degree="0" wand.static-spells=""
+                wand.dynamic-spells="TENTACLE_TIMER HEAVY_SHOT SPELLS_TO_POWER:2 RECOIL_DAMPER:~1 DIVIDE_2 DIVIDE_3 DUPLICATE IF_HALF CURSE_WITHER_PROJECTILE MISSILE RESET IF_END"></noita-wand>
+        </article>
+        <article title="环境修正图鉴">
+            <noita-message message.preset="BOOBY_TRAPPED"></noita-message>
+            <noita-message message.preset="CONDUCTIVE"></noita-message>
+            <noita-message message.preset="FOG_OF_WAR_REAPPEARS"></noita-message>
+            <noita-message message.preset="FOG_OF_WAR_CLEAR_AT_PLAYER"></noita-message>
+            <noita-message message.preset="FREEZING"></noita-message>
+            <noita-message message.preset="FUNGAL"></noita-message>
+            <noita-message message.preset="FURNISHED"></noita-message>
+            <noita-message message.preset="GAS_FLOODED"></noita-message>
+            <noita-message message.preset="GOLD_VEIN"></noita-message>
+            <noita-message message.preset="GOLD_VEIN_SUPER"></noita-message>
+            <noita-message message.preset="GRAVITY_FIELDS"></noita-message>
+            <noita-message message.preset="HIGH_GRAVITY"></noita-message>
+            <noita-message message.preset="HOT"></noita-message>
+            <noita-message message.preset="INVISIBILITY"></noita-message>
+            <noita-message message.preset="LOW_GRAVITY"></noita-message>
+            <noita-message message.preset="FLOODED"></noita-message>
+            <noita-message message.preset="OMINOUS"></noita-message>
+            <noita-message message.preset="PERFORATED"></noita-message>
+            <noita-message message.preset="PLANT_INFESTED"></noita-message>
+            <noita-message message.preset="SHIELDED"></noita-message>
+            <noita-message message.preset="SPOOKY"></noita-message>
+            <noita-message message.preset="PROTECTION_FIELDS"></noita-message>
+            <noita-message message.preset="WORMY"></noita-message>
+        </article>
+    </template>
+    <template hidden>
+        <article title="字体测试">
+            <h1>淫纹</h1>
+            <h2>小写</h2>
+            <div class="noita-en">abcdefghijklmnopqrstuvwxyz</div>
+            <h2>大写</h2>
+            <div class="noita-en">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
+            <h1>密文</h1>
+            <h2>小写</h2>
+            <div class="noita-secret">abcdefghijklmnopqrstuvwxyz</div>
+            <h2>大写</h2>
+            <div class="noita-secret">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
+        </article>
+        <article title="实体面板">
+            <noita-entity entity.id="BOMB" display="panel"></noita-entity>
+            <noita-entity entity.id="LIGHT_BULLET" display="panel"></noita-entity>
+            <noita-entity entity.id="SPIRAL_SHOT" display="panel"></noita-entity>
+            <noita-entity entity.id="MEGALASER" display="panel"></noita-entity>
+            <!-- <noita-projectile projectile.id="LIGHT_BULLET" display="panel"></noita-projectile>
             <noita-projectile projectile.id="SPIRAL_SHOT" display="panel"></noita-projectile> -->
-            </article>
-        </template>
-        <script src="js/srcipt1.js"></script>
-    </body>
+        </article>
+    </template>
+    <script src="js/srcipt1.js"></script>
+</body>
+
 </html>
