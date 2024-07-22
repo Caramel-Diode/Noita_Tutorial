@@ -92,6 +92,471 @@
             content-visibility: auto;
         }
     </style>
+    <style>
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        @counter-style count {
+            system: numeric;
+            suffix: ". ";
+            symbols: 𝟬 𝟭 𝟮 𝟯 𝟰 𝟱 𝟲 𝟳 𝟴 𝟵;
+            speak-as: numbers;
+        }
+
+        input {
+            accent-color: #ff5e90;
+        }
+
+        ul>li {
+            list-style-type: disc;
+        }
+
+        ul>li::marker {
+            font-size: 20px;
+        }
+
+        li.true::marker {
+            color: #3a3;
+        }
+
+        li.false::marker {
+            color: #a33;
+        }
+
+        ol>li {
+            counter-increment: count 1;
+            list-style-type: count;
+        }
+
+        :root {
+            font-family: sans-serif;
+            background: #1f1f1f;
+            color: #fff;
+            padding: 30px;
+            font-size: 16px;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            /* display: grid;
+    place-items: center;
+    place-content: center;
+    height: 100vh;
+    width: 100vw; */
+        }
+
+        p {
+            margin-top: 20px;
+            text-indent: 2em;
+            line-height: 2em;
+        }
+
+        code {
+            border-radius: 3px;
+            padding: 3px 4px;
+            background-color: #1f1f1f;
+            border: 1px solid #222;
+            margin: 0 3px;
+        }
+
+        a {
+            color: #fff;
+        }
+
+        q {
+            font-style: italic;
+            quotes: '"' '"';
+        }
+
+        em {
+            text-decoration-style: dashed;
+            text-decoration-line: underline;
+            text-decoration-color: currentColor;
+            padding: 2px;
+        }
+
+        dfn.game-noun {
+            text-indent: 0;
+            display: inline-block;
+            /* height: 18px; */
+            min-height: 20px;
+            padding: 3px 6px;
+            border-radius: 5px;
+            background: #272727;
+            font-style: normal;
+            line-height: 20px;
+        }
+
+        dfn.game-noun.type-projectile {
+            box-shadow: inset 0px 0px 2px 2px #5a2323;
+        }
+
+        dfn.game-noun.type-static-projectile {
+            box-shadow: inset 0px 0px 2px 2px #8d3f18;
+        }
+
+        dfn.game-noun.type-modifier {
+            box-shadow: inset 0px 0px 2px 2px #2d3a72;
+        }
+
+        dfn.game-noun.type-material {
+            box-shadow: inset 0px 0px 2px 2px #356f44;
+        }
+
+        dfn.game-noun.type-draw-many {
+            box-shadow: inset 0px 0px 2px 2px #1c6d73;
+        }
+
+        dfn.game-noun.type-other {
+            box-shadow: inset 0px 0px 2px 2px #714b33;
+        }
+
+        dfn.game-noun.type-utility {
+            box-shadow: inset 0px 0px 2px 2px #7b2a74;
+        }
+
+        dfn.game-noun.type-passive {
+            border: #212f26 2px dotted;
+        }
+
+        var {
+            font-family: monospace;
+            font-style: italic;
+            display: inline-block;
+            background: #272727;
+            padding: 3px 5px;
+            border-radius: 5px;
+            line-height: 20px;
+            color: #45d4a1;
+            text-indent: 0;
+        }
+
+        strong {
+            text-emphasis-style: dot;
+            text-emphasis-position: under;
+        }
+
+        small {
+            color: #aaa;
+            font-size: 15px;
+        }
+
+        ::selection {
+            background: #fff1;
+            color: #e93f6c;
+            text-shadow: 0 0 1px #000;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            padding-top: 20px;
+            font-weight: 700;
+        }
+
+        h1 {
+            font-size: 40px;
+            border-bottom: 2px solid currentColor;
+        }
+
+        h2 {
+            font-size: 30px;
+            border-bottom: 1px solid currentColor;
+            text-indent: 0.5em;
+        }
+
+        h3 {
+            text-indent: 1em;
+            font-size: 25px;
+        }
+
+        h4 {
+            text-indent: 1.5em;
+            font-size: 20px;
+        }
+
+        dl {
+            display: flex;
+            flex-direction: column;
+            padding-left: 2em;
+            padding-top: 2.5em;
+            padding-bottom: 1em;
+        }
+
+        dt {
+            font-weight: 500;
+            font-size: large;
+            line-height: 2em;
+            padding-left: 15px;
+            background: linear-gradient(#23aaf2, #23aaf2) left 1px center/5px 5px no-repeat, linear-gradient(#fff, #fff) left center/7px 7px no-repeat;
+        }
+
+        dt>small,
+        small.tag {
+            max-height: 24px;
+            text-indent: 0;
+            display: inline-flex;
+            vertical-align: baseline;
+            place-content: center;
+            place-items: center;
+            font-size: 14px;
+            background-color: #151515;
+            border-radius: 100vmax;
+            padding: 6px 10px;
+            user-select: none;
+            gap: 6px;
+        }
+
+        .tag.error {
+            color: #fc3d49;
+        }
+
+        .tag.warn {
+            color: #ffcd45;
+        }
+
+        dd {
+            text-indent: 2em;
+            padding: 15px 10px;
+            background: linear-gradient(#23aaf2, #23aaf2) left 1px center/4px 100% no-repeat, #191919;
+            border-radius: 6px;
+            overflow: auto;
+            scrollbar-width: thin;
+        }
+
+        dd>table {
+            margin: 20px;
+        }
+
+        dd+dd {
+            border-radius: 0 0 6px 6px;
+        }
+
+        dd:has(+ dd) {
+            border-radius: 6px 6px 0 0;
+        }
+
+        dd+dd:has(+ dd) {
+            border-radius: 0;
+        }
+
+        table {
+            border-collapse: collapse;
+            border: #555 solid 1px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 3px 1px #555;
+        }
+
+        th {
+            text-align: center;
+        }
+
+        th,
+        td {
+            padding: 10px 15px;
+        }
+
+        thead {
+            background-color: #303030;
+        }
+
+        thead>tr {}
+
+        thead th {
+            border: #444 solid 1px;
+        }
+
+        tbody :is(th, td) {
+            border-left: #333 solid 1px;
+            border-right: #333 solid 1px;
+        }
+
+        tbody>tr:nth-child(odd) {
+            background-color: #222222;
+        }
+
+        tbody>tr:nth-child(even) {
+            background-color: #272727;
+        }
+
+        ol,
+        ul {
+            padding: 10px 0 5px 0;
+            width: fit-content;
+        }
+
+        li {
+            list-style-position: inside;
+            padding-top: 8px;
+        }
+
+        li:hover {
+            --c: #af17c1;
+        }
+
+        li:has(> :is(ol, ul)) {
+            --c: #f08605;
+            /* prettier-ignore */
+            background:
+                radial-gradient(circle at 5px 40px, var(--c), var(--c) 2px, #0000 2px, #0000 100%),
+                radial-gradient(circle at 5px calc(100% - 2px), var(--c), var(--c) 2px, #0000 2px, #0000 100%),
+                linear-gradient(var(--c), var(--c)) left 3px bottom 2px/4px calc(100% - 42px) no-repeat;
+        }
+
+        li> :is(ol, ul) {
+            margin-left: 20px;
+        }
+
+        /* details {
+            background: linear-gradient(#303030, #303030) top center/100% 40px no-repeat #191919;
+            border-radius: 8px;
+            padding: 0 15px;
+            margin-bottom: 10px;
+            margin-top: 10px;
+        } */
+
+        /* details[open] {
+            padding: 0 15px 15px 15px;
+        } */
+
+        summary {
+            min-height: 40px;
+            line-height: 40px;
+        }
+
+        /* details[open]>summary {
+            margin-bottom: 20px;
+        } */
+
+        dialog {
+            position: fixed;
+            display: grid;
+            grid-template:
+                "main" auto
+                "close-btn" 80px
+                /1fr;
+            place-content: center;
+            place-items: center;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #0000;
+            border-style: none;
+            padding: 0;
+        }
+
+        dialog>button {
+            all: unset;
+            color: #fff;
+            border-radius: 6px;
+            height: 40px;
+            min-width: 60px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+
+        dialog>button:hover {
+            border: 1px solid #fff;
+            box-shadow: 0 0 8px 1px #999;
+        }
+
+        dialog::backdrop {
+            position: fixed;
+            inset: 0px;
+            background: #00000040;
+            backdrop-filter: blur(5px);
+        }
+
+        noita-spell,
+        noita-perk {
+            vertical-align: middle;
+        }
+
+        [is="noita-panel-attr"] {
+            height: 14px;
+            width: 14px;
+        }
+
+        .queue {
+            display: inline-flex;
+            gap: 5px;
+            vertical-align: middle;
+            border-radius: 6px;
+            min-height: 48px;
+            min-width: 48px;
+            place-content: center;
+            place-items: center;
+            border: 1px solid var(--c);
+            box-shadow: inset 0 0 5px 1px var(--c);
+            user-select: none;
+            margin: 2px 5px;
+        }
+
+        .queue.deck {
+            padding: 5px 5px 5px 50px;
+            --c: #33a;
+            background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" height="12" width="40"%3E%3Ctext font-size="8" fill="%2333a" y="9"%3E牌库:%3C/text%3E%3C/svg%3E') left 5px center/80px 24px no-repeat;
+        }
+
+        .queue.hand {
+            padding: 5px 5px 5px 50px;
+            --c: #3a3;
+            background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" height="12" width="40"%3E%3Ctext font-size="8" fill="%233a3" y="9"%3E手牌:%3C/text%3E%3C/svg%3E') left 5px center/80px 24px no-repeat;
+        }
+
+        .queue.discarded {
+            padding: 5px 5px 5px 65px;
+            --c: #a33;
+            background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" height="12" width="40"%3E%3Ctext font-size="8" fill="%23a33" y="9"%3E弃牌堆:%3C/text%3E%3C/svg%3E') left 5px center/80px 24px no-repeat;
+        }
+
+        :is(body, main)>noita-wand {
+            margin: 10px 50px;
+        }
+
+        :is(body, main)>table {
+            margin: 10px 50px;
+        }
+
+        .fade {
+            animation-name: fade;
+            animation-timing-function: linear;
+            animation-duration: 0.5s;
+            animation-fill-mode: both;
+            animation-direction: alternate;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes fade {
+            to {
+                opacity: 0;
+            }
+        }
+
+        small.index {
+            color: #fff;
+            border-radius: 2px;
+            background: #0007;
+            display: grid;
+            place-items: center;
+            place-content: center;
+            height: 20px;
+            min-width: 20px;
+            border: #0009 1px solid;
+        }
+    </style>
 </head>
 
 <body is="gd-doc">
@@ -121,13 +586,14 @@
                     NoitaLib仓库
                 </a>
             </h3>
-            <p><a href="https://github.com/jenspalmqvist/noita-data">Noita data.wak 解包数据</a></p>
+            <noita-material material.id="poo_gas" display="reaction"></noita-material>
             <p><strong>noitaLib</strong>为页面内所有的noita元素提供了UI渲染</p>
             <button onclick="gdDoc.showArticle(gdDoc.articles.get('字体测试'))">字体测试页面</button><button
                 onclick="gdDoc.showArticle(gdDoc.articles.get('实体面板'))">实体面板测试页面</button>
             <p><var>noitaLib</var> 为库的调用入口</p>
             noita 法术组件 <br />
-            <noita-spell spell.exp="#type_passive" display="panel"></noita-spell><br><br><br>
+            <noita-spell spell.exp="#type_passive" display="panel"
+                style="--ignore-panel-attr: ;"></noita-spell><br><br><br>
             <noita-spell spell.id="BOMB"></noita-spell>
             <!-- <noita-spell spell.id="BOMB1"></noita-spell> -->
             <noita-spell spell.id="NOLLA"></noita-spell>
@@ -148,6 +614,11 @@
             <noita-perk display="icon" perk.id="技巧血金"></noita-perk>
             <hr />
             <noita-message message.style="fungal_shift">环境修正通知框组件</noita-message>
+
+            <noita-spell spell.id="BULLET">
+                <img is="noita--spell" spell.id="CRUMBLING_EARTH">
+            </noita-spell>
+            <noita-spell spell.id="BULLET" display="icon:projectilesRelated"></noita-spell>
 
 
             <noita-container display="panel" container.type="common" container.content="#700000:50"></noita-container>
@@ -194,7 +665,8 @@
             <noita-material material.inherit="water"></noita-material>
             <noita-material material.tag="[fire]"></noita-material>
             <noita-material material.id="diamond"></noita-material>
-            <noita-wand display="panel" wand.name="序号指定法杖图标3" wand.icon="#276" wand.fire-rate-wait=">=-42"  wand.mana-charge-speed="100~600"></noita-wand>
+            <noita-wand display="panel" wand.name="序号指定法杖图标3" wand.icon="#276" wand.fire-rate-wait=">=-42"
+                wand.mana-charge-speed="100~600"></noita-wand>
             <div id="test"></div>
         </article>
         <article title="wiki">
@@ -247,66 +719,152 @@
             </ul>
         </article>
         <article title="法术图鉴-类型">
-            <h1>法术类型分类</h1>
-            <h2>
-                <!-- <noita-spell spell.expression="#type_projectile"></noita-spell> -->
-                投射物
-            </h2>
-            <h2>
-                <!-- <noita-spell spell.expression="#type_staticProjectile"></noita-spell> -->
-                静态投射物
-            </h2>
-            <h2>
-                <!-- <noita-spell spell.expression="#type_modifier"></noita-spell> -->
-                修正
-            </h2>
-            <h2>
-                <!-- <noita-spell spell.expression="#type_drawMany"></noita-spell> -->
-                多重施放
-            </h2>
-            <h2>
-                <!-- <noita-spell spell.expression="#type_material"></noita-spell> -->
-                材料
-            </h2>
-            <h2>
-                <!-- <noita-spell spell.expression="#type_other"></noita-spell> -->
-                其他
-            </h2>
-            <h2>
-                <!-- <noita-spell spell.expression="#type_utility"></noita-spell> -->
-                实用
-            </h2>
-            <h2>
-                <!-- <noita-spell spell.expression="#type_passive"></noita-spell> -->
-                被动
-            </h2>
 
-            <script>
-                (() => {
-                    const articles = document.querySelectorAll("main>article");
-                    let currentArticle;
-                    for (let i = 0; i < articles.length; i++) {
-                        if (!articles[i].hasAttribute("style")) currentArticle = articles[i];
-                    }
-                    const h2s = currentArticle.querySelectorAll("h2");
-                    appendSpellElements("#type_projectile");
-                    h2s[0].after(fragment);
-                    appendSpellElements("#type_staticProjectile");
-                    h2s[1].after(fragment);
-                    appendSpellElements("#type_modifier");
-                    h2s[2].after(fragment);
-                    appendSpellElements("#type_drawMany");
-                    h2s[3].after(fragment);
-                    appendSpellElements("#type_material");
-                    h2s[4].after(fragment);
-                    appendSpellElements("#type_other");
-                    h2s[5].after(fragment);
-                    appendSpellElements("#type_utility");
-                    h2s[6].after(fragment);
-                    appendSpellElements("#type_passive");
-                    h2s[7].after(fragment);
-                })();
-            </script>
+            <h1>法术类型分类</h1>
+            <h2>投射物</h2>
+            <local-block>
+                <template>
+                    <style>
+                        :host {
+                            padding: 10px !important;
+                            display: flex;
+                            flex-wrap: wrap;
+                            gap: 5px;
+                            box-shadow: inset 0 0 10px 3px #5a2323;
+                            border-radius: 0 0 10px 10px;
+                        }
+                    </style>
+                    <script>
+                        this.append(...noitaLib.Spell.queryByExp("#type_projectile").map(e => new noitaLib.Spell([e])))
+                    </script>
+                </template>
+            </local-block>
+            <h2>静态投射物</h2>
+            <local-block>
+                <template>
+                    <style>
+                        :host {
+                            padding: 10px !important;
+                            display: flex;
+                            flex-wrap: wrap;
+                            gap: 5px;
+                            box-shadow: inset 0 0 10px 3px #8d3f18;
+                            border-radius: 0 0 10px 10px;
+                        }
+                    </style>
+                    <script>
+                        this.append(...noitaLib.Spell.queryByExp("#type_staticProjectile").map(e => new noitaLib.Spell([e])))
+                    </script>
+                </template>
+            </local-block>
+            <h2>修正</h2>
+            <local-block>
+                <template>
+                    <style>
+                        :host {
+                            padding: 10px !important;
+                            display: flex;
+                            flex-wrap: wrap;
+                            gap: 5px;
+                            box-shadow: inset 0 0 10px 3px #2d3a72;
+                            border-radius: 0 0 10px 10px;
+                        }
+                    </style>
+                    <script>
+                        this.append(...noitaLib.Spell.queryByExp("#type_modifier").map(e => new noitaLib.Spell([e])))
+                    </script>
+                </template>
+            </local-block>
+            <h2>多重</h2>
+            <local-block>
+                <template>
+                    <style>
+                        :host {
+                            padding: 10px !important;
+                            display: flex;
+                            flex-wrap: wrap;
+                            gap: 5px;
+                            box-shadow: inset 0 0 10px 3px #1c6d73;
+                            border-radius: 0 0 10px 10px;
+                        }
+                    </style>
+                    <script>
+                        this.append(...noitaLib.Spell.queryByExp("#type_drawMany").map(e => new noitaLib.Spell([e])))
+                    </script>
+                </template>
+            </local-block>
+            <h2>材料</h2>
+            <local-block>
+                <template>
+                    <style>
+                        :host {
+                            padding: 10px !important;
+                            display: flex;
+                            flex-wrap: wrap;
+                            gap: 5px;
+                            box-shadow: inset 0 0 10px 3px #356f44;
+                            border-radius: 0 0 10px 10px;
+                        }
+                    </style>
+                    <script>
+                        this.append(...noitaLib.Spell.queryByExp("#type_material").map(e => new noitaLib.Spell([e])))
+                    </script>
+                </template>
+            </local-block>
+            <h2>其他</h2>
+            <local-block>
+                <template>
+                    <style>
+                        :host {
+                            padding: 10px !important;
+                            display: flex;
+                            flex-wrap: wrap;
+                            gap: 5px;
+                            box-shadow: inset 0 0 10px 3px #356f44;
+                            border-radius: 0 0 10px 10px;
+                        }
+                    </style>
+                    <script>
+                        this.append(...noitaLib.Spell.queryByExp("#type_other").map(e => new noitaLib.Spell([e])))
+                    </script>
+                </template>
+            </local-block>
+            <h2>实用</h2>
+            <local-block>
+                <template>
+                    <style>
+                        :host {
+                            padding: 10px !important;
+                            display: flex;
+                            flex-wrap: wrap;
+                            gap: 5px;
+                            box-shadow: inset 0 0 10px 3px #7b2a74;
+                            border-radius: 0 0 10px 10px;
+                        }
+                    </style>
+                    <script>
+                        this.append(...noitaLib.Spell.queryByExp("#type_utility").map(e => new noitaLib.Spell([e])))
+                    </script>
+                </template>
+            </local-block>
+            <h2>被动</h2>
+            <local-block>
+                <template>
+                    <style>
+                        :host {
+                            padding: 10px !important;
+                            display: flex;
+                            flex-wrap: wrap;
+                            gap: 5px;
+                            box-shadow: inset 0 0 10px 3px #212f26;
+                            border-radius: 0 0 10px 10px;
+                        }
+                    </style>
+                    <script>
+                        this.append(...noitaLib.Spell.queryByExp("#type_passive").map(e => new noitaLib.Spell([e])))
+                    </script>
+                </template>
+            </local-block>
         </article>
         <article title="法术图鉴-等级">
             <h1>法术等级分类</h1>
@@ -320,19 +878,19 @@
             <h2>7级</h2>
             <h2>10级</h2>
             <script>
-                (() => {
-                    const articles = document.querySelectorAll("main>article");
-                    let currentArticle;
-                    for (let i = 0; i < articles.length; i++) {
-                        if (!articles[i].hasAttribute("style")) currentArticle = articles[i];
-                    }
-                    const h2s = currentArticle.querySelectorAll("h2");
-                    const exps = ["#lv0", "#lv1", "#lv2", "#lv3", "#lv4", "#lv5", "#lv6", "#lv7", "#lv10"];
-                    for (let i = 0; i < 9; i++) {
-                        appendSpellElementsWithSort(exps[i]);
-                        h2s[i].after(fragment);
-                    }
-                })();
+                    (() => {
+                        const articles = document.querySelectorAll("main>article");
+                        let currentArticle;
+                        for (let i = 0; i < articles.length; i++) {
+                            if (!articles[i].hasAttribute("style")) currentArticle = articles[i];
+                        }
+                        const h2s = currentArticle.querySelectorAll("h2");
+                        const exps = ["#lv0", "#lv1", "#lv2", "#lv3", "#lv4", "#lv5", "#lv6", "#lv7", "#lv10"];
+                        for (let i = 0; i < 9; i++) {
+                            appendSpellElementsWithSort(exps[i]);
+                            h2s[i].after(fragment);
+                        }
+                    })();
             </script>
         </article>
         <article title="天赋图鉴">
@@ -597,7 +1155,8 @@
             <noita-wand display="panel" wand.icon="条件实验性魔杖" wand.name="条件实验性魔杖(名称指定图标)"></noita-wand>
             <noita-wand display="panel" wand.icon="机枪实验性魔杖" wand.name="机枪实验性魔杖(名称指定图标)"></noita-wand>
             <h1>BOSS掉落</h1>
-            <noita-wand display="panel" wand.icon="电锯" wand.name="电锯(名称指定图标)" wand.capacity="3" wand.static-spells="BLOODLUST CHAINSAW"></noita-wand>
+            <noita-wand display="panel" wand.icon="电锯" wand.name="电锯(名称指定图标)" wand.capacity="3"
+                wand.static-spells="BLOODLUST CHAINSAW"></noita-wand>
             <h3>常见杖</h3>
             <noita-wand display="panel" wand.icon="AUTO" wand.name="法杖图标自动匹配测试" wand.capacity="26" wand.draw="1"
                 wand.fire-rate-wait="15" wand.reload-time="0" wand.shuffle="false" wand.spread-degrees="0"
@@ -614,11 +1173,11 @@
                     for (let i = 0; i < articles.length; i++) {
                         if (!articles[i].hasAttribute("style")) currentArticle = articles[i];
                     }
-                    currentArticle.innerHTML = noitaLib.Material.datas.map(e => `<noita-material material.id="${e.id}"></noita-material>`).join("");
+                    currentArticle.innerHTML = noitaLib.Material.datas.map(e => `<div>${e.name}<noita-material material.id="${e.id}"></noita-material><noita-material material.id="${e.id}" display="reaction"></noita-material></div>`).join("");
                 })();
             </script>
         </article>
-        <article title="配方">
+        <!-- <article title="配方">
             <h1>单向传送门</h1>
             <noita-wand display="panel" wand.name="魔杖" wand.icon="AUTO" wand.shuffle="false" wand.draw="1"
                 wand.mana-max=">=57" wand.mana-charge-speed=">=0" wand.capacity=">=5" wand.spread-degree="0"
@@ -717,7 +1276,7 @@
                 wand.fire-rate-wait="0" wand.reload-time="0" wand.mana-max="800" wand.mana-charge-speed="100"
                 wand.capacity="6" wand.spread-degree="0" wand.static-spells=""
                 wand.dynamic-spells="TENTACLE_TIMER HEAVY_SHOT SPELLS_TO_POWER:2 RECOIL_DAMPER:~1 DIVIDE_2 DIVIDE_3 DUPLICATE IF_HALF CURSE_WITHER_PROJECTILE MISSILE RESET IF_END"></noita-wand>
-        </article>
+        </article> -->
         <article title="环境修正图鉴">
             <noita-message message.preset="BOOBY_TRAPPED"></noita-message>
             <noita-message message.preset="CONDUCTIVE"></noita-message>
@@ -742,6 +1301,23 @@
             <noita-message message.preset="SPOOKY"></noita-message>
             <noita-message message.preset="PROTECTION_FIELDS"></noita-message>
             <noita-message message.preset="WORMY"></noita-message>
+        </article>
+        <article title="魔球图鉴">
+            <noita-orb orb.id="common"></noita-orb>
+            <noita-orb orb.id="red"></noita-orb>
+            <noita-orb orb.id="discovered"></noita-orb>
+            <noita-orb orb.id="evil"></noita-orb>
+            <noita-orb orb.id="0"></noita-orb>
+            <noita-orb orb.id="1"></noita-orb>
+            <noita-orb orb.id="2"></noita-orb>
+            <noita-orb orb.id="3"></noita-orb>
+            <noita-orb orb.id="4"></noita-orb>
+            <noita-orb orb.id="5"></noita-orb>
+            <noita-orb orb.id="6"></noita-orb>
+            <noita-orb orb.id="7"></noita-orb>
+            <noita-orb orb.id="8"></noita-orb>
+            <noita-orb orb.id="9"></noita-orb>
+            <noita-orb orb.id="10"></noita-orb>
         </article>
     </template>
     <template hidden>
